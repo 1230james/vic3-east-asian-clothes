@@ -1,0 +1,61 @@
+pdxmesh = {
+	name = "mandarin_square_ming_subject_02_mesh"
+	file = "mandarin_square.mesh"
+
+	blend_shape = { id = "mandarin_square_bs_fat"				type = "mandarin_square_bs_fat.mesh" }
+	blend_shape = { id = "mandarin_square_bs_gaunt"				type = "mandarin_square_bs_gaunt.mesh" }
+	blend_shape = { id = "mandarin_square_bs_old"				type = "mandarin_square_bs_old.mesh" }
+	blend_shape = { id = "mandarin_square_bs_infant"				type = "mandarin_square_bs_infant.mesh" }
+	blend_shape = { id = "mandarin_square_bs_thick"				type = "mandarin_square_bs_thick.mesh" }
+	blend_shape = { id = "mandarin_square_bs_thin"				type = "mandarin_square_bs_thin.mesh" }
+
+	meshsettings = {
+		name = "mandarin_squareShape"
+		index = 0
+		texture_diffuse = "mandarin_square_ming_subject_02_diffuse.dds"
+		texture_normal = "mandarin_square_normal.dds"
+		texture_specular = "mandarin_square_properties.dds"
+		shader = "portrait_attachment_pattern"
+		shader_file = "gfx/FX/jomini/portrait.shader"
+	}
+}
+
+entity = {
+	name = "mandarin_square_ming_subject_02_entity"
+	pdxmesh = "mandarin_square_ming_subject_02_mesh"
+	
+	attribute = { name = "body_bs_fat"					blend_shape = "mandarin_square_bs_fat" }
+	attribute = { name = "body_bs_gaunt"				blend_shape = "mandarin_square_bs_gaunt" }
+	attribute = { name = "body_bs_old"					blend_shape = "mandarin_square_bs_old" }
+	attribute = { name = "body_bs_infant"				blend_shape = "mandarin_square_bs_infant" }
+	attribute = { name = "body_bs_thick"				blend_shape = "mandarin_square_bs_thick" }
+	attribute = { name = "body_bs_thin"					blend_shape = "mandarin_square_bs_thin" }
+		
+	game_data = {
+		portrait_entity_user_data = {
+		portrait_accessory = {
+			pattern_mask = "gfx/models/portraits/attachments/male_outfits/chinese/ming/mandarin_square/mandarin_square_masks.dds"	#Any 4-channel texture. Each channel will be used to mask a pattern from the variation object
+			variation = "mandarin_square_ming_01"	#A "variation" object in gfx/portraits/accessory_variations/
+		}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

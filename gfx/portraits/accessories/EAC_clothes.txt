@@ -1,0 +1,276 @@
+﻿# These assets are then used in the genes (game/common/genes/..) at the bottom of the file. 
+
+#############################################################
+#															#
+# 			 Male Clothes and Clothing Accessories			#
+#															#
+#############################################################
+
+
+
+# CHINESE #
+
+male_outfit_chinese_official = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_official_entity" }	
+}
+
+male_outfit_chinese_court_official_01 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_court_official_01_entity" }	
+}
+
+male_outfit_chinese_court_official_02 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_court_official_02_entity" }	
+}
+
+male_outfit_chinese_court_official_03 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_court_official_03_entity" }	
+}
+
+male_outfit_chinese_court_official_04 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_court_official_04_entity" }	
+}
+
+male_outfit_chinese_court_official_05 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_court_official_05_entity" }	
+}
+
+male_outfit_chinese_court_general_01 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_court_general_01_entity" }	
+}
+
+male_outfit_chinese_court_general_02 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_court_general_02_entity" }	
+}
+
+male_outfit_chinese_court_general_03 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_court_general_03_entity" }	
+}
+
+male_outfit_mandarin = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_mandarin_entity" }	
+}
+
+male_outfit_mandarin_red = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_mandarin_red_entity" }	
+}
+
+mandarin_square_ming_subject_01 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "mandarin_square_ming_subject_01_entity" }	
+}
+
+mandarin_square_ming_subject_02 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "mandarin_square_ming_subject_02_entity" }	
+}
+
+mandarin_square_official_ming_01 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "mandarin_square_official_ming_01_entity" }	
+}
+
+mandarin_square_official_ming_02 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "mandarin_square_official_ming_02_entity" }	
+}
+
+mandarin_square_official_ming_03 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "mandarin_square_official_ming_03_entity" }	
+}
+
+mandarin_square_official_ming_04 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "mandarin_square_official_ming_04_entity" }	
+}
+
+mandarin_square_official_ming_05 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "mandarin_square_official_ming_05_entity" }	
+}
+
+mandarin_square_general_ming_00 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "mandarin_square_general_ming_00_entity" }	
+}
+
+mandarin_square_general_ming_0102 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "mandarin_square_general_ming_0102_entity" }	
+}
+
+mandarin_square_general_ming_0304 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "mandarin_square_general_ming_0304_entity" }	
+}
+
+EAC_male_outfit_chinese_imperial_01 = {						   
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "EAC_male_outfit_chinese_imperial_entity" }	
+}
+
+male_outfit_chinese_imperial_ming_01 = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_imperial_ming_01_entity" }	
+}
+
+male_outfit_chinese_imperial_ming_02 = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_imperial_ming_02_entity" }	
+}
+
+male_outfit_chinese_common_01 = {								   
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_common_01_entity" }	
+}
+
+male_outfit_chinese_common_ming_01 = {	
+	set_tags = "shrink_arms,shrink_chest,shrink_belly"									   
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_common_ming_01_entity" }	
+}
+
+male_outfit_chinese_common_ming_02 = {			
+	set_tags = "shrink_arms,shrink_chest,shrink_belly"							   
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_common_ming_02_entity" }	
+}
+
+male_outfit_chinese_common_ming_03 = {						
+	set_tags = "shrink_arms,shrink_chest,shrink_belly"				   
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_common_ming_03_entity" }	
+}
+
+male_outfit_chinese_common_ming_officer_blue = {										   
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_common_ming_officer_blue_entity" }	
+}
+
+male_outfit_chinese_common_ming_officer_red = {										   
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_common_ming_officer_red_entity" }	
+}
+
+male_outfit_chinese_common_ming_officer_brown = {										   
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_common_ming_officer_brown_entity" }	
+}
+
+male_outfit_chinese_01_low = {							   
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_01_low_entity" }	
+}
+
+male_outfit_korean_court_01 = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_korean_court_01_entity" }	
+}
+
+male_outfit_korean_court_02 = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_korean_court_02_entity" }	
+}
+
+male_outfit_korean_court_03 = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_korean_court_03_entity" }	
+}
+
+male_outfit_korean_court_04 = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_korean_court_04_entity" }	
+}
+
+male_outfit_vietnamese_court_official_01 = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_vietnamese_court_official_01_entity" }	
+}
+
+male_outfit_vietnamese_court_official_02 = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_vietnamese_court_official_02_entity" }	
+}
+
+male_outfit_vietnamese_court_official_03 = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_vietnamese_court_official_03_entity" }	
+}
+
+male_outfit_vietnamese_court_official_04 = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_vietnamese_court_official_04_entity" }	
+}
+
+male_outfit_vietnamese_court_official_05 = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_vietnamese_court_official_05_entity" }	
+}
+
+male_outfit_vietnamese_court_general_0102 = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_vietnamese_court_general_0102_entity" }	
+}
+
+male_outfit_vietnamese_court_general_0304 = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_vietnamese_court_general_0304_entity" }	
+}
+
+male_outfit_vietnamese_common_01 = {										   
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_vietnamese_common_01_entity" }	
+}
+
+
+
+##BUDDHIST##
+
+male_outfit_buddhist_01 = {
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_clothes_religious_buddhist_high_01_entity" }	
+}
+
+
+
+
+## JAPANESE ##
+
+male_outfit_japanese_01_low = {
+	
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_japanese_01_low_entity" }	
+}
+
+
+male_outfit_japanese_common_01 = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_japanese_common_01_entity" }	
+}
+
+
+male_outfit_japanese_imperial_01 = {
+	set_tags = "shrink_arms,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_japanese_imperial_01_entity" }	
+}
+
+
+male_outfit_japanese_shogun_01 = {
+	set_tags = "shrink_arms,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_japanese_shogun_01_entity" }	
+}
+
+
+male_outfit_japanese_taishi_01 = {
+	set_tags = "shrink_arms,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_japanese_taishi_01_entity" }	
+}
+
+
+## KOREAN ##
+
+male_outfit_korean_king_01 = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_korean_king_01_entity" }	
+}
+
+male_outfit_korean_imperial_02 = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_korean_imperial_02_entity" }	
+}
+
+male_outfit_korean_imperial_03 = {
+	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_korean_imperial_01_entity" }	
+}
+
+
+male_outfit_korean_common_01 = {
+	set_tags = "shrink_arms,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_korean_common_01_entity" }	
+}
+
+male_outfit_korean_01_low = {
+	set_tags = "shrink_arms,shrink_chest,shrink_belly"
+	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_korean_01_low_entity" }	
+}

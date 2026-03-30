@@ -1,0 +1,46 @@
+pdxmesh = {
+	name = "male_headgear_chinese_court_01_mesh_5"
+	file = "male_headgear_chinese_court_01.mesh"
+
+	meshsettings = {
+		name = "male_headgear_chinese_court_01Shape"
+		index = 0
+		texture_diffuse = "male_headgear_chinese_court_01_diffuse.dds"
+		texture_normal = "male_headgear_chinese_court_01_normal.dds"
+		texture_specular = "male_headgear_chinese_court_01_properties.dds"
+		shader = "portrait_attachment"
+		shader_file = "gfx/FX/jomini/portrait.shader"
+	}
+
+	meshsettings = {
+		name = "pearl_on_top"
+		index = 0
+		texture_diffuse = "pearl_on_top_5.dds"
+		shader = "portrait_attachment"
+		shader_file = "gfx/FX/jomini/portrait.shader"
+	}
+
+	meshsettings = {
+		name = "peacock_feather"
+		index = 0
+		texture_diffuse = "peacock_feather.dds"
+		shader = "portrait_attachment"
+		shader_file = "gfx/FX/jomini/portrait.shader"
+	}
+}
+
+entity = {
+	name = "male_headgear_chinese_court_01_entity_5"
+	pdxmesh = "male_headgear_chinese_court_01_mesh_5"
+
+		game_data = {
+            portrait_entity_user_data = {
+			portrait_accessory = {
+				pattern_mask = "gfx/models/portraits/attachments/male_headgear/chinese_court/01/male_headgear_chinese_court_01_masks.dds"	
+	
+			#Any 4-channel texture. Each channel will be used to mask a pattern from the variation object
+				variation = "male_headgear_prussian_military"	#A "variation" object in gfx/portraits/accessory_variations/
+			}
+            }
+	}
+}

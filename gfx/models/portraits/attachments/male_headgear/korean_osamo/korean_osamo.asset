@@ -1,0 +1,20 @@
+pdxmesh = {
+	name = "korean_osamo_mesh"
+	file = "korean_osamo.mesh"
+
+	meshsettings = {
+		name = "korean_osamoShape"
+		index = 0
+		texture_diffuse = "korean_osamo_diffuse.dds"
+		texture_normal = "korean_osamo_normal.dds"
+		texture_specular = "korean_osamo_properties.dds"
+		shader = "portrait_attachment"
+		shader_file = "gfx/FX/jomini/portrait.shader"
+	}
+
+}
+
+entity = {
+	name = "korean_osamo_entity"
+	pdxmesh = "korean_osamo_mesh"
+}
