@@ -1,5 +1,93 @@
-﻿@EACR_PORTRAIT_MODIFIER_WEIGHT = 10000000
+﻿@EACR_PORTRAIT_MODIFIER_WEIGHT_LOW  = 10000000
+@EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH = 20000000
 
 INJECT:hairstyles = {
 	
+    topknot_hairstyles = {
+        dna_modifiers = {
+            accessory = {
+                mode = replace
+                gene = EAC_hairstyles
+                template = topknot_hairstyles
+                value = 0
+            }
+            
+            # Override vanilla
+            accessory = {
+                mode = replace
+                gene = hairstyles
+                template = no_hairstyles
+                value = 0
+            }
+        }
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                
+                # Unwesternized Sinosphere & Confucian people
+                # Filial piety and all that
+                EACR_st_is_unwesternized = yes
+                OR = {
+                    scope:pop ?= {
+                        save_temporary_scope_as = person
+                    }
+                    scope:character ?= {
+                        save_temporary_scope_as = person
+                    }
+                }
+                scope:person ?= {
+                    OR = {
+                        culture = {
+                            has_discrimination_trait = tradition_sinosphere
+                        }
+                        religion = rel:confucian
+                    }
+                }
+                
+                # Do not override Manchu queue
+                chinese_manchu_queue_hairstyle_character_trigger = no
+                chinese_manchu_queue_hairstyle_pops_trigger = no
+                
+                # Buddhist monks are bald
+                NOT = {
+                    scope:person ?= {
+                        religion = {
+                            has_discrimination_trait = heritage_dharmic
+                        }
+                        OR = {
+                            clergy_clothes_pop_trigger = yes
+                            AND = {
+                                politician_clothes_trigger = yes
+                                devout_clothes_trigger = yes
+                            }
+                        }
+                    }
+                }
+                
+                # TODO: Imported from EACP. Is this still needed?
+                #
+                # Prevent clipping
+                # NOR = {
+                #     chinese_court_clothes_official_trigger_01 = yes
+                #     chinese_court_clothes_official_trigger_02 = yes
+                #     chinese_court_clothes_official_trigger_03 = yes
+                #     chinese_court_clothes_official_trigger_04 = yes
+                #     chinese_court_clothes_official_trigger_05 = yes
+                #     chinese_court_clothes_general_trigger_01  = yes
+                #     chinese_court_clothes_general_trigger_02  = yes
+                #     chinese_court_clothes_general_trigger_03  = yes
+                #     AND = {
+                #         chinese_qing_clothes_pop_trigger = yes
+                #         OR = {
+                #             bureaucrats_clothes_pop_trigger = yes
+                #             officers_clothes_pop_trigger = yes
+                #             soldier_clothes_pop_trigger = yes
+                #         }
+                #     }
+                # }
+            }
+        }
+    }
+    
 }
