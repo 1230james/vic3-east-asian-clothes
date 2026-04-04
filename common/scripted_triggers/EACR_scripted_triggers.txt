@@ -1,0 +1,178 @@
+﻿EACR_st_cold_season = {
+    month >= 3 # month compares 0 - 11
+    month <  9
+}
+
+EACR_st_is_navy = {
+    OR = {
+        scope:pop ?= {
+            workplace ?= {
+                is_building_type = building_naval_base
+            }
+        }
+        scope:character ?= {
+            has_role = admiral
+        }
+    }
+}
+
+EACR_st_is_army = {
+    OR = {
+        # Soldiers & officers not working in the navy
+        scope:pop ?= {
+            EACR_st_is_navy = no
+            OR = {
+                is_pop_type = soldiers
+                is_pop_type = officers
+            }
+        }
+        
+        # Generals & Armed Forces politicians
+        scope:character ?= {
+            OR = {
+                # Generals
+                has_role = general
+                
+                # Armed Forces IG leader who isn't a general or admiral
+                AND = {
+                    armed_forces_clothes_trigger = yes
+                    politician_clothes_trigger = yes
+                    EACR_st_is_navy = no
+                }
+            }
+        }
+    }
+}
+
+EACR_st_is_unwesternized = {
+    trigger_if = {
+        limit = {
+            WCR_is_active_trigger = yes
+        }
+        WCR_TPM_is_westernized_trigger = no
+    }
+    trigger_else = {
+        european_clothes_trigger     = no
+        european_clothes_pop_trigger = no
+    }
+    
+    # Treat military folks in unwesternized subjects of GBR, FRA, and RUS as westernized to make way for the subject uniforms
+    trigger_if = {
+        limit = {
+            military_clothes_trigger = yes
+            EACR_st_is_navy = yes
+            EACR_st_is_army = yes
+        }
+        british_empire_clothes_trigger     = no
+        british_empire_clothes_pop_trigger = no
+        british_empire_clothes_p_trigger   = no
+        french_empire_clothes_trigger      = no
+        french_empire_clothes_pop_trigger  = no
+        russian_empire_clothes_trigger     = no
+        russian_empire_clothes_pop_trigger = no
+    }
+}
+
+EACR_st_is_country_tag = {
+    trigger_if = {
+        limit = {
+            exists = c:$TAG$
+        }
+        c:$TAG$ ?= THIS
+    }
+    trigger_else = {
+        was_formed_from = $TAG$
+    }
+}
+
+EACR_st_owner_is_country_tag = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            EACR_st_is_country_tag = { TAG = $TAG$ }
+        }
+    }
+}
+
+EACR_st_is_qing_china = {
+    EACR_st_is_country_tag = { TAG = CHI }
+    country_has_primary_culture = cu:manchu
+}
+
+# Morgenrote compatibility - returns true if they are strictly a special character for Morgenrote (i.e., scientist,
+# artist, etc.); returns false otherwise. Used mainly for blocking the use of court clothing 
+EACR_st_is_morgenrote_special_char = {
+    scope:character ?= {
+        mr_special_characters_clothes_trigger = yes
+        military_clothes_trigger   = no
+        agitator_character_trigger = no
+        is_ruler = no
+        is_heir  = no
+        NOT = {
+            interest_group.leader ?= THIS
+        }
+    }
+}
+
+EACR_st_pop_or_char_is_chinese = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        culture = { 
+            OR = {
+                has_discrimination_trait = heritage_han
+                has_discrimination_trait = tradition_sinosphere
+            }
+            NOR = {
+                has_discrimination_trait = heritage_korean
+                has_discrimination_trait = heritage_vietnamese
+            }
+        }
+    }
+}
+
+# Will check if the character is the monarch. Will correctly handle situations where a regency is active.
+EACR_st_char_is_monarch = {
+    scope:character ?= {
+        owner ?= { coa_monarchy_trigger = yes }
+        trigger_if = {
+            limit = {
+                owner ?= { has_gov_regency = no }
+            }
+            is_ruler = yes
+        }
+        trigger_else = {
+            is_heir = yes
+        }
+    }
+}
+
+# Similar to `EACR_st_char_is_monarch`. Will return false if there is a regency (since the heir is actually the monarch
+# in those cases)
+EACR_st_char_is_heir = {
+    scope:character ?= {
+        owner ?= { coa_monarchy_trigger = yes }
+        trigger_if = {
+            limit = {
+                owner ?= { has_gov_regency = no }
+            }
+            is_heir = yes
+        }
+        trigger_else = {
+            always = no
+        }
+    }
+}

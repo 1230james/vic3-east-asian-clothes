@@ -1,0 +1,11 @@
+﻿# Third-party modders:
+# See 00_EACR_mod_compat_trigger.txt for usage notes
+
+REPLACE_OR_CREATE:EACR_is_active_trigger = {
+    always = yes
+}
+
+# Legacy trigger for East Asian Clothes: Patch; defined for backwards-compatibility
+TRY_REPLACE:EACP_is_active_trigger = {
+    EACR_is_active_trigger = yes
+}

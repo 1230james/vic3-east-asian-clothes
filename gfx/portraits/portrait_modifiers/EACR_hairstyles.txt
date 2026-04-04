@@ -1,0 +1,5 @@
+﻿@EACR_PORTRAIT_MODIFIER_WEIGHT = 10000000
+
+INJECT:hairstyles = {
+	
+}

@@ -1,0 +1,63 @@
+﻿@EACR_PORTRAIT_MODIFIER_WEIGHT = 10000000
+
+INJECT:clothes = {
+    
+    # Korean emperors
+    EACR_korean_imperial_clothes = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = outfits
+                template = korean_imperial_outfits
+                range = { 0 1 } # For the randomness to work correctly
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT
+                EACR_st_owner_is_country_tag = { TAG = KOR }
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_monarch  = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+                scope:character ?= {
+                    owner ?= {
+                        has_variable = KOR_korean_empire_declared
+                    }
+                }
+            }
+        }
+    }
+    
+    # Korean kings
+    EACR_korean_imperial_clothes = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+				template = korean_king_outfits
+                range = { 0 1 } # For the randomness to work correctly
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT
+                EACR_st_owner_is_country_tag = { TAG = KOR }
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_monarch  = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+                scope:character ?= {
+                    owner ?= {
+                        NOT = {
+                            has_variable = KOR_korean_empire_declared
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}
