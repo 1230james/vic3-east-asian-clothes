@@ -54,6 +54,18 @@ EACR_st_is_unwesternized = {
     trigger_else = {
         european_clothes_trigger     = no
         european_clothes_pop_trigger = no
+        
+        # Force military to westernize in Imperial Korea
+        trigger_if = {
+            limit = {
+                EACR_st_owner_is_KOR_imperial_korea = yes
+                OR = {
+                    EACR_st_is_army = yes
+                    EACR_st_is_navy = yes
+                }
+            }
+            always = no
+        }
     }
     
     # Treat military folks in unwesternized subjects of GBR, FRA, and RUS as westernized to make way for the subject uniforms
@@ -173,6 +185,94 @@ EACR_st_char_is_heir = {
         }
         trigger_else = {
             always = no
+        }
+    }
+}
+
+EACR_st_owner_is_KOR_joseon = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            EACR_st_is_country_tag = { TAG = KOR }
+            NOT = {
+                has_variable = KOR_korean_empire_declared
+            }
+        }
+    }
+}
+
+EACR_st_owner_is_KOR_imperial_korea = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            EACR_st_is_country_tag = { TAG = KOR }
+            has_variable = KOR_korean_empire_declared
+        }
+    }
+}
+
+# ==================================================================================================================== #
+
+# Korean court politicians
+EACR_st_korean_court_base = {
+    EACR_st_owner_is_country_tag = { TAG = KOR }
+    scope:character ?= {
+        owner ?= { coa_monarchy_trigger = yes }
+        military_clothes_trigger = no
+        EACR_st_is_unwesternized = yes
+        EACR_st_char_is_monarch = no
+        EACR_st_char_is_heir = no
+        has_role = politician
+    }
+}
+
+EACR_st_korean_court_01 = {
+    EACR_st_korean_court_base    = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = yes
+        }
+    }
+}
+EACR_st_korean_court_02 = {
+    EACR_st_korean_court_base    = yes
+    armed_forces_clothes_trigger = yes
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = yes
+        }
+    }
+}
+EACR_st_korean_court_03 = {
+    EACR_st_korean_court_base    = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+        }
+    }
+}
+EACR_st_korean_court_04 = {
+    EACR_st_korean_court_base    = yes
+    armed_forces_clothes_trigger = yes
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
         }
     }
 }

@@ -1,9 +1,12 @@
-﻿@EACR_PORTRAIT_MODIFIER_WEIGHT = 10000000
+﻿@EACR_PORTRAIT_MODIFIER_WEIGHT_LOW  = 10000000
+@EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH = 20000000
 
 INJECT:headgear = {
 	
+    ### KOREA ###
+    
     # Korean emperors
-    EACR_korean_imperial_clothes = {
+    EACR_korean_imperial_headgear = {
         dna_modifiers = {
             accessory = {
                 mode = add
@@ -16,14 +19,25 @@ INJECT:headgear = {
         weight = {
             base = 0
             modifier = {
-                add = @EACR_PORTRAIT_MODIFIER_WEIGHT
-                EACR_st_owner_is_country_tag = { TAG = KOR }
-                EACR_st_is_unwesternized = yes
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_KOR_imperial_korea = yes
                 EACR_st_char_is_monarch  = yes
                 military_clothes_trigger = no # Prevent use when monarch is commanding an army
-                scope:character ?= {
-                    owner ?= {
-                        has_variable = KOR_korean_empire_declared
+                
+                # If WCR is active: only use for unwesternized Korea
+                # If vanilla: only use if monarch is traditionalist
+                trigger_if = {
+                    limit = {
+                        WCR_is_active_trigger = yes
+                    }
+                    EACR_st_is_unwesternized = yes
+                }
+                trigger_else = {
+                    scope:character ?= {
+                        OR = {
+                            has_ideology = ideology:ideology_traditionalist
+                            has_ideology = ideology:ideology_traditionalist_minoritarian
+                        }
                     }
                 }
             }
@@ -31,7 +45,7 @@ INJECT:headgear = {
     }
     
     # Korean kings
-    EACR_korean_imperial_clothes = {
+    EACR_korean_king_headgear = {
         dna_modifiers = {
             accessory = {
                 mode = add
@@ -44,17 +58,74 @@ INJECT:headgear = {
         weight = {
             base = 0
             modifier = {
-                add = @EACR_PORTRAIT_MODIFIER_WEIGHT
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_KOR_joseon = yes
+                EACR_st_is_unwesternized = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+                EACR_st_char_is_monarch  = yes
+            }
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
                 EACR_st_owner_is_country_tag = { TAG = KOR }
                 EACR_st_is_unwesternized = yes
-                EACR_st_char_is_monarch  = yes
                 military_clothes_trigger = no # Prevent use when monarch is commanding an army
-                scope:character ?= {
-                    owner ?= {
-                        NOT = {
-                            has_variable = KOR_korean_empire_declared
-                        }
+                EACR_st_char_is_heir = yes
+            }
+        }
+    }
+    
+    # Korean court
+    EACR_korean_court_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = korean_osamo
+                accessory = korean_osamo
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_korean_court_base = yes
+            }
+        }
+    }
+    
+    # Korean military hat
+    EACR_korean_military_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = korean_general_headgear
+                accessory = male_headgear_korean_lia_03
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = { # Currently only one model for both soldiers & generals
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                JKUP_is_active_trigger = no # JKUP compatibility
+                OR = {
+                    EACR_st_is_army = yes
+                    EACR_st_is_navy = yes
+                }
+                
+                # If WCR is active: only use for unwesternized Korea
+                # If vanilla: only use before Korean Empire uniforms are active
+                trigger_if = {
+                    limit = {
+                        WCR_is_active_trigger = yes
                     }
+                    EACR_st_owner_is_country_tag = { TAG = KOR }
+                    EACR_st_is_unwesternized = yes
+                }
+                trigger_else = {
+                    EACR_st_owner_is_KOR_joseon = yes
                 }
             }
         }

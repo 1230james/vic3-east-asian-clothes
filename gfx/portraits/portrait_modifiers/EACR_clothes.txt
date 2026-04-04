@@ -1,6 +1,9 @@
-﻿@EACR_PORTRAIT_MODIFIER_WEIGHT = 10000000
+﻿@EACR_PORTRAIT_MODIFIER_WEIGHT_LOW  = 10000000
+@EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH = 20000000
 
 INJECT:clothes = {
+    
+    ### KOREA ###
     
     # Korean emperors
     EACR_korean_imperial_clothes = {
@@ -8,22 +11,33 @@ INJECT:clothes = {
             accessory = {
                 mode = add
                 gene = outfits
-                template = korean_imperial_outfits
-                range = { 0 1 } # For the randomness to work correctly
+                template  = korean_imperial_outfits
+                accessory = male_outfit_korean_imperial_01
             }
         }
 
         weight = {
             base = 0
             modifier = {
-                add = @EACR_PORTRAIT_MODIFIER_WEIGHT
-                EACR_st_owner_is_country_tag = { TAG = KOR }
-                EACR_st_is_unwesternized = yes
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_KOR_imperial_korea = yes
                 EACR_st_char_is_monarch  = yes
                 military_clothes_trigger = no # Prevent use when monarch is commanding an army
-                scope:character ?= {
-                    owner ?= {
-                        has_variable = KOR_korean_empire_declared
+                
+                # If WCR is active: only use for unwesternized Korea
+                # If vanilla: only use if monarch is traditionalist
+                trigger_if = {
+                    limit = {
+                        WCR_is_active_trigger = yes
+                    }
+                    EACR_st_is_unwesternized = yes
+                }
+                trigger_else = {
+                    scope:character ?= {
+                        OR = {
+                            has_ideology = ideology:ideology_traditionalist
+                            has_ideology = ideology:ideology_traditionalist_minoritarian
+                        }
                     }
                 }
             }
@@ -31,31 +45,181 @@ INJECT:clothes = {
     }
     
     # Korean kings
-    EACR_korean_imperial_clothes = {
+    EACR_korean_king_clothes = {
         dna_modifiers = {
             accessory = {
                 mode = add
                 gene = EAC_outfits
 				template = korean_king_outfits
-                range = { 0 1 } # For the randomness to work correctly
+                accesory = male_outfit_korean_king_01
             }
         }
 
         weight = {
             base = 0
             modifier = {
-                add = @EACR_PORTRAIT_MODIFIER_WEIGHT
-                EACR_st_owner_is_country_tag = { TAG = KOR }
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_KOR_joseon = yes
                 EACR_st_is_unwesternized = yes
                 EACR_st_char_is_monarch  = yes
                 military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_KOR_imperial_korea = yes
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_heir     = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
+        }
+    }
+    
+    # Korean princes
+    EACR_korean_prince_clothes = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+				template = korean_prince_outfits
+                accesory = male_outfit_korean_imperial_02
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_KOR_joseon = yes
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_heir     = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
+        }
+    }
+    
+    # Korean monarchs as commanders in chief w/o JKUP
+    # Forces them to wear hanbok in battle instead of royal robes
+    EACR_korean_monarch_commander_in_chief = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = outfits
+				template = korean_common_outfits
+                accesory = male_outfit_korean_common_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                JKUP_is_active_trigger = no # JKUP compatibility
+                EACR_st_owner_is_KOR_joseon = yes
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_monarch  = yes
+                military_clothes_trigger = yes
+            }
+        }
+    }
+    
+    # Korean queens [dowager]/empresses
+    EACR_korean_empress_clothes = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = outfits
+                template = korean_imperial_outfits
+                value = 1 # can't use `accessory` here and idk why
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH
+                EACR_st_owner_is_country_tag = { TAG = KOR }
+                EACR_st_is_unwesternized = yes
+                monarchy_clothes_trigger = yes
                 scope:character ?= {
-                    owner ?= {
-                        NOT = {
-                            has_variable = KOR_korean_empire_declared
-                        }
-                    }
+                    is_female = yes
                 }
+            }
+        }
+    }
+    
+    # Korean court
+    EACR_korean_court_civilian_gov = { # Non-military, in government
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+				template  = korean_court_outfits_01
+                accessory = male_outfit_korean_court_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_korean_court_01 = yes
+            }
+        }
+    }
+    
+    EACR_korean_court_military_gov = { # Military, in government
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+				template  = korean_court_outfits_02
+                accessory = male_outfit_korean_court_02
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_korean_court_02 = yes
+            }
+        }
+    }
+    
+    EACR_korean_court_civilian_opp = { # Non-military, in opposition
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+				template  = korean_court_outfits_03
+                accessory = male_outfit_korean_court_03
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_korean_court_03 = yes
+            }
+        }
+    }
+    
+    EACR_korean_court_military_opp = { # Military, in opposition
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+				template  = korean_court_outfits_04
+                accessory = male_outfit_korean_court_04
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_korean_court_04 = yes
             }
         }
     }
