@@ -131,7 +131,46 @@ INJECT:headgear = {
         }
     }
     
-    # TODO: Yangban hat
+    # Korean yangban hat (gat)
+    EACR_korean_yangban_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = korean_yangban_headgear
+                accessory = male_headgear_korean_lia_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_country_tag = { TAG = KOR }
+                EACR_st_is_unwesternized = yes
+                OR = {
+                    upper_clothes_pop_trigger  = yes
+                    middle_clothes_pop_trigger = yes
+                    clergy_clothes_pop_trigger = yes
+                }
+            }
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_country_tag = { TAG = KOR }
+                EACR_st_is_unwesternized = yes
+                military_clothes_trigger = no
+                OR = {
+                    ruler_clothes_trigger = yes
+                    politician_clothes_trigger = yes
+                }
+                scope:character ?= {
+                    owner ?= {
+                        coa_monarchy_trigger = no
+                    }
+                }
+            }
+        }
+    }
     
     
     
@@ -461,9 +500,69 @@ INJECT:headgear = {
         }
     }
     
-    # TODO: Officer nuanmo/liangmao
+    # Qing pops nuanmao & liangmao
+    EACR_qing_chinese_pop_nuanmao = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_officer_headgear_01
+                accessory = male_headgear_chinese_officer_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = no
+                EACR_st_owner_is_CHI_qing_dyn = yes
+                bureaucrats_clothes_pop_trigger = yes
+            }
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                md_chinese_uniform_pack_active_trigger = no # CUP compatibility
+                EACR_st_warm_season = no
+                EACR_st_owner_is_CHI_qing_dyn = yes
+                OR = {
+                    officers_clothes_pop_trigger = yes
+                    soldier_clothes_pop_trigger = yes
+                }
+            }
+        }
+    }
     
-    # TODO: Kanemochi
+    EACR_qing_chinese_pop_liangmao = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_officer_headgear_02
+                accessory = male_headgear_chinese_officer_02
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = yes
+                EACR_st_owner_is_CHI_qing_dyn = yes
+                bureaucrats_clothes_pop_trigger = yes
+            }
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                md_chinese_uniform_pack_active_trigger = no # CUP compatibility
+                EACR_st_warm_season = yes
+                EACR_st_owner_is_CHI_qing_dyn = yes
+                OR = {
+                    officers_clothes_pop_trigger = yes
+                    soldier_clothes_pop_trigger = yes
+                }
+            }
+        }
+    }
+    
     
     
     
@@ -552,9 +651,15 @@ INJECT:headgear = {
             base = 0
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                EACR_st_owner_is_CHI_han = yes
+                OR = {
+                    EACR_st_owner_is_CHI_han = yes
+                    EACR_st_owner_is_CHI_republic = yes
+                }
                 EACR_st_is_unwesternized = yes
-                military_clothes_trigger = yes
+                OR = {
+                    military_clothes_trigger     = yes
+                    armed_forces_clothes_trigger = yes
+                }
             }
         }
     }
@@ -596,7 +701,7 @@ INJECT:headgear = {
             base = 0
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                EACR_st_owner_is_CHI_han = yes
+                EACR_st_owner_is_CHI_ming_dyn = yes
                 EACR_st_is_unwesternized = yes
                 OR = {
                     academics_clothes_pop_trigger = yes
@@ -669,20 +774,154 @@ INJECT:headgear = {
             base = 0
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                EACR_st_owner_is_CHI_han = yes
+                EACR_st_owner_is_CHI_ming_dyn = yes
                 EACR_st_is_unwesternized = yes
                 clergy_clothes_pop_trigger = no
                 academics_clothes_pop_trigger = no
-                trigger_if = { # Bureaucrats have their own headgear logic under monarchy
-                    limit = {
-                        EACR_st_owner_is_CHI_ming_dyn = yes
-                    }
-                    bureaucrats_clothes_pop_trigger = no
-                }
+                bureaucrats_clothes_pop_trigger = no
                 OR = {
                     upper_clothes_pop_trigger = yes
                     middle_clothes_pop_trigger = yes
                 }
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    ### MISC. CHINESE ###
+    
+    # Chinese pops xiaomao/guapimao hat
+    EACR_chinese_guapimao_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template = chinese_common_headgear_kanemochi
+                range = { 0 1 }
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = { # Unwesternized Qing middle & upper strata pops, excluding bureaucrats
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_is_unwesternized = yes
+                bureaucrats_clothes_pop_trigger = no
+                chinese_manchu_queue_hairstyle_pops_trigger = yes
+                OR = {
+                    middle_clothes_pop_trigger = yes
+                    upper_clothes_pop_trigger = yes
+                }
+            }
+            modifier = { # Unwesternized republican Chinese middle & upper strata pops
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_is_unwesternized = yes
+                EACR_st_owner_is_CHI_republic = yes
+                OR = {
+                    middle_clothes_pop_trigger = yes
+                    upper_clothes_pop_trigger = yes
+                }
+            }
+            modifier = { # Qing or republican Chinese clergymen
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_is_unwesternized = yes
+                clergy_clothes_pop_trigger = yes
+                OR = {
+                    chinese_manchu_queue_hairstyle_pops_trigger = yes
+                    EACR_st_owner_is_CHI_republic = yes
+                }
+            }
+        }
+    }
+    
+    # Republican Chinese politicians guapimao
+    EACR_chinese_republican_guapimao_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template = chinese_foreign_headgear
+                range = { 0.71 1 } # Only includes guapimao & no hat for variety
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                
+                # Unwesternized & unrecognized
+                EACR_st_is_unwesternized = yes
+                scope:character ?= {
+                    owner ?= {
+                        is_country_type = unrecognized
+                    }
+                }
+                EACR_st_owner_is_CHI_republic = yes
+                OR = {
+                    republic_clothes_trigger   = yes
+                    politician_clothes_trigger = yes
+                }
+                military_clothes_trigger = no
+            }
+        }
+    }
+    
+    # Hybrid bowler + top hat + guapimao headgears
+    EACR_chinese_republican_western_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template = chinese_foreign_headgear
+                range = { 0 1 }
+            }
+        }
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                
+                # Unwesternized, but recognized
+                # Allows a soft westernization with just base game features, but will still avoid conflict when
+                # westernizing with WCR
+                EACR_st_is_unwesternized = yes
+                scope:character ?= {
+                    owner ?= {
+                        NOT = {
+                            is_country_type = unrecognized
+                        }
+                    }
+                }
+                EACR_st_owner_is_CHI_republic = yes
+                OR = {
+                    republic_clothes_trigger   = yes
+                    politician_clothes_trigger = yes
+                }
+                military_clothes_trigger = no
+            }
+        }
+    }
+    
+    # Poor pops' headgear # For some reason the base game hooks this up to the Manchu queue trigger? lol
+    EACR_chinese_common_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = headgear
+                template = chinese_common_headgear
+                range = { 0 1 }
+            }
+        }
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_pop_or_char_is_chinese = yes
+                poor_clothes_pop_trigger = yes
             }
         }
     }

@@ -298,6 +298,10 @@ EACR_st_owner_is_CHI_han = {
                 any_primary_culture = {
                     has_discrimination_trait = tradition_sinosphere
                     has_discrimination_trait_group = heritage_group_east_asian
+                    NOR = {
+                        has_discrimination_trait = heritage_korean
+                        has_discrimination_trait = heritage_vietnamese
+                    }
                 }
             }
         }
@@ -311,6 +315,95 @@ EACR_st_owner_is_CHI_ming_dyn = { # Specifically checks if under monarchy
     }
 }
 
+EACR_st_owner_is_CHI_qing_dyn = {
+    EACR_st_owner_is_CHI_manchu = yes
+    scope:person ?= {
+        owner ?= { coa_monarchy_trigger = yes }
+    }
+}
+
+EACR_st_owner_is_CHI_republic = {
+    EACR_st_owner_is_country_tag = { TAG = CHI }
+    scope:person ?= { # Saved scope inherited from `EACR_st_owner_is_country_tag`
+        owner ?= {
+            coa_monarchy_trigger  = no
+            coa_theocracy_trigger = no
+        }
+    }
+}
+
+# ==================================================================================================================== #
+# ==================================================================================================================== #
+
+# Vanilla overwrites
+
+# Manchu queue check will now check for China's PCs instead of the ruler culture to match other "Great Qing"-related logic
+EACR_st_use_chinese_manchu_queue_hairstyle = {
+    EACR_st_is_unwesternized = yes
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        trigger_if = {
+            limit = {
+                EACR_st_owner_is_CHI_manchu = yes
+            }
+            owner ?= {
+                save_temporary_scope_as = home_scope
+            }
+        }
+        trigger_else = {
+            home_country ?= {
+                save_temporary_scope_as = home_scope
+            }
+        }
+    }
+    OR = {
+        # Manchus discriminating against Han Chinese
+        AND = {
+            scope:home_scope ?= {
+                EACR_st_owner_is_CHI_manchu = yes
+                NOT = {
+                    has_law_or_variant = law_type:law_multicultural
+                }
+            }
+            scope:person ?= {
+                culture = {
+                    has_discrimination_trait = heritage_han
+                }
+            }
+        }
+        
+        # Han not discriminating against Manchus
+        AND = {
+            NOT = {
+                scope:home_scope ?= {
+                    EACR_st_owner_is_CHI_han = yes
+                    cultural_acceptance_base = { target = cu:manchu value >= acceptance_status_4 }
+                }
+            }
+            scope:person ?= {
+                culture = cu:manchu
+            }
+        }
+    }
+}
+
+REPLACE:chinese_manchu_queue_hairstyle_character_trigger = {
+    exists = scope:character
+    EACR_st_use_chinese_manchu_queue_hairstyle = yes
+}
+REPLACE:chinese_manchu_queue_hairstyle_pops_trigger = {
+    exists = scope:pop
+    EACR_st_use_chinese_manchu_queue_hairstyle = yes
+}
+
+# ==================================================================================================================== #
 # ==================================================================================================================== #
 
 # Korean court politicians

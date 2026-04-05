@@ -135,7 +135,7 @@ male_headgear_japanese_imperial_02 = {
 ## 양반 갓 ##
 
 male_headgear_korean_lia_01 = {
-	set_tags ="cap1" 
+	set_tags ="headgear" 
 	entity = { required_tags = ""					shared_pose_entity = head		entity = "male_headgear_korean_lia_01_entity" }	
 }
 
