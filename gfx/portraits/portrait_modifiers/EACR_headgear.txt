@@ -131,4 +131,335 @@ INJECT:headgear = {
         }
     }
     
+    
+    
+    
+    
+    ### QING CHINA ###
+    
+    # Manchu crown
+    EACR_qing_chinese_imperial_crown = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_imperial_headgear
+                accessory = male_headgear_chinese_imperial_03
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_manchu = yes
+                EACR_st_char_is_monarch  = yes
+                EACR_st_is_unwesternized = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
+        }
+    }
+    
+    # Nuanmo & liangmao for Qing emperors & princes
+    EACR_qing_chinese_imperial_headgear_warm = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_imperial_headgear_warm
+                accessory = male_headgear_chinese_imperial_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = no # it's cold -> use warm hat
+                EACR_st_owner_is_CHI_manchu = yes
+                EACR_st_char_is_monarch  = yes
+                EACR_st_is_unwesternized = yes
+                military_clothes_trigger = yes
+            }
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = no
+                EACR_st_owner_is_CHI_manchu = yes
+                EACR_st_char_is_heir     = yes
+                EACR_st_is_unwesternized = yes
+            }
+        }
+    }
+    
+    EACR_qing_chinese_imperial_headgear_cool = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_imperial_headgear_cool
+                accessory = male_headgear_chinese_imperial_02
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = yes # it's warm -> use cool hat
+                EACR_st_owner_is_CHI_manchu = yes
+                EACR_st_char_is_monarch  = yes
+                EACR_st_is_unwesternized = yes
+                military_clothes_trigger = yes
+            }
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = yes
+                EACR_st_owner_is_CHI_manchu = yes
+                EACR_st_char_is_heir     = yes
+                EACR_st_is_unwesternized = yes
+            }
+        }
+    }
+    
+    # Qing court nuanmao
+    EACR_qing_chinese_court_gov_pow_warm = { # In government, powerful
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_court_headgear_01_1
+                accessory = male_headgear_chinese_court_01_1
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = no
+                OR = {
+                    EACR_st_qing_chinese_court_01 = yes
+                    AND = {
+                        md_chinese_uniform_pack_active_trigger = no # CUP compatibility
+                        EACR_st_qing_chinese_general_01 = yes
+                    }
+                }
+            }
+        }
+    }
+    
+    EACR_qing_chinese_court_gov_inf_warm = { # In government, influential
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_court_headgear_01_2
+                accessory = male_headgear_chinese_court_01_2
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = no
+                OR = {
+                    EACR_st_qing_chinese_court_02 = yes
+                    AND = {
+                        md_chinese_uniform_pack_active_trigger = no # CUP compatibility
+                        EACR_st_qing_chinese_general_02 = yes
+                    }
+                }
+            }
+        }
+    }
+    
+    EACR_qing_chinese_court_opp_pow_warm = { # In opposition, powerful
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_court_headgear_01_3
+                accessory = male_headgear_chinese_court_01_3
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = no
+                OR = {
+                    EACR_st_qing_chinese_court_03 = yes
+                    AND = {
+                        md_chinese_uniform_pack_active_trigger = no # CUP compatibility
+                        EACR_st_qing_chinese_general_03 = yes
+                    }
+                }
+            }
+        }
+    }
+    
+    EACR_qing_chinese_court_opp_inf_warm = { # In opposition, influential
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_court_headgear_01_4
+                accessory = male_headgear_chinese_court_01_4
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = no
+                EACR_st_qing_chinese_court_04 = yes
+            }
+        }
+    }
+    
+    EACR_qing_chinese_court_opp_mar_warm = { # In opposition, marginalized
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_court_headgear_01_5
+                accessory = male_headgear_chinese_court_01_5
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = no
+                EACR_st_qing_chinese_court_05 = yes
+            }
+        }
+    }
+    
+    # Qing court liangmao
+    EACR_qing_chinese_court_gov_pow_cool = { # In government, powerful
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_court_headgear_02_1
+                accessory = male_headgear_chinese_court_02_1
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = yes
+                OR = {
+                    EACR_st_qing_chinese_court_01 = yes
+                    AND = {
+                        md_chinese_uniform_pack_active_trigger = no # CUP compatibility
+                        EACR_st_qing_chinese_general_01 = yes
+                    }
+                }
+            }
+        }
+    }
+    
+    EACR_qing_chinese_court_gov_inf_cool = { # In government, influential
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_court_headgear_02_2
+                accessory = male_headgear_chinese_court_02_2
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = yes
+                OR = {
+                    EACR_st_qing_chinese_court_02 = yes
+                    AND = {
+                        md_chinese_uniform_pack_active_trigger = no # CUP compatibility
+                        EACR_st_qing_chinese_general_02 = yes
+                    }
+                }
+            }
+        }
+    }
+    
+    EACR_qing_chinese_court_opp_pow_cool = { # In opposition, powerful
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_court_headgear_02_3
+                accessory = male_headgear_chinese_court_02_3
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = yes
+                OR = {
+                    EACR_st_qing_chinese_court_03 = yes
+                    AND = {
+                        md_chinese_uniform_pack_active_trigger = no # CUP compatibility
+                        EACR_st_qing_chinese_general_03 = yes
+                    }
+                }
+            }
+        }
+    }
+    
+    EACR_qing_chinese_court_opp_inf_cool = { # In opposition, influential
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_court_headgear_02_4
+                accessory = male_headgear_chinese_court_02_4
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = yes
+                EACR_st_qing_chinese_court_04 = yes
+            }
+        }
+    }
+    
+    EACR_qing_chinese_court_opp_mar_cool = { # In opposition, marginalized
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_court_headgear_02_5
+                accessory = male_headgear_chinese_court_02_5
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = yes
+                EACR_st_qing_chinese_court_05 = yes
+            }
+        }
+    }
+    
+    
+    
+    
 }

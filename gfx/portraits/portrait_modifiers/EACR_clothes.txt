@@ -224,4 +224,222 @@ INJECT:clothes = {
         }
     }
     
+    
+    
+    
+    
+    ### QING CHINA ###
+    
+    # Qing Chinese emperor # There's some kind of conflict that makes the Chinese court official outfit appear instead
+    EACR_qing_chinese_emperor_clothes = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = outfits
+                template  = chinese_imperial_outfits
+                accessory = male_outfit_chinese_imperial_01
+            }
+        }
+    
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_manchu = yes
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_monarch  = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
+        }
+    }
+    
+    # Qing Chinese prince / Imperial gunfu
+    EACR_qing_chinese_prince_clothes = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = EAC_chinese_imperial_outfits
+                accessory = EAC_male_outfit_chinese_imperial_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_manchu = yes
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_heir     = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_manchu = yes
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_monarch  = yes
+                military_clothes_trigger = yes # Only use on emperor when commanding army
+                md_chinese_uniform_pack_active_trigger = no # CUP compatibility
+            }
+        }
+    }
+    
+    # Qing Chinese court (non-military)
+    EACR_qing_chinese_court_gov_pow = { # In government, powerful
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = chinese_court_official_outfits_01
+                accessory = male_outfit_chiense_court_official_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_qing_chinese_court_01 = yes
+            }
+        }
+    }
+    
+    EACR_qing_chinese_court_gov_inf = { # In government, influential
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = chinese_court_official_outfits_02
+                accessory = male_outfit_chiense_court_official_02
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_qing_chinese_court_02 = yes
+            }
+        }
+    }
+    
+    EACR_qing_chinese_court_opp_pow = { # In opposition, powerful
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = chinese_court_official_outfits_03
+                accessory = male_outfit_chiense_court_official_03
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_qing_chinese_court_03 = yes
+            }
+        }
+    }
+    
+    EACR_qing_chinese_court_opp_inf = { # In opposition, influential
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = chinese_court_official_outfits_04
+                accessory = male_outfit_chiense_court_official_04
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_qing_chinese_court_04 = yes
+            }
+        }
+    }
+    
+    EACR_qing_chinese_court_opp_mar = { # In opposition, marginalized
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = chinese_court_official_outfits_05
+                accessory = male_outfit_chiense_court_official_05
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_qing_chinese_court_05 = yes
+            }
+        }
+    }
+    
+    # Qing Chinese court (military)
+    EACR_qing_chinese_commander_high = { # Rank 4+ or Armed Forces in gov
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = chinese_court_general_outfits_01
+                accessory = male_outfit_chiense_court_general_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                md_chinese_uniform_pack_active_trigger = no # CUP compatibility
+                EACR_st_qing_chinese_general_01 = yes
+            }
+        }
+    }
+    
+    EACR_qing_chinese_commander_mid = { # Rank 2-3 or non-marginal Armed Forces in opposition
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = chinese_court_general_outfits_02
+                accessory = male_outfit_chiense_court_general_02
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                md_chinese_uniform_pack_active_trigger = no # CUP compatibility
+                EACR_st_qing_chinese_general_02 = yes
+            }
+        }
+    }
+    
+    EACR_qing_chinese_commander_low = { # Rank 1 or marginal Armed Forces in opposition
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = chinese_court_general_outfits_03
+                accessory = male_outfit_chiense_court_general_03
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                md_chinese_uniform_pack_active_trigger = no # CUP compatibility
+                EACR_st_qing_chinese_general_03 = yes
+            }
+        }
+    }
+    
+    
 }

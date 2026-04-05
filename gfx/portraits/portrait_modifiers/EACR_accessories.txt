@@ -1,0 +1,39 @@
+﻿@EACR_PORTRAIT_MODIFIER_WEIGHT_LOW  = 10000000
+@EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH = 20000000
+
+INJECT:accessories = {
+    
+    ### QING CHINA ###
+    
+    # Qing Chinese court necklace
+    EACR_qing_chinese_court_accessories = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = necklaces
+                template  = chinese_necklaces
+                accessory = male_necklace_chinese_01_high
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                OR = {
+                    EACR_st_qing_chinese_court_base   = yes
+                    EACR_st_qing_chinese_general_base = yes
+                    AND = {
+                        EACR_st_owner_is_CHI_manchu = yes
+                        EACR_st_is_unwesternized = yes
+                        OR = {
+                            EACR_st_char_is_monarch = yes
+                            EACR_st_char_is_heir    = yes
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}
