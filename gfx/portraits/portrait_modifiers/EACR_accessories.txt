@@ -36,4 +36,36 @@ INJECT:accessories = {
         }
     }
     
+    
+    
+    
+    
+    ### MING CHINA ###
+    
+    # Qing necklace remover
+    EACR_ming_chinese_no_necklace = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = necklaces
+                template = no_necklace
+                value = 0
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                scope:character ?= { # Match with `qing_emperor_necklace`
+                    is_ruler = yes
+                    owner ?= {
+                        c:CHI ?= this
+                        has_law_or_variant = law_type:law_monarchy
+                    }
+                }
+            }
+        }
+    }
+    
 }

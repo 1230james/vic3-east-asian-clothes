@@ -131,6 +131,8 @@ INJECT:headgear = {
         }
     }
     
+    # TODO: Yangban hat
+    
     
     
     
@@ -459,7 +461,230 @@ INJECT:headgear = {
         }
     }
     
+    # TODO: Officer nuanmo/liangmao
+    
+    # TODO: Kanemochi
     
     
+    
+    
+    ### MING CHINA ###
+    
+    # Chinese imperial cap
+    EACR_ming_chinese_imperial_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_imperial_headgear_ming
+                accessory = yishanguan
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_han = yes
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_monarch  = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
+        }
+    }
+    
+    # Chinese royal cap # Used for prince & kings of subjects
+    EACR_ming_chinese_royal_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_king_headgear_ming
+                accessory = male_headgear_korean_imperial_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_han = yes
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_heir     = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
+            # TODO: Chinese subjects
+        }
+    }
+    
+    # Chinese court wushamao
+    EACR_ming_chinese_court_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_court_headgear_ming
+                accessory = wushamao
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_ming_chinese_court_base = yes
+            }
+        }
+    }
+    
+    # Chinese commander jiang jin (?) # Using closest available model
+    EACR_ming_chinese_commander_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_han_common_headgear_02_baraeti
+                accessory = male_headgear_chinese_han_common_03
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_han = yes
+                EACR_st_is_unwesternized = yes
+                military_clothes_trigger = yes
+            }
+        }
+    }
+    
+    # Chinese soldier pops
+    EACR_ming_chinese_military_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_han_officer_headgear
+                accessory = male_headgear_chinese_han_officer_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH
+                EACR_st_owner_is_CHI_ming_dyn = yes
+                EACR_st_is_unwesternized = yes
+                soldier_clothes_pop_trigger = yes
+            }
+        }
+    }
+    
+    # Chinese academic pops
+    EACR_ming_chinese_academic_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_han_common_headgear_01
+                accessory = male_headgear_chinese_han_common_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_han = yes
+                EACR_st_is_unwesternized = yes
+                OR = {
+                    academics_clothes_pop_trigger = yes
+                    AND = {
+                        clergy_clothes_pop_trigger = yes
+                        EACR_st_pop_or_char_is_confucian = yes
+                    }
+                }
+            }
+            modifier = { # TODO: Vietnamese bureaucrats
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                # EACR_st_owner_is_CHI_han = yes
+                always = no
+                EACR_st_is_unwesternized = yes
+                OR = {
+                    bureaucrats_clothes_pop_trigger = yes
+                    AND = {
+                        clergy_clothes_pop_trigger = yes
+                        EACR_st_pop_or_char_is_confucian = yes
+                    }
+                }
+            }
+            modifier = { # Morgenrote interop
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                morgenrote_is_active = yes
+                EACR_st_owner_is_CHI_han = yes
+                EACR_st_is_unwesternized = yes
+                mr_special_characters_clothes_trigger = yes
+            }
+        }
+    }
+    
+    # Chinese bureaucrat & officer pops
+    EACR_ming_chinese_military_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_han_common_headgear_02
+                accessory = male_headgear_chinese_han_common_02
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_ming_dyn = yes
+                EACR_st_is_unwesternized = yes
+                OR = {
+                    bureaucrats_clothes_pop_trigger = yes
+                    officers_clothes_pop_trigger = yes
+                }
+            }
+        }
+    }
+    
+    # Chinese common/misc. pop headgear
+    EACR_ming_chinese_common_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template = chinese_han_common_headgear_02_baraeti
+                range = { 0 1 }
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_han = yes
+                EACR_st_is_unwesternized = yes
+                clergy_clothes_pop_trigger = no
+                academics_clothes_pop_trigger = no
+                trigger_if = { # Bureaucrats have their own headgear logic under monarchy
+                    limit = {
+                        EACR_st_owner_is_CHI_ming_dyn = yes
+                    }
+                    bureaucrats_clothes_pop_trigger = no
+                }
+                OR = {
+                    upper_clothes_pop_trigger = yes
+                    middle_clothes_pop_trigger = yes
+                }
+            }
+        }
+    }
     
 }

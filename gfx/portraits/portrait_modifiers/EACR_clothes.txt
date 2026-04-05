@@ -51,7 +51,7 @@ INJECT:clothes = {
                 mode = add
                 gene = EAC_outfits
 				template = korean_king_outfits
-                accesory = male_outfit_korean_king_01
+                accessory = male_outfit_korean_king_01
             }
         }
 
@@ -81,7 +81,7 @@ INJECT:clothes = {
                 mode = add
                 gene = EAC_outfits
 				template = korean_prince_outfits
-                accesory = male_outfit_korean_imperial_02
+                accessory = male_outfit_korean_imperial_02
             }
         }
 
@@ -97,15 +97,14 @@ INJECT:clothes = {
         }
     }
     
-    # Korean monarchs as commanders in chief w/o JKUP
-    # Forces them to wear hanbok in battle instead of royal robes
+    # Korean monarchs as commanders in chief # Forces them to wear hanbok in battle instead of royal robes
     EACR_korean_monarch_commander_in_chief = {
         dna_modifiers = {
             accessory = {
                 mode = add
                 gene = outfits
 				template = korean_common_outfits
-                accesory = male_outfit_korean_common_01
+                accessory = male_outfit_korean_common_01
             }
         }
 
@@ -442,4 +441,366 @@ INJECT:clothes = {
     }
     
     
+    
+    
+    
+    ### MING CHINA ###
+    
+    # Ming Chinese emperor
+    EACR_ming_chinese_emperor_clothes = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = chinese_imperial_ming_outfits
+                accessory = male_outfit_chinese_imperial_ming_01
+            }
+        }
+    
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_han = yes
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_monarch  = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
+        }
+    }
+    
+    # Ming Chinese prince & subjects
+    EACR_ming_chinese_royal_clothes = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = chinese_prince_ming_outfits
+                accessory = male_outfit_chinese_imperial_ming_02
+            }
+        }
+    
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_han = yes
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_heir     = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
+            # TODO: Chinese subjects
+        }
+    }
+    
+    # Ming Chinese court (non-military)
+    EACR_ming_chinese_court_gov_pow = { # In government, powerful
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = mandarin_outfits_01
+                accessory = male_outfit_mandarin
+            }
+            accessory = {
+                mode = add
+                gene = EAC_necklaces
+                template  = mandarin_square_official_01
+                accessory = mandarin_square_official_ming_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_ming_chinese_court_01 = yes
+            }
+        }
+    }
+    
+    EACR_ming_chinese_court_gov_inf = { # In government, influential
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = mandarin_outfits_01
+                accessory = male_outfit_mandarin
+            }
+            accessory = {
+                mode = add
+                gene = EAC_necklaces
+                template  = mandarin_square_official_02
+                accessory = mandarin_square_official_ming_02
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_ming_chinese_court_02 = yes
+            }
+        }
+    }
+    
+    EACR_ming_chinese_court_opp_pow = { # In opposition, powerful
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = mandarin_outfits_01
+                accessory = male_outfit_mandarin
+            }
+            accessory = {
+                mode = add
+                gene = EAC_necklaces
+                template  = mandarin_square_official_03
+                accessory = mandarin_square_official_ming_03
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_ming_chinese_court_03 = yes
+            }
+        }
+    }
+    
+    EACR_ming_chinese_court_opp_inf = { # In opposition, influential
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = mandarin_outfits_01
+                accessory = male_outfit_mandarin
+            }
+            accessory = {
+                mode = add
+                gene = EAC_necklaces
+                template  = mandarin_square_official_04
+                accessory = mandarin_square_official_ming_04
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_ming_chinese_court_04 = yes
+            }
+        }
+    }
+    
+    EACR_ming_chinese_court_opp_mar = { # In opposition, marginalized
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = mandarin_outfits_01
+                accessory = male_outfit_mandarin
+            }
+            accessory = {
+                mode = add
+                gene = EAC_necklaces
+                template  = mandarin_square_official_05
+                accessory = mandarin_square_official_ming_05
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_ming_chinese_court_05 = yes
+            }
+        }
+    }
+    
+    # Ming Chinese court (military)
+    EACR_ming_chinese_commander_high = { # Rank 5 or powerful Armed Forces in gov
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = mandarin_outfits_01
+                accessory = male_outfit_mandarin
+            }
+            accessory = {
+                mode = add
+                gene = EAC_necklaces
+                template  = mandarin_square_general_00
+                accessory = mandarin_square_general_ming_00
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                md_chinese_uniform_pack_active_trigger = no # CUP compatibility
+                EACR_st_ming_chinese_general_01 = yes
+            }
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                md_chinese_uniform_pack_active_trigger = no # CUP compatibility
+                EACR_st_owner_is_CHI_han = yes
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_monarch  = yes
+                military_clothes_trigger = yes
+            }
+        }
+    }
+    
+    EACR_ming_chinese_commander_mid = { # Rank 3-4 or Armed Forces in gov
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = mandarin_outfits_01
+                accessory = male_outfit_mandarin
+            }
+            accessory = {
+                mode = add
+                gene = EAC_necklaces
+                template  = mandarin_square_general_0102
+                accessory = mandarin_square_general_ming_0102
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                md_chinese_uniform_pack_active_trigger = no # CUP compatibility
+                EACR_st_ming_chinese_general_02 = yes
+            }
+        }
+    }
+    
+    EACR_ming_chinese_commander_low = { # Rank 1-2 or Armed Forces in opposition
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = mandarin_outfits_01
+                accessory = male_outfit_mandarin
+            }
+            accessory = {
+                mode = add
+                gene = EAC_necklaces
+                template  = mandarin_square_general_0304
+                accessory = mandarin_square_general_ming_0304
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                md_chinese_uniform_pack_active_trigger = no # CUP compatibility
+                EACR_st_ming_chinese_general_03 = yes
+            }
+        }
+    }
+    
+    # Ming Chinese pops
+    EACR_ming_chinese_officer_clothes = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = chinese_ming_common_outfits
+                accessory = male_outfit_chinese_common_ming_01
+            }
+        }
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_han = yes
+                EACR_st_is_unwesternized = yes
+                OR = {
+                    bureaucrats_clothes_pop_trigger = yes
+                    officers_clothes_pop_trigger = yes
+                }
+            }
+            modifier = { # Vietnamese commanders
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                # TODO
+                always = no
+                EACR_st_owner_is_CHI_han = yes
+                EACR_st_is_unwesternized = yes
+                military_clothes_trigger = yes
+            }
+        }
+    }
+    
+    EACR_ming_chinese_soldier_clothes = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = chinese_ming_common_outfits_02
+                accessory = male_outfit_chinese_common_ming_02
+            }
+        }
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_han = yes
+                EACR_st_is_unwesternized = yes
+                soldier_clothes_pop_trigger = yes
+            }
+        }
+    }
+    
+    EACR_ming_chinese_upper_clothes = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = chinese_ming_common_outfits_03
+                accessory = male_outfit_chinese_common_ming_03
+            }
+        }
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_han = yes
+                EACR_st_is_unwesternized = yes
+                OR = {
+                    upper_clothes_pop_trigger = yes
+                    clergy_clothes_pop_trigger = yes
+                }
+            }
+        }
+    }
+    
+    EACR_ming_chinese_common_clothes = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = chinese_ming_common_outfits_02
+                accessory = male_outfit_chinese_common_ming_02
+            }
+        }
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_han = yes
+                EACR_st_is_unwesternized = yes
+                middle_clothes_pop_trigger = yes
+                officers_clothes_pop_trigger = no
+                bureaucrats_clothes_pop_trigger = no
+            }
+        }
+    }
+
 }

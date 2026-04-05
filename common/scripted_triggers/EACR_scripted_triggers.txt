@@ -156,6 +156,20 @@ EACR_st_pop_or_char_is_chinese = {
     }
 }
 
+EACR_st_pop_or_char_is_confucian = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        religion = rel:confucian
+    }
+}
+
 # Will check if the character is the monarch. Will correctly handle situations where a regency is active.
 EACR_st_char_is_monarch = {
     scope:character ?= {
@@ -277,9 +291,23 @@ EACR_st_owner_is_CHI_han = {
     }
     scope:person ?= {
         owner ?= {
-            EACR_st_is_country_tag = { TAG = CHI }
-            EACR_st_is_qing_china  = no
+            EACR_st_is_qing_china = no
+            OR = {
+                EACR_st_is_country_tag = { TAG = CHI }
+                EACR_st_is_country_tag = { TAG = TPG } # Heavenly Kingdom
+                any_primary_culture = {
+                    has_discrimination_trait = tradition_sinosphere
+                    has_discrimination_trait_group = heritage_group_east_asian
+                }
+            }
         }
+    }
+}
+
+EACR_st_owner_is_CHI_ming_dyn = { # Specifically checks if under monarchy
+    EACR_st_owner_is_CHI_han = yes
+    scope:person ?= {
+        owner ?= { coa_monarchy_trigger = yes }
     }
 }
 
@@ -402,6 +430,7 @@ EACR_st_qing_chinese_court_05 = {
     }
 }
 
+# Qing Chinese commanders
 EACR_st_qing_chinese_general_base = {
     EACR_st_owner_is_CHI_manchu = yes
     scope:character ?= {
@@ -471,6 +500,155 @@ EACR_st_qing_chinese_general_03 = {
             interest_group ?= {
                 is_in_government = no
                 ig_counts_as_marginal = yes
+            }
+        }
+    }
+}
+
+# Ming Chinese court politicians
+EACR_st_ming_chinese_court_base = {
+    EACR_st_owner_is_CHI_han = yes
+    scope:character ?= {
+        owner ?= {
+            OR = {
+                coa_monarchy_trigger  = yes
+                coa_theocracy_trigger = yes # Heavenly Kingdom
+            }
+        }
+        military_clothes_trigger = no
+        EACR_st_is_unwesternized = yes
+        EACR_st_char_is_monarch = no
+        EACR_st_char_is_heir = no
+        has_role = politician
+    }
+}
+
+EACR_st_ming_chinese_court_01 = {
+    EACR_st_ming_chinese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = yes
+            is_powerful = yes
+        }
+    }
+}
+EACR_st_ming_chinese_court_02 = {
+    EACR_st_ming_chinese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = yes
+            is_powerful = no
+        }
+    }
+}
+EACR_st_ming_chinese_court_03 = {
+    EACR_st_ming_chinese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+            is_powerful = yes
+        }
+    }
+}
+EACR_st_ming_chinese_court_04 = {
+    EACR_st_ming_chinese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+            is_powerful = no
+            ig_counts_as_marginal = no
+        }
+    }
+}
+EACR_st_ming_chinese_court_05 = {
+    EACR_st_ming_chinese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+            ig_counts_as_marginal = yes
+        }
+    }
+}
+
+# Ming Chinese commanders
+EACR_st_ming_chinese_general_base = {
+    EACR_st_owner_is_CHI_han = yes
+    scope:character ?= {
+        owner ?= {
+            OR = {
+                coa_monarchy_trigger  = yes
+                coa_theocracy_trigger = yes # Heavenly Kingdom
+            }
+        }
+        OR = {
+            military_clothes_trigger = yes
+            AND = {
+                armed_forces_clothes_trigger = yes
+                politician_clothes_trigger = yes
+            }
+        }
+        EACR_st_char_is_monarch = no
+        EACR_st_char_is_heir = no
+    }
+}
+
+EACR_st_ming_chinese_general_01 = {
+    EACR_st_ming_chinese_general_base = yes
+    trigger_if = {
+        limit = {
+            military_clothes_trigger = yes
+        }
+        scope:character ?= {
+            commander_rank >= 5
+        }
+    }
+    trigger_else = {
+        scope:character ?= {
+            interest_group ?= {
+                is_in_government = yes
+                is_powerful = yes
+            }
+        }
+    }
+}
+EACR_st_ming_chinese_general_02 = {
+    EACR_st_ming_chinese_general_base = yes
+    trigger_if = {
+        limit = {
+            military_clothes_trigger = yes
+        }
+        scope:character ?= {
+            commander_rank < 5
+            commander_rank > 2
+        }
+    }
+    trigger_else = {
+        scope:character ?= {
+            interest_group ?= {
+                is_in_government = yes
+            }
+        }
+    }
+}
+EACR_st_ming_chinese_general_03 = {
+    EACR_st_ming_chinese_general_base = yes
+    trigger_if = {
+        limit = {
+            military_clothes_trigger = yes
+        }
+        scope:character ?= {
+            commander_rank <= 2
+        }
+    }
+    trigger_else = {
+        scope:character ?= {
+            interest_group ?= {
+                is_in_government = no
             }
         }
     }
