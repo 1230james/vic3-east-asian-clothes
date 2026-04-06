@@ -2,9 +2,9 @@
 @EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH = 20000000
 
 INJECT:headgear = {
-	
+
     ### KOREA ###
-    
+
     # Korean emperors
     EACR_korean_imperial_headgear = {
         dna_modifiers = {
@@ -23,7 +23,7 @@ INJECT:headgear = {
                 EACR_st_owner_is_KOR_imperial_korea = yes
                 EACR_st_char_is_monarch  = yes
                 military_clothes_trigger = no # Prevent use when monarch is commanding an army
-                
+
                 # If WCR is active: only use for unwesternized Korea
                 # If vanilla: only use if monarch is traditionalist
                 trigger_if = {
@@ -43,7 +43,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Korean kings
     EACR_korean_king_headgear = {
         dna_modifiers = {
@@ -73,7 +73,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Korean court
     EACR_korean_court_headgear = {
         dna_modifiers = {
@@ -93,7 +93,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Korean military hat
     EACR_korean_military_headgear = {
         dna_modifiers = {
@@ -114,7 +114,7 @@ INJECT:headgear = {
                     EACR_st_is_army = yes
                     EACR_st_is_navy = yes
                 }
-                
+
                 # Court politicians should only use this when mobilized
                 trigger_if = {
                     limit = {
@@ -122,7 +122,7 @@ INJECT:headgear = {
                     }
                     EACR_st_char_is_mobilized_commander = yes
                 }
-                
+
                 # If WCR is active: only use for unwesternized Korea
                 # If vanilla: only use before Korean Empire uniforms are active
                 trigger_if = {
@@ -138,7 +138,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Korean yangban hat (gat)
     EACR_korean_yangban_headgear = {
         dna_modifiers = {
@@ -179,13 +179,13 @@ INJECT:headgear = {
             }
         }
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     ### QING CHINA ###
-    
+
     # Manchu crown
     EACR_qing_chinese_imperial_crown = {
         dna_modifiers = {
@@ -208,7 +208,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Nuanmo & liangmao for Qing emperors & princes
     EACR_qing_chinese_imperial_headgear_warm = {
         dna_modifiers = {
@@ -239,7 +239,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     EACR_qing_chinese_imperial_headgear_cool = {
         dna_modifiers = {
             accessory = {
@@ -269,7 +269,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Qing court nuanmao
     EACR_qing_chinese_court_gov_pow_warm = { # In government, powerful
         dna_modifiers = {
@@ -304,7 +304,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     EACR_qing_chinese_court_gov_inf_warm = { # In government, influential
         dna_modifiers = {
             accessory = {
@@ -330,7 +330,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     EACR_qing_chinese_court_opp_pow_warm = { # In opposition, powerful
         dna_modifiers = {
             accessory = {
@@ -356,7 +356,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     EACR_qing_chinese_court_opp_inf_warm = { # In opposition, influential
         dna_modifiers = {
             accessory = {
@@ -376,7 +376,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     EACR_qing_chinese_court_opp_mar_warm = { # In opposition, marginalized
         dna_modifiers = {
             accessory = {
@@ -396,7 +396,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Qing court liangmao
     EACR_qing_chinese_court_gov_pow_cool = { # In government, powerful
         dna_modifiers = {
@@ -431,7 +431,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     EACR_qing_chinese_court_gov_inf_cool = { # In government, influential
         dna_modifiers = {
             accessory = {
@@ -457,7 +457,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     EACR_qing_chinese_court_opp_pow_cool = { # In opposition, powerful
         dna_modifiers = {
             accessory = {
@@ -483,7 +483,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     EACR_qing_chinese_court_opp_inf_cool = { # In opposition, influential
         dna_modifiers = {
             accessory = {
@@ -503,7 +503,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     EACR_qing_chinese_court_opp_mar_cool = { # In opposition, marginalized
         dna_modifiers = {
             accessory = {
@@ -523,7 +523,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Qing pops nuanmao & liangmao
     EACR_qing_chinese_pop_nuanmao = {
         dna_modifiers = {
@@ -555,7 +555,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     EACR_qing_chinese_pop_liangmao = {
         dna_modifiers = {
             accessory = {
@@ -586,13 +586,13 @@ INJECT:headgear = {
             }
         }
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     ### MING CHINA ###
-    
+
     # Chinese imperial cap
     EACR_ming_chinese_imperial_headgear = {
         dna_modifiers = {
@@ -620,7 +620,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Chinese royal cap # Used for prince & kings of subjects
     EACR_ming_chinese_royal_headgear = {
         dna_modifiers = {
@@ -662,7 +662,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Chinese court wushamao
     EACR_ming_chinese_court_headgear = {
         dna_modifiers = {
@@ -690,7 +690,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Chinese commander jiang jin (?) # Using closest available model
     EACR_ming_chinese_commander_headgear = {
         dna_modifiers = {
@@ -715,7 +715,7 @@ INJECT:headgear = {
                     military_clothes_trigger     = yes
                     armed_forces_clothes_trigger = yes
                 }
-                
+
                 # Court politicians should only use this when mobilized
                 trigger_if = {
                     limit = {
@@ -726,7 +726,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Chinese soldier pops
     EACR_ming_chinese_military_headgear = {
         dna_modifiers = {
@@ -748,7 +748,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Chinese academic pops
     EACR_ming_chinese_academic_headgear = {
         dna_modifiers = {
@@ -783,7 +783,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Chinese bureaucrat & officer pops
     EACR_ming_chinese_military_headgear = {
         dna_modifiers = {
@@ -808,7 +808,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Chinese common/misc. pop headgear
     EACR_ming_chinese_common_headgear = {
         dna_modifiers = {
@@ -836,13 +836,13 @@ INJECT:headgear = {
             }
         }
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     ### MISC. CHINESE ###
-    
+
     # Chinese pops xiaomao/guapimao hat
     EACR_chinese_guapimao_headgear = {
         dna_modifiers = {
@@ -886,7 +886,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Republican Chinese politicians guapimao
     EACR_chinese_republican_guapimao_headgear = {
         dna_modifiers = {
@@ -902,7 +902,7 @@ INJECT:headgear = {
             base = 0
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                
+
                 # Unwesternized & unrecognized
                 EACR_st_is_unwesternized = yes
                 scope:character ?= {
@@ -919,7 +919,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Hybrid bowler + top hat + guapimao headgears
     EACR_chinese_republican_western_headgear = {
         dna_modifiers = {
@@ -934,7 +934,7 @@ INJECT:headgear = {
             base = 0
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                
+
                 # Unwesternized, but recognized
                 # Allows a soft westernization with just base game features, but will still avoid conflict when
                 # westernizing with WCR
@@ -955,7 +955,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Poor pops' headgear # For some reason the base game hooks this up to the Manchu queue trigger? lol
     EACR_chinese_common_headgear = {
         dna_modifiers = {
@@ -975,13 +975,13 @@ INJECT:headgear = {
             }
         }
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     ### VIET NAM ###
-    
+
     # Vietnamese emperors
     EACR_vietnamese_imperial_headgear = {
         dna_modifiers = {
@@ -992,7 +992,7 @@ INJECT:headgear = {
                 accessory = male_headgear_vietnamese_imperial_01
             }
         }
-    
+
         weight = {
             base = 0
             modifier = {
@@ -1004,7 +1004,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Vietnamese princes
     EACR_korean_king_headgear = {
         dna_modifiers = {
@@ -1027,7 +1027,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Vietnamese court
     EACR_vietnamese_court_civil_headgear = {
         dna_modifiers = {
@@ -1049,7 +1049,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     EACR_vietnamese_court_military_headgear = {
         dna_modifiers = {
             accessory = {
@@ -1072,7 +1072,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Vietnamese commanders # Closest available headgear based on image below:
     # https://commons.wikimedia.org/wiki/File:T%E1%BA%A3_qu%C3%A2n_(h%C3%ACnh_4-5),_Ch%C6%B0%E1%BB%9Fng_v%E1%BB%87_(h%C3%ACnh_6),_Qu%E1%BA%A3n_c%C6%A1_(h%C3%ACnh_7),_Ph%C3%B3_xu%E1%BA%A5t_%C4%91%E1%BB%99i_(h%C3%ACnh_8).jpg
     EACR_vietnamese_commander_headgear = {
@@ -1091,7 +1091,7 @@ INJECT:headgear = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
                 EACR_st_vietnamese_general_base = yes
                 EACR_st_is_unwesternized = yes
-                
+
                 # Court politicians should only use this when mobilized
                 trigger_if = {
                     limit = {
@@ -1109,7 +1109,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Vietnamese royal bureaucrats
     EACR_vietnamese_nguyen_bureaucrats = {
         dna_modifiers = {
@@ -1137,7 +1137,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Vietnamese royal officers
     EACR_vietnamese_nguyen_officer_headgear = {
         dna_modifiers = {
@@ -1159,7 +1159,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Vietnamese common headgear
     EACR_vietnamese_common_headgear = {
         dna_modifiers = {
@@ -1181,7 +1181,7 @@ INJECT:headgear = {
                         has_discrimination_trait = heritage_vietnamese
                     }
                 }
-                
+
                 trigger_if = {
                     limit = {
                         EACR_st_owner_is_DAI_nguyen_dyn = yes
@@ -1239,7 +1239,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     EACR_vietnamese_non_la_headgear = {
         dna_modifiers = {
             accessory = {
@@ -1275,13 +1275,13 @@ INJECT:headgear = {
             }
         }
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     ### JAPAN ###
-    
+
     # Japanese emperor
     EACR_japanese_imperial_headgear = {
         dna_modifiers = {
@@ -1309,7 +1309,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     EACR_japanese_prince_headgear = {
         dna_modifiers = {
             accessory = {
@@ -1336,13 +1336,13 @@ INJECT:headgear = {
             }
         }
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     ### MISC. NORTH ASIAN ###
-    
+
     # North Asian court nuanmao
     EACR_north_asian_court_warm = {
         dna_modifiers = {
@@ -1385,7 +1385,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # North Asian court liangmao
     EACR_north_asian_court_cool = {
         dna_modifiers = {
@@ -1428,7 +1428,7 @@ INJECT:headgear = {
             }
         }
     }
-    
+
     # Mongolian pop hat
     EACR_mongolian_common_headgear = {
         dna_modifiers = {
@@ -1457,5 +1457,5 @@ INJECT:headgear = {
             }
         }
     }
-    
+
 }

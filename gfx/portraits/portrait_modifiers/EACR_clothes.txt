@@ -2,9 +2,9 @@
 @EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH = 20000000
 
 INJECT:clothes = {
-    
+
     ### KOREA ###
-    
+
     # Korean emperors
     EACR_korean_imperial_clothes = {
         dna_modifiers = {
@@ -23,7 +23,7 @@ INJECT:clothes = {
                 EACR_st_owner_is_KOR_imperial_korea = yes
                 EACR_st_char_is_monarch  = yes
                 military_clothes_trigger = no # Prevent use when monarch is commanding an army
-                
+
                 # If WCR is active: only use for unwesternized Korea
                 # If vanilla: only use if monarch is traditionalist
                 trigger_if = {
@@ -43,14 +43,14 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Korean kings
     EACR_korean_king_clothes = {
         dna_modifiers = {
             accessory = {
                 mode = add
                 gene = EAC_outfits
-				template = korean_king_outfits
+                template = korean_king_outfits
                 accessory = male_outfit_korean_king_01
             }
         }
@@ -73,14 +73,14 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Korean princes
     EACR_korean_prince_clothes = {
         dna_modifiers = {
             accessory = {
                 mode = add
                 gene = EAC_outfits
-				template = korean_prince_outfits
+                template = korean_prince_outfits
                 accessory = male_outfit_korean_imperial_02
             }
         }
@@ -96,14 +96,14 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Korean monarchs as commanders in chief # Forces them to wear hanbok in battle instead of royal robes
     EACR_korean_monarch_commander_in_chief = {
         dna_modifiers = {
             accessory = {
                 mode = add
                 gene = outfits
-				template = korean_common_outfits
+                template = korean_common_outfits
                 accessory = male_outfit_korean_common_01
             }
         }
@@ -126,7 +126,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Korean queens [dowager]/empresses
     EACR_korean_empress_clothes = {
         dna_modifiers = {
@@ -151,14 +151,14 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Korean court
     EACR_korean_court_civilian_gov = { # Non-military, in government
         dna_modifiers = {
             accessory = {
                 mode = add
                 gene = EAC_outfits
-				template  = korean_court_outfits_01
+                template  = korean_court_outfits_01
                 accessory = male_outfit_korean_court_01
             }
         }
@@ -171,13 +171,13 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_korean_court_military_gov = { # Military, in government
         dna_modifiers = {
             accessory = {
                 mode = add
                 gene = EAC_outfits
-				template  = korean_court_outfits_02
+                template  = korean_court_outfits_02
                 accessory = male_outfit_korean_court_02
             }
         }
@@ -190,13 +190,13 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_korean_court_civilian_opp = { # Non-military, in opposition
         dna_modifiers = {
             accessory = {
                 mode = add
                 gene = EAC_outfits
-				template  = korean_court_outfits_03
+                template  = korean_court_outfits_03
                 accessory = male_outfit_korean_court_03
             }
         }
@@ -209,13 +209,13 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_korean_court_military_opp = { # Military, in opposition
         dna_modifiers = {
             accessory = {
                 mode = add
                 gene = EAC_outfits
-				template  = korean_court_outfits_04
+                template  = korean_court_outfits_04
                 accessory = male_outfit_korean_court_04
             }
         }
@@ -228,13 +228,13 @@ INJECT:clothes = {
             }
         }
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     ### QING CHINA ###
-    
+
     # Qing Chinese emperor # There's some kind of conflict that makes the Chinese court official outfit appear instead
     EACR_qing_chinese_emperor_clothes = {
         dna_modifiers = {
@@ -245,7 +245,7 @@ INJECT:clothes = {
                 accessory = male_outfit_chinese_imperial_01
             }
         }
-    
+
         weight = {
             base = 0
             modifier = {
@@ -257,7 +257,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Qing Chinese prince / Imperial gunfu
     EACR_qing_chinese_prince_clothes = {
         dna_modifiers = {
@@ -288,7 +288,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Qing Chinese court (non-military)
     EACR_qing_chinese_court_gov_pow = { # In government, powerful
         dna_modifiers = {
@@ -308,7 +308,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_qing_chinese_court_gov_inf = { # In government, influential
         dna_modifiers = {
             accessory = {
@@ -327,7 +327,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_qing_chinese_court_opp_pow = { # In opposition, powerful
         dna_modifiers = {
             accessory = {
@@ -346,7 +346,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_qing_chinese_court_opp_inf = { # In opposition, influential
         dna_modifiers = {
             accessory = {
@@ -365,7 +365,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_qing_chinese_court_opp_mar = { # In opposition, marginalized
         dna_modifiers = {
             accessory = {
@@ -384,7 +384,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Qing Chinese court (military)
     EACR_qing_chinese_commander_high = { # Rank 4+ or Armed Forces in gov
         dna_modifiers = {
@@ -412,7 +412,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_qing_chinese_commander_mid = { # Rank 2-3 or non-marginal Armed Forces in opposition
         dna_modifiers = {
             accessory = {
@@ -432,7 +432,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_qing_chinese_commander_low = { # Rank 1 or marginal Armed Forces in opposition
         dna_modifiers = {
             accessory = {
@@ -452,13 +452,13 @@ INJECT:clothes = {
             }
         }
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     ### MING CHINA ###
-    
+
     # Ming Chinese emperor
     EACR_ming_chinese_emperor_clothes = {
         dna_modifiers = {
@@ -469,7 +469,7 @@ INJECT:clothes = {
                 accessory = male_outfit_chinese_imperial_ming_01
             }
         }
-    
+
         weight = {
             base = 0
             modifier = {
@@ -486,7 +486,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Ming Chinese prince & subjects
     EACR_ming_chinese_royal_clothes = {
         dna_modifiers = {
@@ -497,7 +497,7 @@ INJECT:clothes = {
                 accessory = male_outfit_chinese_imperial_ming_02
             }
         }
-    
+
         weight = {
             base = 0
             modifier = {
@@ -505,12 +505,12 @@ INJECT:clothes = {
                 EACR_st_owner_is_CHI_han = yes
                 EACR_st_is_unwesternized = yes
                 military_clothes_trigger = no # Prevent use when monarch is commanding an army
-                
+
                 OR = {
                     # Ming prince
                     EACR_st_char_is_heir = yes
-                    
-                    # Subjugated Han Chinese monarch 
+
+                    # Subjugated Han Chinese monarch
                     AND = {
                         EACR_st_char_is_monarch = yes
                         scope:character ?= {
@@ -530,7 +530,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Ming Chinese court (non-military)
     EACR_ming_chinese_court_gov_pow = { # In government, powerful
         dna_modifiers = {
@@ -564,7 +564,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_ming_chinese_court_gov_inf = { # In government, influential
         dna_modifiers = {
             accessory = {
@@ -589,7 +589,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_ming_chinese_court_opp_pow = { # In opposition, powerful
         dna_modifiers = {
             accessory = {
@@ -614,7 +614,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_ming_chinese_court_opp_inf = { # In opposition, influential
         dna_modifiers = {
             accessory = {
@@ -639,7 +639,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_ming_chinese_court_opp_mar = { # In opposition, marginalized
         dna_modifiers = {
             accessory = {
@@ -664,7 +664,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Ming Chinese court (military)
     EACR_ming_chinese_commander_high = { # Rank 5 or powerful Armed Forces in gov
         dna_modifiers = {
@@ -699,7 +699,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_ming_chinese_commander_mid = { # Rank 3-4 or Armed Forces in gov
         dna_modifiers = {
             accessory = {
@@ -725,7 +725,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_ming_chinese_commander_low = { # Rank 1-2 or Armed Forces in opposition
         dna_modifiers = {
             accessory = {
@@ -751,7 +751,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Ming Chinese pops
     EACR_ming_chinese_officer_clothes = {
         dna_modifiers = {
@@ -783,7 +783,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_ming_chinese_soldier_clothes = {
         dna_modifiers = {
             accessory = {
@@ -803,7 +803,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_ming_chinese_upper_clothes = {
         dna_modifiers = {
             accessory = {
@@ -826,7 +826,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_ming_chinese_common_clothes = {
         dna_modifiers = {
             accessory = {
@@ -848,13 +848,13 @@ INJECT:clothes = {
             }
         }
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     ### MISC. CHINESE ###
-    
+
     # Republican Chinese characters
     EACR_chinese_republican_clothes = {
         dna_modifiers = {
@@ -877,7 +877,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Republican Chinese commanders
     EACR_chinese_republican_commander_clothes = {
         dna_modifiers = {
@@ -901,13 +901,13 @@ INJECT:clothes = {
             }
         }
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     ### VIET NAM ###
-    
+
     # Vietnamese emperors
     EACR_vietnamese_imperial_clothes = {
         dna_modifiers = {
@@ -918,7 +918,7 @@ INJECT:clothes = {
                 accessory = male_outfit_chinese_imperial_ming_01
             }
         }
-    
+
         weight = {
             base = 0
             modifier = {
@@ -930,7 +930,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Vietnamese prince
     EACR_vietnamese_prince_clothes = {
         dna_modifiers = {
@@ -941,7 +941,7 @@ INJECT:clothes = {
                 accessory = male_outfit_chinese_imperial_ming_02
             }
         }
-    
+
         weight = {
             base = 0
             modifier = {
@@ -953,7 +953,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Vietnamese court (non-military)
     EACR_vietnamese_court_gov_pow = { # In government, powerful
         dna_modifiers = {
@@ -981,7 +981,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_vietnamese_court_gov_inf = { # In government, influential
         dna_modifiers = {
             accessory = {
@@ -1000,7 +1000,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_vietnamese_court_opp_pow = { # In opposition, powerful
         dna_modifiers = {
             accessory = {
@@ -1019,7 +1019,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_vietnamese_court_opp_inf = { # In opposition, influential
         dna_modifiers = {
             accessory = {
@@ -1038,7 +1038,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_vietnamese_court_opp_mar = { # In opposition, marginalized
         dna_modifiers = {
             accessory = {
@@ -1057,7 +1057,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Vietnamese court (military)
     EACR_vietnamese_commander_high = { # Rank 4-5 or Armed Forces in gov
         dna_modifiers = {
@@ -1077,7 +1077,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     EACR_vietnamese_commander_low = { # Rank 1-3 or Armed Forces in opposition
         dna_modifiers = {
             accessory = {
@@ -1096,7 +1096,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Vietnamese republican politicians & wealthy pops
     EACR_vietnamese_upper_clothes = {
         dna_modifiers = {
@@ -1107,7 +1107,7 @@ INJECT:clothes = {
                 accessory = male_outfit_chinese_common_ming_01
             }
         }
-        
+
         weight = {
             base = 0
             modifier = {
@@ -1151,7 +1151,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Vietnamese pops
     EACR_vietnamese_common_clothes = {
         dna_modifiers = {
@@ -1162,7 +1162,7 @@ INJECT:clothes = {
                 accessory = male_outfit_vietnamese_common_01
             }
         }
-        
+
         weight = {
             base = 0
             modifier = {
@@ -1183,13 +1183,13 @@ INJECT:clothes = {
             }
         }
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     ### JAPAN ###
-    
+
     # Japanese shogun
     EACR_japanese_shogun_clothes = {
         dna_modifiers = {
@@ -1220,7 +1220,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Japanese emperor
     EACR_japanese_imperial_clothes = {
         dna_modifiers = {
@@ -1248,7 +1248,7 @@ INJECT:clothes = {
             }
         }
     }
-    
+
     # Japanese imperial prince
     EACR_japanese_prince_clothes = {
         dna_modifiers = {
@@ -1276,13 +1276,13 @@ INJECT:clothes = {
             }
         }
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     ### MISC. NORTH ASIAN ###
-    
+
     # North Asian court outfit
     EACR_north_asian_court_clothes = {
         dna_modifiers = {
@@ -1317,5 +1317,5 @@ INJECT:clothes = {
             }
         }
     }
-    
+
 }

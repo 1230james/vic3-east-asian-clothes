@@ -2,7 +2,7 @@
 @EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH = 20000000
 
 INJECT:hairstyles = {
-	
+
     EACR_topknot_hairstyles = {
         dna_modifiers = {
             accessory = {
@@ -11,7 +11,7 @@ INJECT:hairstyles = {
                 template = topknot_hairstyles
                 value = 0
             }
-            
+
             # Override vanilla
             accessory = {
                 mode = replace
@@ -24,7 +24,7 @@ INJECT:hairstyles = {
             base = 0
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                
+
                 # Unwesternized Sinosphere & Confucian people
                 # Filial piety and all that
                 EACR_st_is_unwesternized = yes
@@ -44,11 +44,11 @@ INJECT:hairstyles = {
                         religion = rel:confucian
                     }
                 }
-                
+
                 # Do not override Manchu queue
                 chinese_manchu_queue_hairstyle_character_trigger = no
                 chinese_manchu_queue_hairstyle_pops_trigger = no
-                
+
                 # Buddhist monks are bald
                 NOT = {
                     scope:person ?= {
@@ -67,5 +67,5 @@ INJECT:hairstyles = {
             }
         }
     }
-    
+
 }

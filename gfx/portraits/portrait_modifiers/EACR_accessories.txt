@@ -2,9 +2,9 @@
 @EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH = 20000000
 
 INJECT:accessories = {
-    
+
     ### QING CHINA ###
-    
+
     # Qing Chinese court necklace
     EACR_qing_chinese_court_accessories = {
         dna_modifiers = {
@@ -43,13 +43,13 @@ INJECT:accessories = {
             }
         }
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     ### MING CHINA ###
-    
+
     # Qing necklace remover
     EACR_ming_chinese_no_necklace = {
         dna_modifiers = {
@@ -75,5 +75,5 @@ INJECT:accessories = {
             }
         }
     }
-    
+
 }
