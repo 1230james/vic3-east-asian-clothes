@@ -115,6 +115,14 @@ INJECT:headgear = {
                     EACR_st_is_navy = yes
                 }
                 
+                # Court politicians should only use this when mobilized
+                trigger_if = {
+                    limit = {
+                        EACR_st_korean_court_base = yes
+                    }
+                    EACR_st_char_is_mobilized_commander = yes
+                }
+                
                 # If WCR is active: only use for unwesternized Korea
                 # If vanilla: only use before Korean Empire uniforms are active
                 trigger_if = {
@@ -706,6 +714,14 @@ INJECT:headgear = {
                 OR = {
                     military_clothes_trigger     = yes
                     armed_forces_clothes_trigger = yes
+                }
+                
+                # Court politicians should only use this when mobilized
+                trigger_if = {
+                    limit = {
+                        EACR_st_ming_chinese_court_base = yes
+                    }
+                    EACR_st_char_is_mobilized_commander = yes
                 }
             }
         }

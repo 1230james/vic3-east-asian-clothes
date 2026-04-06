@@ -223,7 +223,7 @@ EACR_st_char_is_mobilized_commander = {
                 has_role = admiral
             }
             commander_military_formation ?= {
-                NOT = { exists = current_hq }
+                NOT = { current_hq ?= home_hq }
             }
         }
         trigger_else = {
@@ -491,7 +491,10 @@ EACR_st_korean_court_base = {
     EACR_st_owner_is_country_tag = { TAG = KOR }
     scope:character ?= {
         owner ?= { coa_monarchy_trigger = yes }
-        military_clothes_trigger = no
+        OR = {
+            military_clothes_trigger = no
+            EACR_st_char_is_mobilized_commander = no
+        }
         EACR_st_is_unwesternized = yes
         EACR_st_char_is_monarch = no
         EACR_st_char_is_heir = no
@@ -543,7 +546,10 @@ EACR_st_qing_chinese_court_base = {
     EACR_st_owner_is_CHI_manchu = yes
     scope:character ?= {
         owner ?= { coa_monarchy_trigger = yes }
-        military_clothes_trigger = no
+        OR = {
+            military_clothes_trigger = no
+            EACR_st_char_is_mobilized_commander = no
+        }
         EACR_st_is_unwesternized = yes
         EACR_st_char_is_monarch = no
         EACR_st_char_is_heir = no
@@ -688,7 +694,10 @@ EACR_st_ming_chinese_court_base = {
                 coa_theocracy_trigger = yes # Heavenly Kingdom
             }
         }
-        military_clothes_trigger = no
+        OR = {
+            military_clothes_trigger = no
+            EACR_st_char_is_mobilized_commander = no
+        }
         EACR_st_is_unwesternized = yes
         EACR_st_char_is_monarch = no
         EACR_st_char_is_heir = no
