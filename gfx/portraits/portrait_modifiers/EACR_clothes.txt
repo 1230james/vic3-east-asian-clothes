@@ -1184,13 +1184,98 @@ INJECT:clothes = {
         }
     }
     
-    #
-    #
-    #
-    #
-    #
+    
+    
+    
+    
     ### JAPAN ###
     
+    # Japanese shogun
+    EACR_japanese_shogun_clothes = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = japanese_shogun_outfits
+                accessory = male_outfit_japanese_shogun_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                OR = { # JUP compatibility
+                    md_japanese_uniform_pack_active_trigger = no
+                    md_japanese_modern_ruler_tech_trigger   = no
+                }
+                scope:character ?= {
+                    owner ?= {
+                        NOT = { has_variable = meiji_var }
+                        EACR_st_owner_is_JAP_japanese = yes
+                    }
+                }
+                EACR_st_char_is_monarch  = yes
+                EACR_st_is_unwesternized = yes
+            }
+        }
+    }
+    
+    # Japanese emperor
+    EACR_japanese_imperial_clothes = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = outfits
+                template  = japanese_imperial_outfits
+                accessory = male_outfit_japanese_imperial_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                md_japanese_uniform_pack_active_trigger = no # JUP compatibility
+                scope:character ?= {
+                    owner ?= {
+                        has_variable = meiji_var
+                        EACR_st_owner_is_JAP_japanese = yes
+                    }
+                }
+                EACR_st_char_is_monarch  = yes
+                EACR_st_is_unwesternized = yes
+            }
+        }
+    }
+    
+    # Japanese imperial prince
+    EACR_japanese_prince_clothes = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_outfits
+                template  = japanese_taishi_outfits
+                accessory = male_outfit_japanese_taishi_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                md_japanese_uniform_pack_active_trigger = no # JUP compatibility
+                scope:character ?= {
+                    owner ?= {
+                        has_variable = meiji_var
+                        EACR_st_owner_is_JAP_japanese = yes
+                    }
+                }
+                EACR_st_char_is_heir     = yes
+                EACR_st_is_unwesternized = yes
+            }
+        }
+    }
     
     #
     #

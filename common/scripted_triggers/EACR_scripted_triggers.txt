@@ -66,6 +66,19 @@ EACR_st_is_unwesternized = {
             }
             always = no
         }
+        
+        # Force Japanese rulers to westernize after Meiji Restoration is finished
+        trigger_if = {
+            limit = {
+                EACR_st_owner_is_country_tag = { TAG = JAP }
+                monarchy_clothes_trigger = yes
+            }
+            scope:character ?= {
+                owner ?= {
+                    NOT = { has_variable = meiji_restoration_complete }
+                }
+            }
+        }
     }
     
     # Treat military folks in unwesternized subjects of GBR, FRA, and RUS as westernized to make way for the subject uniforms
@@ -361,6 +374,27 @@ EACR_st_owner_is_DAI_nguyen_dyn = {
     EACR_st_owner_is_DAI_vietnam = yes
     scope:person ?= {
         owner ?= { coa_monarchy_trigger = yes }
+    }
+}
+
+EACR_st_owner_is_JAP_japanese = { # Checks for JAP tag or Japanese culture (helpful for revolutions/secessions)
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            OR = {
+                EACR_st_is_country_tag = { TAG = JAP }
+                any_primary_culture = {
+                    has_discrimination_trait = heritage_japanese
+                }
+            }
+        }
     }
 }
 

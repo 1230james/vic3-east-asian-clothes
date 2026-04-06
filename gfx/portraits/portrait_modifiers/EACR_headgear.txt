@@ -1276,12 +1276,67 @@ INJECT:headgear = {
         }
     }
     
-    #
-    #
-    #
-    #
-    #
+    
+    
+    
+    
     ### JAPAN ###
+    
+    # Japanese emperor
+    EACR_japanese_imperial_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = Japanese_imperial_headgear_ryuuei
+                accessory = male_headgear_japanese_imperial_02
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                md_japanese_uniform_pack_active_trigger = no # JUP compatibility
+                scope:character ?= {
+                    owner ?= {
+                        has_variable = meiji_var
+                        EACR_st_owner_is_JAP_japanese = yes
+                    }
+                }
+                EACR_st_char_is_monarch  = yes
+                EACR_st_is_unwesternized = yes
+            }
+        }
+    }
+    
+    EACR_japanese_prince_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = headgear
+                template  = Japanese_imperial_headgear
+                accessory = male_headgear_japanese_imperial_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                md_japanese_uniform_pack_active_trigger = no # JUP compatibility
+                scope:character ?= {
+                    owner ?= {
+                        has_variable = meiji_var
+                        EACR_st_owner_is_JAP_japanese = yes
+                    }
+                }
+                EACR_st_char_is_heir     = yes
+                EACR_st_is_unwesternized = yes
+            }
+        }
+    }
+    
     
     #
     #
