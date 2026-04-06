@@ -341,6 +341,29 @@ EACR_st_owner_is_chinese_republic = {
     }
 }
 
+EACR_st_owner_is_DAI_vietnam = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            EACR_st_is_country_tag = { TAG = DAI }
+        }
+    }
+}
+
+EACR_st_owner_is_DAI_nguyen_dyn = {
+    EACR_st_owner_is_DAI_vietnam = yes
+    scope:person ?= {
+        owner ?= { coa_monarchy_trigger = yes }
+    }
+}
+
 EACR_st_owner_is_qing_vassal = {
     OR = {
         scope:pop ?= {
@@ -825,6 +848,132 @@ EACR_st_ming_chinese_general_03 = {
         }
         scope:character ?= {
             commander_rank <= 2
+        }
+    }
+    trigger_else = {
+        scope:character ?= {
+            interest_group ?= {
+                is_in_government = no
+            }
+        }
+    }
+}
+
+# Vietnamese court politicians
+EACR_st_vietnamese_court_base = {
+    EACR_st_owner_is_DAI_vietnam = yes
+    scope:character ?= {
+        owner ?= {
+            coa_monarchy_trigger = yes
+        }
+        OR = {
+            military_clothes_trigger = no
+            EACR_st_char_is_mobilized_commander = no
+        }
+        EACR_st_is_unwesternized = yes
+        EACR_st_char_is_monarch = no
+        EACR_st_char_is_heir = no
+        has_role = politician
+    }
+}
+
+EACR_st_vietnamese_court_01 = {
+    EACR_st_vietnamese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = yes
+            is_powerful = yes
+        }
+    }
+}
+EACR_st_vietnamese_court_02 = {
+    EACR_st_vietnamese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = yes
+            is_powerful = no
+        }
+    }
+}
+EACR_st_vietnamese_court_03 = {
+    EACR_st_vietnamese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+            is_powerful = yes
+        }
+    }
+}
+EACR_st_vietnamese_court_04 = {
+    EACR_st_vietnamese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+            is_powerful = no
+            ig_counts_as_marginal = no
+        }
+    }
+}
+EACR_st_vietnamese_court_05 = {
+    EACR_st_vietnamese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+            ig_counts_as_marginal = yes
+        }
+    }
+}
+
+# Vietnamese commanders
+EACR_st_vietnamese_general_base = {
+    EACR_st_owner_is_DAI_vietnam = yes
+    scope:character ?= {
+        owner ?= {
+            coa_monarchy_trigger = yes
+        }
+        OR = {
+            military_clothes_trigger = yes
+            AND = {
+                armed_forces_clothes_trigger = yes
+                politician_clothes_trigger = yes
+            }
+        }
+        EACR_st_char_is_monarch = no
+        EACR_st_char_is_heir = no
+    }
+}
+
+EACR_st_vietnamese_general_01 = {
+    EACR_st_vietnamese_general_base = yes
+    trigger_if = {
+        limit = {
+            military_clothes_trigger = yes
+        }
+        scope:character ?= {
+            commander_rank >= 4
+        }
+    }
+    trigger_else = {
+        scope:character ?= {
+            interest_group ?= {
+                is_in_government = yes
+            }
+        }
+    }
+}
+EACR_st_vietnamese_general_02 = {
+    EACR_st_vietnamese_general_base = yes
+    trigger_if = {
+        limit = {
+            military_clothes_trigger = yes
+        }
+        scope:character ?= {
+            commander_rank <= 3
         }
     }
     trigger_else = {

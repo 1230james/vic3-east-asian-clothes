@@ -774,19 +774,6 @@ INJECT:headgear = {
                     }
                 }
             }
-            modifier = { # TODO: Vietnamese bureaucrats
-                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                # EACR_st_owner_is_CHI_han = yes
-                always = no
-                EACR_st_is_unwesternized = yes
-                OR = {
-                    bureaucrats_clothes_pop_trigger = yes
-                    AND = {
-                        clergy_clothes_pop_trigger = yes
-                        EACR_st_pop_or_char_is_confucian = yes
-                    }
-                }
-            }
             modifier = { # Morgenrote interop
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
                 morgenrote_is_active = yes
@@ -995,10 +982,312 @@ INJECT:headgear = {
     
     ### VIET NAM ###
     
+    # Vietnamese emperors
+    EACR_vietnamese_imperial_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = vietnamese_imperial_headgear
+                accessory = male_headgear_vietnamese_imperial_01
+            }
+        }
     
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_DAI_vietnam = yes
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_monarch  = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
+        }
+    }
     
+    # Vietnamese princes
+    EACR_korean_king_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_king_headgear_ming
+                accessory = male_headgear_korean_imperial_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_DAI_vietnam = yes
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_heir     = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
+        }
+    }
     
+    # Vietnamese court
+    EACR_vietnamese_court_civil_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_court_headgear_ming
+                accessory = wushamao
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_vietnamese_court_base = yes
+                armed_forces_clothes_trigger  = no
+                military_clothes_trigger      = no
+            }
+        }
+    }
     
+    EACR_vietnamese_court_military_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = vietnamese_court_headgear
+                accessory = male_headgear_vietnamese_court_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_vietnamese_court_base = yes
+                OR = {
+                    armed_forces_clothes_trigger  = yes
+                    military_clothes_trigger      = yes
+                }
+            }
+        }
+    }
+    
+    # Vietnamese commanders # Closest available headgear based on image below:
+    # https://commons.wikimedia.org/wiki/File:T%E1%BA%A3_qu%C3%A2n_(h%C3%ACnh_4-5),_Ch%C6%B0%E1%BB%9Fng_v%E1%BB%87_(h%C3%ACnh_6),_Qu%E1%BA%A3n_c%C6%A1_(h%C3%ACnh_7),_Ph%C3%B3_xu%E1%BA%A5t_%C4%91%E1%BB%99i_(h%C3%ACnh_8).jpg
+    EACR_vietnamese_commander_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_han_common_headgear_02_baraeti
+                accessory = male_headgear_chinese_han_common_03
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_vietnamese_general_base = yes
+                EACR_st_is_unwesternized = yes
+                
+                # Court politicians should only use this when mobilized
+                trigger_if = {
+                    limit = {
+                        EACR_st_vietnamese_court_base = yes
+                    }
+                    EACR_st_char_is_mobilized_commander = yes
+                }
+            }
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_DAI_vietnam = yes
+                EACR_st_char_is_monarch  = yes
+                EACR_st_is_unwesternized = yes
+                military_clothes_trigger = yes
+            }
+        }
+    }
+    
+    # Vietnamese royal bureaucrats
+    EACR_vietnamese_nguyen_bureaucrats = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_han_common_headgear_01
+                accessory = male_headgear_chinese_han_common_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_DAI_nguyen_dyn = yes
+                EACR_st_is_unwesternized = yes
+                OR = {
+                    bureaucrats_clothes_pop_trigger = yes
+                    AND = {
+                        clergy_clothes_pop_trigger = yes
+                        EACR_st_pop_or_char_is_confucian = yes
+                    }
+                }
+            }
+        }
+    }
+    
+    # Vietnamese royal officers
+    EACR_vietnamese_nguyen_officer_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_han_common_headgear_02
+                accessory = male_headgear_chinese_han_common_02
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_DAI_nguyen_dyn = yes
+                EACR_st_is_unwesternized = yes
+                officers_clothes_pop_trigger = yes
+            }
+        }
+    }
+    
+    # Vietnamese common headgear
+    EACR_vietnamese_common_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = vietnamese_common_headgear
+                accessory = male_headgear_vietnamese_common_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = { # All Vietnamese pops except for Nguyen dynasty bureaucrats & Confucian clergy
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_is_unwesternized = yes
+                scope:pop ?= {
+                    culture = {
+                        has_discrimination_trait = heritage_vietnamese
+                    }
+                }
+                
+                trigger_if = {
+                    limit = {
+                        EACR_st_owner_is_DAI_nguyen_dyn = yes
+                    }
+                    bureaucrats_clothes_pop_trigger = no
+                    NAND = {
+                        clergy_clothes_pop_trigger = yes
+                        scope:pop ?= {
+                            OR = {
+                                EACR_st_pop_or_char_is_confucian = yes
+                                religion = {
+                                    has_discrimination_trait = heritage_dharmic
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            modifier = { # Non-monarchy bureaucrats & Confucian clergy
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                OR = {
+                    bureaucrats_clothes_pop_trigger = yes
+                    AND = {
+                        clergy_clothes_pop_trigger = yes
+                        EACR_st_pop_or_char_is_confucian = yes
+                    }
+                }
+                scope:pop ?= {
+                    owner ?= {
+                        coa_monarchy_trigger = no
+                    }
+                }
+            }
+            modifier = { # Non-monarchy characters
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_DAI_vietnam = yes
+                EACR_st_is_unwesternized = yes
+                OR = {
+                    ruler_clothes_trigger = yes
+                    military_clothes_trigger = yes
+                    politician_clothes_trigger = yes
+                }
+                scope:character ?= {
+                    owner ?= {
+                        coa_monarchy_trigger = no
+                    }
+                }
+            }
+            modifier = { # Morgenrote interop
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                morgenrote_is_active = yes
+                EACR_st_owner_is_DAI_vietnam = yes
+                EACR_st_is_unwesternized = yes
+                mr_special_characters_clothes_trigger = yes
+            }
+        }
+    }
+    
+    EACR_vietnamese_non_la_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = headgear
+                template  = chinese_common_headgear
+                accessory = male_headgear_chinese_common_02
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = { # Vietnamese (culture) agricultural pops
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                scope:pop ?= {
+                    culture = {
+                        has_discrimination_trait = heritage_vietnamese
+                    }
+                }
+                EACR_st_is_unwesternized = yes
+                OR = {
+                    farmers_clothes_pop_trigger  = yes
+                    peasants_clothes_pop_trigger = yes
+                }
+            }
+            modifier = { # Vietnamese (country) military
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_DAI_vietnam = yes
+                OR = {
+                    soldier_clothes_pop_trigger  = yes
+                    officers_clothes_pop_trigger = yes
+                }
+            }
+        }
+    }
+    
+    #
+    #
+    #
+    #
+    #
+    ### JAPAN ###
+    
+    #
+    #
+    #
+    #
+    #
     ### MISC. NORTH ASIAN ###
     
 }
