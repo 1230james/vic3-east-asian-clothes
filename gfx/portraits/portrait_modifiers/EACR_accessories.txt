@@ -33,6 +33,14 @@ INJECT:accessories = {
                     }
                 }
             }
+            modifier = { # Qing vassals
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH
+                EACR_st_warm_season = yes
+                EACR_st_owner_is_qing_vassal = yes
+                EACR_st_is_unwesternized = yes
+                ruler_clothes_trigger    = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
         }
     }
     

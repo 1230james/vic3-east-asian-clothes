@@ -133,6 +133,17 @@ EACR_st_is_morgenrote_special_char = {
     }
 }
 
+EACR_st_culture_is_chinese = {
+    OR = {
+        has_discrimination_trait = heritage_han
+        has_discrimination_trait = tradition_sinosphere
+    }
+    NOR = {
+        has_discrimination_trait = heritage_korean
+        has_discrimination_trait = heritage_vietnamese
+    }
+}
+
 EACR_st_pop_or_char_is_chinese = {
     OR = {
         scope:pop ?= {
@@ -144,14 +155,7 @@ EACR_st_pop_or_char_is_chinese = {
     }
     scope:person ?= {
         culture = { 
-            OR = {
-                has_discrimination_trait = heritage_han
-                has_discrimination_trait = tradition_sinosphere
-            }
-            NOR = {
-                has_discrimination_trait = heritage_korean
-                has_discrimination_trait = heritage_vietnamese
-            }
+            EACR_st_culture_is_chinese = yes
         }
     }
 }
@@ -296,12 +300,7 @@ EACR_st_owner_is_CHI_han = {
                 EACR_st_is_country_tag = { TAG = CHI }
                 EACR_st_is_country_tag = { TAG = TPG } # Heavenly Kingdom
                 any_primary_culture = {
-                    has_discrimination_trait = tradition_sinosphere
-                    has_discrimination_trait_group = heritage_group_east_asian
-                    NOR = {
-                        has_discrimination_trait = heritage_korean
-                        has_discrimination_trait = heritage_vietnamese
-                    }
+                    EACR_st_culture_is_chinese = yes 
                 }
             }
         }
@@ -322,12 +321,87 @@ EACR_st_owner_is_CHI_qing_dyn = {
     }
 }
 
-EACR_st_owner_is_CHI_republic = {
-    EACR_st_owner_is_country_tag = { TAG = CHI }
-    scope:person ?= { # Saved scope inherited from `EACR_st_owner_is_country_tag`
+EACR_st_owner_is_chinese_republic = {
+    OR = {
+        EACR_st_owner_is_country_tag = { TAG = CHI }
+        EACR_st_owner_is_country_tag = { TAG = TPG }
+        scope:person ?= { # Saved scope inherited from `EACR_st_owner_is_country_tag`
+            owner ?= {
+                any_primary_culture = {
+                    EACR_st_culture_is_chinese = yes 
+                }
+            }
+        }
+    }
+    scope:person ?= {
         owner ?= {
             coa_monarchy_trigger  = no
             coa_theocracy_trigger = no
+        }
+    }
+}
+
+EACR_st_owner_is_qing_vassal = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            NOT = { # Exclude Korea, Vietnam, and Japan
+                any_primary_culture = {
+                    OR = {
+                        has_discrimination_trait = heritage_korean
+                        has_discrimination_trait = heritage_vietnamese
+                        has_discrimination_trait = heritage_japanese
+                    }
+                }
+            }
+            is_subject = yes
+            aggressive_diplomatic_plays_permitted = no # Low autonomy subject
+            top_overlord ?= {
+                EACR_st_is_qing_china = yes
+            }
+        }
+    }
+}
+
+EACR_st_owner_is_ming_vassal = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            NOT = { # Exclude Korea, Vietnam, and Japan
+                any_primary_culture = {
+                    OR = {
+                        has_discrimination_trait = heritage_korean
+                        has_discrimination_trait = heritage_vietnamese
+                        has_discrimination_trait = heritage_japanese
+                    }
+                }
+            }
+            is_subject = yes
+            aggressive_diplomatic_plays_permitted = no
+            top_overlord ?= {
+                EACR_st_is_qing_china = no
+                OR = {
+                    EACR_st_is_country_tag = { TAG = CHI }
+                    EACR_st_is_country_tag = { TAG = TPG } # Heavenly Kingdom
+                    any_primary_culture = {
+                        EACR_st_culture_is_chinese = yes 
+                    }
+                }
+            }
         }
     }
 }
@@ -367,7 +441,10 @@ EACR_st_use_chinese_manchu_queue_hairstyle = {
         # Manchus discriminating against Han Chinese
         AND = {
             scope:home_scope ?= {
-                EACR_st_owner_is_CHI_manchu = yes
+                OR = {
+                    EACR_st_owner_is_CHI_manchu  = yes
+                    EACR_st_owner_is_qing_vassal = yes
+                }
                 NOT = {
                     has_law_or_variant = law_type:law_multicultural
                 }
@@ -383,7 +460,10 @@ EACR_st_use_chinese_manchu_queue_hairstyle = {
         AND = {
             NOT = {
                 scope:home_scope ?= {
-                    EACR_st_owner_is_CHI_han = yes
+                    OR = {
+                        EACR_st_owner_is_CHI_han = yes
+                        EACR_st_owner_is_ming_vassal = yes
+                    }
                     cultural_acceptance_base = { target = cu:manchu value >= acceptance_status_4 }
                 }
             }

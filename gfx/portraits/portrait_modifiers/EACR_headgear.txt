@@ -286,6 +286,14 @@ INJECT:headgear = {
                     }
                 }
             }
+            modifier = { # Qing vassals
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH
+                EACR_st_warm_season = no
+                EACR_st_owner_is_qing_vassal = yes
+                EACR_st_is_unwesternized = yes
+                ruler_clothes_trigger    = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
         }
     }
     
@@ -404,6 +412,14 @@ INJECT:headgear = {
                         EACR_st_qing_chinese_general_01 = yes
                     }
                 }
+            }
+            modifier = { # Qing vassals
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH
+                EACR_st_warm_season = yes
+                EACR_st_owner_is_qing_vassal = yes
+                EACR_st_is_unwesternized = yes
+                ruler_clothes_trigger    = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
             }
         }
     }
@@ -588,6 +604,11 @@ INJECT:headgear = {
                 EACR_st_is_unwesternized = yes
                 EACR_st_char_is_monarch  = yes
                 military_clothes_trigger = no # Prevent use when monarch is commanding an army
+                scope:character ?= {
+                    owner ?= {
+                        is_subject = no
+                    }
+                }
             }
         }
     }
@@ -612,7 +633,25 @@ INJECT:headgear = {
                 EACR_st_char_is_heir     = yes
                 military_clothes_trigger = no # Prevent use when monarch is commanding an army
             }
-            # TODO: Chinese subjects
+            modifier = { # Subjected Han Chinese monarchy
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_han = yes
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_monarch  = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+                scope:character ?= {
+                    owner ?= {
+                        is_subject = yes
+                    }
+                }
+            }
+            modifier = { # Ming vassal monarchies
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH
+                EACR_st_owner_is_ming_vassal = yes
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_monarch  = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
         }
     }
     
@@ -632,6 +671,14 @@ INJECT:headgear = {
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
                 EACR_st_ming_chinese_court_base = yes
+            }
+            modifier = { # Ming vassal non-monarchies
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH
+                EACR_st_owner_is_ming_vassal = yes
+                EACR_st_is_unwesternized = yes
+                ruler_clothes_trigger    = yes
+                monarchy_clothes_trigger = no
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
             }
         }
     }
@@ -653,7 +700,7 @@ INJECT:headgear = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
                 OR = {
                     EACR_st_owner_is_CHI_han = yes
-                    EACR_st_owner_is_CHI_republic = yes
+                    EACR_st_owner_is_chinese_republic = yes
                 }
                 EACR_st_is_unwesternized = yes
                 OR = {
@@ -819,7 +866,7 @@ INJECT:headgear = {
             modifier = { # Unwesternized republican Chinese middle & upper strata pops
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
                 EACR_st_is_unwesternized = yes
-                EACR_st_owner_is_CHI_republic = yes
+                EACR_st_owner_is_chinese_republic = yes
                 OR = {
                     middle_clothes_pop_trigger = yes
                     upper_clothes_pop_trigger = yes
@@ -831,7 +878,7 @@ INJECT:headgear = {
                 clergy_clothes_pop_trigger = yes
                 OR = {
                     chinese_manchu_queue_hairstyle_pops_trigger = yes
-                    EACR_st_owner_is_CHI_republic = yes
+                    EACR_st_owner_is_chinese_republic = yes
                 }
             }
         }
@@ -860,7 +907,7 @@ INJECT:headgear = {
                         is_country_type = unrecognized
                     }
                 }
-                EACR_st_owner_is_CHI_republic = yes
+                EACR_st_owner_is_chinese_republic = yes
                 OR = {
                     republic_clothes_trigger   = yes
                     politician_clothes_trigger = yes
@@ -896,7 +943,7 @@ INJECT:headgear = {
                         }
                     }
                 }
-                EACR_st_owner_is_CHI_republic = yes
+                EACR_st_owner_is_chinese_republic = yes
                 OR = {
                     republic_clothes_trigger   = yes
                     politician_clothes_trigger = yes
@@ -925,5 +972,17 @@ INJECT:headgear = {
             }
         }
     }
+    
+    
+    
+    
+    
+    ### VIET NAM ###
+    
+    
+    
+    
+    
+    ### MISC. NORTH ASIAN ###
     
 }
