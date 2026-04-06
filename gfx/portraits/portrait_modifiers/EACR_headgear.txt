@@ -1338,11 +1338,124 @@ INJECT:headgear = {
     }
     
     
-    #
-    #
-    #
-    #
-    #
+    
+    
+    
     ### MISC. NORTH ASIAN ###
+    
+    # North Asian court nuanmao
+    EACR_north_asian_court_warm = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_court_headgear_01_1
+                accessory = male_headgear_chinese_court_01_1
+            }
+            accessory = { # lazy hair fix
+                mode = replace
+                gene = hairstyles
+                template = european_hairstyles
+                value = 0.85 # european_13
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = no
+                scope:character ?= {
+                    is_female = no # Don't interfere with women's hair since they don't wear this hat
+                    owner ?= {
+                        coa_monarchy_trigger = yes
+                        any_primary_culture  = {
+                            has_discrimination_trait_group = heritage_group_north_asian
+                            NOT = {
+                                has_discrimination_trait = heritage_siberian
+                                has_discrimination_trait = heritage_ainu
+                            }
+                        }
+                    }
+                }
+                politician_clothes_trigger = yes
+                EACR_st_char_is_monarch    = no
+                EACR_st_char_is_heir       = no
+                EACR_st_is_unwesternized = yes
+            }
+        }
+    }
+    
+    # North Asian court liangmao
+    EACR_north_asian_court_cool = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_court_headgear_02_1
+                accessory = male_headgear_chinese_court_02_1
+            }
+            accessory = { # lazy hair fix
+                mode = replace
+                gene = hairstyles
+                template = european_hairstyles
+                value = 0.85 # european_13
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_warm_season = yes
+                scope:character ?= {
+                    is_female = no # Don't interfere with women's hair since they don't wear this hat
+                    owner ?= {
+                        coa_monarchy_trigger = yes
+                        any_primary_culture  = {
+                            has_discrimination_trait_group = heritage_group_north_asian
+                            NOT = {
+                                has_discrimination_trait = heritage_siberian
+                                has_discrimination_trait = heritage_ainu
+                            }
+                        }
+                    }
+                }
+                politician_clothes_trigger = yes
+                EACR_st_char_is_monarch    = no
+                EACR_st_char_is_heir       = no
+                EACR_st_is_unwesternized = yes
+            }
+        }
+    }
+    
+    # Mongolian pop hat
+    EACR_mongolian_common_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = mongolian_common_headgear
+                accessory = male_headgear_chinese_common_01
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                poor_clothes_pop_trigger = yes
+                scope:pop ?= {
+                    culture = {
+                        has_discrimination_trait_group = heritage_group_north_asian
+                        NOT = {
+                            has_discrimination_trait = heritage_siberian
+                            has_discrimination_trait = heritage_ainu
+                        }
+                    }
+                }
+            }
+        }
+    }
     
 }
