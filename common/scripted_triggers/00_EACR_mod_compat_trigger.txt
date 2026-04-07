@@ -8,3 +8,7 @@
 # EACR_is_active_trigger = {
 #     always = no
 # }
+
+EACR_st_TPM_korean_court_base = {
+    always = no
+}

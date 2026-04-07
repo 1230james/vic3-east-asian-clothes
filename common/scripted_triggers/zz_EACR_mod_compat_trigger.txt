@@ -9,3 +9,7 @@ REPLACE_OR_CREATE:EACR_is_active_trigger = {
 TRY_REPLACE:EACP_is_active_trigger = {
     EACR_is_active_trigger = yes
 }
+
+REPLACE_OR_CREATE:EACR_st_TPM_korean_court_base = {
+    EACR_st_korean_court_base = yes
+}

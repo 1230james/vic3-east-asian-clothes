@@ -540,6 +540,7 @@ INJECT:headgear = {
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
                 EACR_st_warm_season = no
+                EACR_st_is_unwesternized = yes
                 EACR_st_owner_is_CHI_qing_dyn = yes
                 bureaucrats_clothes_pop_trigger = yes
             }
@@ -547,6 +548,7 @@ INJECT:headgear = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
                 md_chinese_uniform_pack_active_trigger = no # CUP compatibility
                 EACR_st_warm_season = no
+                EACR_st_is_unwesternized = yes
                 EACR_st_owner_is_CHI_qing_dyn = yes
                 OR = {
                     officers_clothes_pop_trigger = yes
@@ -571,6 +573,7 @@ INJECT:headgear = {
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
                 EACR_st_warm_season = yes
+                EACR_st_is_unwesternized = yes
                 EACR_st_owner_is_CHI_qing_dyn = yes
                 bureaucrats_clothes_pop_trigger = yes
             }
@@ -578,6 +581,7 @@ INJECT:headgear = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
                 md_chinese_uniform_pack_active_trigger = no # CUP compatibility
                 EACR_st_warm_season = yes
+                EACR_st_is_unwesternized = yes
                 EACR_st_owner_is_CHI_qing_dyn = yes
                 OR = {
                     officers_clothes_pop_trigger = yes
@@ -1182,6 +1186,17 @@ INJECT:headgear = {
                     }
                 }
 
+                # Exclude Buddhist clergy (they're bald)
+                NAND = {
+                    clergy_clothes_pop_trigger = yes
+                    scope:pop ?= {
+                        religion = {
+                            has_discrimination_trait = heritage_dharmic
+                        }
+                    }
+                }
+
+                # Exclude bureaucrats & Confucian clergy under a monarchy (they have a special hat)
                 trigger_if = {
                     limit = {
                         EACR_st_owner_is_DAI_nguyen_dyn = yes
@@ -1189,29 +1204,7 @@ INJECT:headgear = {
                     bureaucrats_clothes_pop_trigger = no
                     NAND = {
                         clergy_clothes_pop_trigger = yes
-                        scope:pop ?= {
-                            OR = {
-                                EACR_st_pop_or_char_is_confucian = yes
-                                religion = {
-                                    has_discrimination_trait = heritage_dharmic
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            modifier = { # Non-monarchy bureaucrats & Confucian clergy
-                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                OR = {
-                    bureaucrats_clothes_pop_trigger = yes
-                    AND = {
-                        clergy_clothes_pop_trigger = yes
                         EACR_st_pop_or_char_is_confucian = yes
-                    }
-                }
-                scope:pop ?= {
-                    owner ?= {
-                        coa_monarchy_trigger = no
                     }
                 }
             }

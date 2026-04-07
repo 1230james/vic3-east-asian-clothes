@@ -1310,10 +1310,11 @@ INJECT:clothes = {
                         }
                     }
                 }
-                politician_clothes_trigger = yes
-                EACR_st_char_is_monarch    = no
-                EACR_st_char_is_heir       = no
-                EACR_st_is_unwesternized   = yes
+                EACR_st_owner_is_CHI_manchu = no # This is specifically NOT for Great Qing
+                politician_clothes_trigger  = yes
+                EACR_st_char_is_monarch     = no
+                EACR_st_char_is_heir        = no
+                EACR_st_is_unwesternized    = yes
             }
         }
     }
