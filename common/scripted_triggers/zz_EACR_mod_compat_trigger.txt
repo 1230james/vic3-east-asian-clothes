@@ -13,3 +13,11 @@ TRY_REPLACE:EACP_is_active_trigger = {
 REPLACE_OR_CREATE:EACR_st_TPM_korean_court_base = {
     EACR_st_korean_court_base = yes
 }
+
+REPLACE_OR_CREATE:EACR_st_TPM_qing_chinese_court_base = {
+    EACR_st_qing_chinese_court_base = yes
+}
+
+REPLACE_OR_CREATE:EACR_st_TPM_ming_chinese_court_base = {
+    EACR_st_ming_chinese_court_base = yes
+}

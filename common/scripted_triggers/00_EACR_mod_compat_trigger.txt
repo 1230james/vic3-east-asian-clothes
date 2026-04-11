@@ -12,3 +12,11 @@
 EACR_st_TPM_korean_court_base = {
     always = no
 }
+
+EACR_st_TPM_qing_chinese_court_base = {
+    always = no
+}
+
+EACR_st_TPM_ming_chinese_court_base = {
+    always = no
+}
