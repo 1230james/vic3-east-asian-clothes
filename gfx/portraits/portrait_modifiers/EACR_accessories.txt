@@ -1,0 +1,79 @@
+﻿@EACR_PORTRAIT_MODIFIER_WEIGHT_LOW  = 10000000
+@EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH = 20000000
+
+INJECT:accessories = {
+
+    ### QING CHINA ###
+
+    # Qing Chinese court necklace
+    EACR_qing_chinese_court_accessories = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = necklaces
+                template  = chinese_necklaces
+                accessory = male_necklace_chinese_01_high
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                OR = {
+                    EACR_st_qing_chinese_court_base   = yes
+                    EACR_st_qing_chinese_general_base = yes
+                    AND = {
+                        EACR_st_owner_is_CHI_manchu = yes
+                        EACR_st_is_unwesternized = yes
+                        OR = {
+                            EACR_st_char_is_monarch = yes
+                            EACR_st_char_is_heir    = yes
+                        }
+                    }
+                }
+            }
+            modifier = { # Qing vassals
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH
+                EACR_st_warm_season = yes
+                EACR_st_owner_is_qing_vassal = yes
+                EACR_st_is_unwesternized = yes
+                ruler_clothes_trigger    = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
+        }
+    }
+
+
+
+
+
+    ### MING CHINA ###
+
+    # Qing necklace remover
+    EACR_ming_chinese_no_necklace = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = necklaces
+                template = no_necklace
+                value = 0
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                scope:character ?= { # Match with `qing_emperor_necklace`
+                    is_ruler = yes
+                    owner ?= {
+                        c:CHI ?= this
+                        has_law_or_variant = law_type:law_monarchy
+                    }
+                }
+            }
+        }
+    }
+
+}

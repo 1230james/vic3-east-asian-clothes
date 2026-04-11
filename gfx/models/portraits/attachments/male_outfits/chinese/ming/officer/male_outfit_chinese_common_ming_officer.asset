@@ -1,0 +1,104 @@
+pdxmesh = {
+	name = "male_outfit_chinese_common_ming_officer_blue_mesh"
+	file = "male_outfit_chinese_common_ming_officer.mesh"
+
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_fat"				type = "male_outfit_chinese_common_ming_officer_bs_fat.mesh" }
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_gaunt"				type = "male_outfit_chinese_common_ming_officer_bs_gaunt.mesh" }
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_old"				type = "male_outfit_chinese_common_ming_officer_bs_old.mesh" }
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_infant"				type = "male_outfit_chinese_common_ming_officer_bs_infant.mesh" }
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_thick"				type = "male_outfit_chinese_common_ming_officer_bs_thick.mesh" }
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_thin"				type = "male_outfit_chinese_common_ming_officer_bs_thin.mesh" }
+
+	meshsettings = {
+		name = "male_outfit_chinese_common_ming_officerShape"
+		index = 0
+		texture_diffuse = "male_outfit_chinese_common_ming_officer_diffuse_blue.dds"
+		texture_normal = "male_outfit_chinese_common_ming_officer_normal.dds"
+		texture_specular = "male_outfit_chinese_common_ming_officer_properties.dds"
+		shader = "portrait_attachment_pattern"
+		shader_file = "gfx/FX/jomini/portrait.shader"
+	}
+}
+
+entity = {
+	name = "male_outfit_chinese_common_ming_officer_blue_entity"
+	pdxmesh = "male_outfit_chinese_common_ming_officer_blue_mesh"
+	
+	attribute = { name = "body_bs_fat"					blend_shape = "male_outfit_chinese_common_ming_officer_bs_fat" }
+	attribute = { name = "body_bs_gaunt"				blend_shape = "male_outfit_chinese_common_ming_officer_bs_gaunt" }
+	attribute = { name = "body_bs_old"					blend_shape = "male_outfit_chinese_common_ming_officer_bs_old" }
+	attribute = { name = "body_bs_infant"				blend_shape = "male_outfit_chinese_common_ming_officer_bs_infant" }
+	attribute = { name = "body_bs_thick"				blend_shape = "male_outfit_chinese_common_ming_officer_bs_thick" }
+	attribute = { name = "body_bs_thin"					blend_shape = "male_outfit_chinese_common_ming_officer_bs_thin" }
+
+}
+
+pdxmesh = {
+	name = "male_outfit_chinese_common_ming_officer_red_mesh"
+	file = "male_outfit_chinese_common_ming_officer.mesh"
+
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_fat"				type = "male_outfit_chinese_common_ming_officer_bs_fat.mesh" }
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_gaunt"				type = "male_outfit_chinese_common_ming_officer_bs_gaunt.mesh" }
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_old"				type = "male_outfit_chinese_common_ming_officer_bs_old.mesh" }
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_infant"				type = "male_outfit_chinese_common_ming_officer_bs_infant.mesh" }
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_thick"				type = "male_outfit_chinese_common_ming_officer_bs_thick.mesh" }
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_thin"				type = "male_outfit_chinese_common_ming_officer_bs_thin.mesh" }
+
+	meshsettings = {
+		name = "male_outfit_chinese_common_ming_officerShape"
+		index = 0
+		texture_diffuse = "male_outfit_chinese_common_ming_officer_diffuse_red.dds"
+		texture_normal = "male_outfit_chinese_common_ming_officer_normal.dds"
+		texture_specular = "male_outfit_chinese_common_ming_officer_properties.dds"
+		shader = "portrait_attachment_pattern"
+		shader_file = "gfx/FX/jomini/portrait.shader"
+	}
+}
+
+entity = {
+	name = "male_outfit_chinese_common_ming_officer_red_entity"
+	pdxmesh = "male_outfit_chinese_common_ming_officer_red_mesh"
+	
+	attribute = { name = "body_bs_fat"					blend_shape = "male_outfit_chinese_common_ming_officer_bs_fat" }
+	attribute = { name = "body_bs_gaunt"				blend_shape = "male_outfit_chinese_common_ming_officer_bs_gaunt" }
+	attribute = { name = "body_bs_old"					blend_shape = "male_outfit_chinese_common_ming_officer_bs_old" }
+	attribute = { name = "body_bs_infant"				blend_shape = "male_outfit_chinese_common_ming_officer_bs_infant" }
+	attribute = { name = "body_bs_thick"				blend_shape = "male_outfit_chinese_common_ming_officer_bs_thick" }
+	attribute = { name = "body_bs_thin"					blend_shape = "male_outfit_chinese_common_ming_officer_bs_thin" }
+
+}
+
+pdxmesh = {
+	name = "male_outfit_chinese_common_ming_officer_brown_mesh"
+	file = "male_outfit_chinese_common_ming_officer.mesh"
+
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_fat"				type = "male_outfit_chinese_common_ming_officer_bs_fat.mesh" }
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_gaunt"				type = "male_outfit_chinese_common_ming_officer_bs_gaunt.mesh" }
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_old"				type = "male_outfit_chinese_common_ming_officer_bs_old.mesh" }
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_infant"				type = "male_outfit_chinese_common_ming_officer_bs_infant.mesh" }
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_thick"				type = "male_outfit_chinese_common_ming_officer_bs_thick.mesh" }
+	blend_shape = { id = "male_outfit_chinese_common_ming_officer_bs_thin"				type = "male_outfit_chinese_common_ming_officer_bs_thin.mesh" }
+
+	meshsettings = {
+		name = "male_outfit_chinese_common_ming_officerShape"
+		index = 0
+		texture_diffuse = "male_outfit_chinese_common_ming_officer_diffuse_brown.dds"
+		texture_normal = "male_outfit_chinese_common_ming_officer_normal.dds"
+		texture_specular = "male_outfit_chinese_common_ming_officer_properties.dds"
+		shader = "portrait_attachment_pattern"
+		shader_file = "gfx/FX/jomini/portrait.shader"
+	}
+}
+
+entity = {
+	name = "male_outfit_chinese_common_ming_officer_brown_entity"
+	pdxmesh = "male_outfit_chinese_common_ming_officer_brown_mesh"
+	
+	attribute = { name = "body_bs_fat"					blend_shape = "male_outfit_chinese_common_ming_officer_bs_fat" }
+	attribute = { name = "body_bs_gaunt"				blend_shape = "male_outfit_chinese_common_ming_officer_bs_gaunt" }
+	attribute = { name = "body_bs_old"					blend_shape = "male_outfit_chinese_common_ming_officer_bs_old" }
+	attribute = { name = "body_bs_infant"				blend_shape = "male_outfit_chinese_common_ming_officer_bs_infant" }
+	attribute = { name = "body_bs_thick"				blend_shape = "male_outfit_chinese_common_ming_officer_bs_thick" }
+	attribute = { name = "body_bs_thin"					blend_shape = "male_outfit_chinese_common_ming_officer_bs_thin" }
+
+}

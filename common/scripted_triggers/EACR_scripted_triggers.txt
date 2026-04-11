@@ -1,0 +1,1023 @@
+﻿EACR_st_warm_season = {
+    month >= 3 # month compares 0 - 11
+    month <  9
+}
+
+EACR_st_is_navy = {
+    OR = {
+        scope:pop ?= {
+            workplace ?= {
+                is_building_type = building_naval_base
+            }
+        }
+        scope:character ?= {
+            has_role = admiral
+        }
+    }
+}
+
+EACR_st_is_army = {
+    OR = {
+        # Soldiers & officers not working in the navy
+        scope:pop ?= {
+            EACR_st_is_navy = no
+            OR = {
+                is_pop_type = soldiers
+                is_pop_type = officers
+            }
+        }
+        
+        # Generals & Armed Forces politicians
+        scope:character ?= {
+            OR = {
+                # Generals
+                has_role = general
+                
+                # Armed Forces IG leader who isn't a general or admiral
+                AND = {
+                    armed_forces_clothes_trigger = yes
+                    politician_clothes_trigger = yes
+                    EACR_st_is_navy = no
+                }
+            }
+        }
+    }
+}
+
+EACR_st_is_unwesternized = {
+    trigger_if = {
+        limit = {
+            WCR_is_active_trigger = yes
+        }
+        WCR_TPM_is_westernized_trigger = no
+    }
+    trigger_else = {
+        european_clothes_trigger     = no
+        european_clothes_pop_trigger = no
+        
+        # Force military to westernize in Imperial Korea
+        trigger_if = {
+            limit = {
+                EACR_st_owner_is_KOR_imperial_korea = yes
+                OR = {
+                    EACR_st_is_army = yes
+                    EACR_st_is_navy = yes
+                }
+            }
+            always = no
+        }
+        
+        # Force Japanese rulers to westernize after Meiji Restoration is finished
+        trigger_if = {
+            limit = {
+                EACR_st_owner_is_country_tag = { TAG = JAP }
+                monarchy_clothes_trigger = yes
+            }
+            scope:character ?= {
+                owner ?= {
+                    NOT = { has_variable = meiji_restoration_complete }
+                }
+            }
+        }
+    }
+    
+    # Treat military folks in unwesternized subjects of GBR, FRA, and RUS as westernized to make way for the subject uniforms
+    trigger_if = {
+        limit = {
+            military_clothes_trigger = yes
+            EACR_st_is_navy = yes
+            EACR_st_is_army = yes
+        }
+        british_empire_clothes_trigger     = no
+        british_empire_clothes_pop_trigger = no
+        british_empire_clothes_p_trigger   = no
+        french_empire_clothes_trigger      = no
+        french_empire_clothes_pop_trigger  = no
+        russian_empire_clothes_trigger     = no
+        russian_empire_clothes_pop_trigger = no
+    }
+}
+
+EACR_st_is_country_tag = {
+    trigger_if = {
+        limit = {
+            exists = c:$TAG$
+        }
+        c:$TAG$ ?= THIS
+    }
+    trigger_else = {
+        was_formed_from = $TAG$
+    }
+}
+
+EACR_st_owner_is_country_tag = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            EACR_st_is_country_tag = { TAG = $TAG$ }
+        }
+    }
+}
+
+EACR_st_is_qing_china = {
+    EACR_st_is_country_tag = { TAG = CHI }
+    country_has_primary_culture = cu:manchu
+}
+
+# Morgenrote compatibility - returns true if they are strictly a special character for Morgenrote (i.e., scientist,
+# artist, etc.); returns false otherwise. Used mainly for blocking the use of court clothing 
+EACR_st_is_morgenrote_special_char = {
+    scope:character ?= {
+        mr_special_characters_clothes_trigger = yes
+        military_clothes_trigger   = no
+        agitator_character_trigger = no
+        is_ruler = no
+        is_heir  = no
+        NOT = {
+            interest_group.leader ?= THIS
+        }
+    }
+}
+
+EACR_st_culture_is_chinese = {
+    OR = {
+        has_discrimination_trait = heritage_han
+        has_discrimination_trait = tradition_sinosphere
+    }
+    NOR = {
+        has_discrimination_trait = heritage_korean
+        has_discrimination_trait = heritage_vietnamese
+    }
+}
+
+EACR_st_pop_or_char_is_chinese = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        culture = { 
+            EACR_st_culture_is_chinese = yes
+        }
+    }
+}
+
+EACR_st_pop_or_char_is_confucian = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        religion = rel:confucian
+    }
+}
+
+# Will check if the character is the monarch. Will correctly handle situations where a regency is active.
+EACR_st_char_is_monarch = {
+    scope:character ?= {
+        owner ?= { coa_monarchy_trigger = yes }
+        trigger_if = {
+            limit = {
+                owner ?= { has_gov_regency = no }
+            }
+            is_ruler = yes
+        }
+        trigger_else = {
+            is_heir = yes
+        }
+    }
+}
+
+# Similar to `EACR_st_char_is_monarch`. Will return false if there is a regency (since the heir is actually the monarch
+# in those cases)
+EACR_st_char_is_heir = {
+    scope:character ?= {
+        owner ?= { coa_monarchy_trigger = yes }
+        trigger_if = {
+            limit = {
+                owner ?= { has_gov_regency = no }
+            }
+            is_heir = yes
+        }
+        trigger_else = {
+            always = no
+        }
+    }
+}
+
+EACR_st_char_is_mobilized_commander = {
+    scope:character ?= {
+        exists = commander_military_formation
+        trigger_if = {
+            limit = {
+                has_role = general
+            }
+            commander_military_formation ?= {
+                is_mobilized = yes
+            }
+        }
+        trigger_else_if = {
+            limit = {
+                has_role = admiral
+            }
+            commander_military_formation ?= {
+                NOT = { current_hq ?= home_hq }
+            }
+        }
+        trigger_else = {
+            always = no # how did we get here
+        }
+    }
+}
+
+EACR_st_owner_is_KOR_joseon = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            EACR_st_is_country_tag = { TAG = KOR }
+            NOT = {
+                has_variable = KOR_korean_empire_declared
+            }
+        }
+    }
+}
+
+EACR_st_owner_is_KOR_imperial_korea = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            EACR_st_is_country_tag = { TAG = KOR }
+            has_variable = KOR_korean_empire_declared
+        }
+    }
+}
+
+EACR_st_owner_is_CHI_manchu = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            EACR_st_is_qing_china = yes
+        }
+    }
+}
+
+EACR_st_owner_is_CHI_han = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            EACR_st_is_qing_china = no
+            OR = {
+                EACR_st_is_country_tag = { TAG = CHI }
+                EACR_st_is_country_tag = { TAG = TPG } # Heavenly Kingdom
+                any_primary_culture = {
+                    EACR_st_culture_is_chinese = yes 
+                }
+            }
+        }
+    }
+}
+
+EACR_st_owner_is_CHI_ming_dyn = { # Specifically checks if under monarchy
+    EACR_st_owner_is_CHI_han = yes
+    scope:person ?= {
+        owner ?= { coa_monarchy_trigger = yes }
+    }
+}
+
+EACR_st_owner_is_CHI_qing_dyn = {
+    EACR_st_owner_is_CHI_manchu = yes
+    scope:person ?= {
+        owner ?= { coa_monarchy_trigger = yes }
+    }
+}
+
+EACR_st_owner_is_chinese_republic = {
+    OR = {
+        EACR_st_owner_is_country_tag = { TAG = CHI }
+        EACR_st_owner_is_country_tag = { TAG = TPG }
+        scope:person ?= { # Saved scope inherited from `EACR_st_owner_is_country_tag`
+            owner ?= {
+                any_primary_culture = {
+                    EACR_st_culture_is_chinese = yes 
+                }
+            }
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            coa_monarchy_trigger  = no
+            coa_theocracy_trigger = no
+        }
+    }
+}
+
+EACR_st_owner_is_DAI_vietnam = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            EACR_st_is_country_tag = { TAG = DAI }
+        }
+    }
+}
+
+EACR_st_owner_is_DAI_nguyen_dyn = {
+    EACR_st_owner_is_DAI_vietnam = yes
+    scope:person ?= {
+        owner ?= { coa_monarchy_trigger = yes }
+    }
+}
+
+EACR_st_owner_is_JAP_japanese = { # Checks for JAP tag or Japanese culture (helpful for revolutions/secessions)
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            OR = {
+                EACR_st_is_country_tag = { TAG = JAP }
+                any_primary_culture = {
+                    has_discrimination_trait = heritage_japanese
+                }
+            }
+        }
+    }
+}
+
+EACR_st_owner_is_qing_vassal = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            NOT = { # Exclude Korea, Vietnam, and Japan
+                any_primary_culture = {
+                    OR = {
+                        has_discrimination_trait = heritage_korean
+                        has_discrimination_trait = heritage_vietnamese
+                        has_discrimination_trait = heritage_japanese
+                    }
+                }
+            }
+            is_subject = yes
+            aggressive_diplomatic_plays_permitted = no # Low autonomy subject
+            top_overlord ?= {
+                EACR_st_is_qing_china = yes
+            }
+        }
+    }
+}
+
+EACR_st_owner_is_ming_vassal = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            NOT = { # Exclude Korea, Vietnam, and Japan
+                any_primary_culture = {
+                    OR = {
+                        has_discrimination_trait = heritage_korean
+                        has_discrimination_trait = heritage_vietnamese
+                        has_discrimination_trait = heritage_japanese
+                    }
+                }
+            }
+            is_subject = yes
+            aggressive_diplomatic_plays_permitted = no
+            top_overlord ?= {
+                EACR_st_is_qing_china = no
+                OR = {
+                    EACR_st_is_country_tag = { TAG = CHI }
+                    EACR_st_is_country_tag = { TAG = TPG } # Heavenly Kingdom
+                    any_primary_culture = {
+                        EACR_st_culture_is_chinese = yes 
+                    }
+                }
+            }
+        }
+    }
+}
+
+# ==================================================================================================================== #
+# ==================================================================================================================== #
+
+# Vanilla overwrites
+
+# Manchu queue check will now check for China's PCs instead of the ruler culture to match other "Great Qing"-related logic
+EACR_st_use_chinese_manchu_queue_hairstyle = {
+    EACR_st_is_unwesternized = yes
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        trigger_if = {
+            limit = {
+                EACR_st_owner_is_CHI_manchu = yes
+            }
+            owner ?= {
+                save_temporary_scope_as = home_scope
+            }
+        }
+        trigger_else = {
+            home_country ?= {
+                save_temporary_scope_as = home_scope
+            }
+        }
+    }
+    OR = {
+        # Manchus discriminating against Han Chinese
+        AND = {
+            scope:home_scope ?= {
+                OR = {
+                    EACR_st_owner_is_CHI_manchu  = yes
+                    EACR_st_owner_is_qing_vassal = yes
+                }
+                NOT = {
+                    has_law_or_variant = law_type:law_multicultural
+                }
+            }
+            scope:person ?= {
+                culture = {
+                    has_discrimination_trait = heritage_han
+                }
+            }
+        }
+        
+        # Han not discriminating against Manchus
+        AND = {
+            NOT = {
+                scope:home_scope ?= {
+                    OR = {
+                        EACR_st_owner_is_CHI_han = yes
+                        EACR_st_owner_is_ming_vassal = yes
+                    }
+                    cultural_acceptance_base = { target = cu:manchu value >= acceptance_status_4 }
+                }
+            }
+            scope:person ?= {
+                culture = cu:manchu
+            }
+        }
+    }
+}
+
+REPLACE:chinese_manchu_queue_hairstyle_character_trigger = {
+    exists = scope:character
+    EACR_st_use_chinese_manchu_queue_hairstyle = yes
+}
+REPLACE:chinese_manchu_queue_hairstyle_pops_trigger = {
+    exists = scope:pop
+    EACR_st_use_chinese_manchu_queue_hairstyle = yes
+}
+
+# ==================================================================================================================== #
+# ==================================================================================================================== #
+
+# Korean court politicians
+EACR_st_korean_court_base = {
+    EACR_st_owner_is_country_tag = { TAG = KOR }
+    scope:character ?= {
+        owner ?= { coa_monarchy_trigger = yes }
+        OR = {
+            military_clothes_trigger = no
+            EACR_st_char_is_mobilized_commander = no
+        }
+        EACR_st_is_unwesternized = yes
+        EACR_st_char_is_monarch = no
+        EACR_st_char_is_heir = no
+        has_role = politician
+    }
+}
+
+EACR_st_korean_court_01 = {
+    EACR_st_korean_court_base    = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = yes
+        }
+    }
+}
+EACR_st_korean_court_02 = {
+    EACR_st_korean_court_base    = yes
+    armed_forces_clothes_trigger = yes
+    # EACR_st_char_is_mobilized_commander = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = yes
+        }
+    }
+}
+EACR_st_korean_court_03 = {
+    EACR_st_korean_court_base    = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+        }
+    }
+}
+EACR_st_korean_court_04 = {
+    EACR_st_korean_court_base    = yes
+    armed_forces_clothes_trigger = yes
+    # EACR_st_char_is_mobilized_commander = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+        }
+    }
+}
+
+# Qing Chinese court politicians
+EACR_st_qing_chinese_court_base = {
+    EACR_st_owner_is_CHI_manchu = yes
+    scope:character ?= {
+        owner ?= { coa_monarchy_trigger = yes }
+        OR = {
+            military_clothes_trigger = no
+            EACR_st_char_is_mobilized_commander = no
+        }
+        EACR_st_is_unwesternized = yes
+        EACR_st_char_is_monarch = no
+        EACR_st_char_is_heir = no
+        has_role = politician
+    }
+}
+
+EACR_st_qing_chinese_court_01 = {
+    EACR_st_qing_chinese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = yes
+            is_powerful = yes
+        }
+    }
+}
+EACR_st_qing_chinese_court_02 = {
+    EACR_st_qing_chinese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = yes
+            is_powerful = no
+        }
+    }
+}
+EACR_st_qing_chinese_court_03 = {
+    EACR_st_qing_chinese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+            is_powerful = yes
+        }
+    }
+}
+EACR_st_qing_chinese_court_04 = {
+    EACR_st_qing_chinese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+            is_powerful = no
+            ig_counts_as_marginal = no
+        }
+    }
+}
+EACR_st_qing_chinese_court_05 = {
+    EACR_st_qing_chinese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+            ig_counts_as_marginal = yes
+        }
+    }
+}
+
+# Qing Chinese commanders
+EACR_st_qing_chinese_general_base = {
+    EACR_st_owner_is_CHI_manchu = yes
+    scope:character ?= {
+        owner ?= { coa_monarchy_trigger = yes }
+        OR = {
+            military_clothes_trigger = yes
+            AND = {
+                armed_forces_clothes_trigger = yes
+                politician_clothes_trigger = yes
+            }
+        }
+        EACR_st_is_unwesternized = yes
+        EACR_st_char_is_monarch = no
+        EACR_st_char_is_heir = no
+    }
+}
+
+EACR_st_qing_chinese_general_01 = {
+    EACR_st_qing_chinese_general_base = yes
+    trigger_if = {
+        limit = {
+            military_clothes_trigger = yes
+        }
+        scope:character ?= {
+            commander_rank >= 4
+        }
+    }
+    trigger_else = {
+        scope:character ?= {
+            interest_group ?= {
+                is_in_government = yes
+            }
+        }
+    }
+}
+EACR_st_qing_chinese_general_02 = {
+    EACR_st_qing_chinese_general_base = yes
+    trigger_if = {
+        limit = {
+            military_clothes_trigger = yes
+        }
+        scope:character ?= {
+            commander_rank < 4
+            commander_rank > 1
+        }
+    }
+    trigger_else = {
+        scope:character ?= {
+            interest_group ?= {
+                is_in_government = no
+                ig_counts_as_marginal = no
+            }
+        }
+    }
+}
+EACR_st_qing_chinese_general_03 = {
+    EACR_st_qing_chinese_general_base = yes
+    trigger_if = {
+        limit = {
+            military_clothes_trigger = yes
+        }
+        scope:character ?= {
+            commander_rank < 2
+        }
+    }
+    trigger_else = {
+        scope:character ?= {
+            interest_group ?= {
+                is_in_government = no
+                ig_counts_as_marginal = yes
+            }
+        }
+    }
+}
+
+# Ming Chinese court politicians
+EACR_st_ming_chinese_court_base = {
+    EACR_st_owner_is_CHI_han = yes
+    scope:character ?= {
+        owner ?= {
+            OR = {
+                coa_monarchy_trigger  = yes
+                coa_theocracy_trigger = yes # Heavenly Kingdom
+            }
+        }
+        OR = {
+            military_clothes_trigger = no
+            EACR_st_char_is_mobilized_commander = no
+        }
+        EACR_st_is_unwesternized = yes
+        EACR_st_char_is_monarch = no
+        EACR_st_char_is_heir = no
+        has_role = politician
+    }
+}
+
+EACR_st_ming_chinese_court_01 = {
+    EACR_st_ming_chinese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = yes
+            is_powerful = yes
+        }
+    }
+}
+EACR_st_ming_chinese_court_02 = {
+    EACR_st_ming_chinese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = yes
+            is_powerful = no
+        }
+    }
+}
+EACR_st_ming_chinese_court_03 = {
+    EACR_st_ming_chinese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+            is_powerful = yes
+        }
+    }
+}
+EACR_st_ming_chinese_court_04 = {
+    EACR_st_ming_chinese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+            is_powerful = no
+            ig_counts_as_marginal = no
+        }
+    }
+}
+EACR_st_ming_chinese_court_05 = {
+    EACR_st_ming_chinese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+            ig_counts_as_marginal = yes
+        }
+    }
+}
+
+# Ming Chinese commanders
+EACR_st_ming_chinese_general_base = {
+    EACR_st_owner_is_CHI_han = yes
+    scope:character ?= {
+        owner ?= {
+            OR = {
+                coa_monarchy_trigger  = yes
+                coa_theocracy_trigger = yes # Heavenly Kingdom
+            }
+        }
+        OR = {
+            military_clothes_trigger = yes
+            AND = {
+                armed_forces_clothes_trigger = yes
+                politician_clothes_trigger = yes
+            }
+        }
+        EACR_st_is_unwesternized = yes
+        EACR_st_char_is_monarch = no
+        EACR_st_char_is_heir = no
+    }
+}
+
+EACR_st_ming_chinese_general_01 = {
+    EACR_st_ming_chinese_general_base = yes
+    trigger_if = {
+        limit = {
+            military_clothes_trigger = yes
+        }
+        scope:character ?= {
+            commander_rank >= 5
+        }
+    }
+    trigger_else = {
+        scope:character ?= {
+            interest_group ?= {
+                is_in_government = yes
+                is_powerful = yes
+            }
+        }
+    }
+}
+EACR_st_ming_chinese_general_02 = {
+    EACR_st_ming_chinese_general_base = yes
+    trigger_if = {
+        limit = {
+            military_clothes_trigger = yes
+        }
+        scope:character ?= {
+            commander_rank < 5
+            commander_rank > 2
+        }
+    }
+    trigger_else = {
+        scope:character ?= {
+            interest_group ?= {
+                is_in_government = yes
+            }
+        }
+    }
+}
+EACR_st_ming_chinese_general_03 = {
+    EACR_st_ming_chinese_general_base = yes
+    trigger_if = {
+        limit = {
+            military_clothes_trigger = yes
+        }
+        scope:character ?= {
+            commander_rank <= 2
+        }
+    }
+    trigger_else = {
+        scope:character ?= {
+            interest_group ?= {
+                is_in_government = no
+            }
+        }
+    }
+}
+
+# Vietnamese court politicians
+EACR_st_vietnamese_court_base = {
+    EACR_st_owner_is_DAI_vietnam = yes
+    scope:character ?= {
+        owner ?= {
+            coa_monarchy_trigger = yes
+        }
+        OR = {
+            military_clothes_trigger = no
+            EACR_st_char_is_mobilized_commander = no
+        }
+        EACR_st_is_unwesternized = yes
+        EACR_st_char_is_monarch = no
+        EACR_st_char_is_heir = no
+        has_role = politician
+    }
+}
+
+EACR_st_vietnamese_court_01 = {
+    EACR_st_vietnamese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = yes
+            is_powerful = yes
+        }
+    }
+}
+EACR_st_vietnamese_court_02 = {
+    EACR_st_vietnamese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = yes
+            is_powerful = no
+        }
+    }
+}
+EACR_st_vietnamese_court_03 = {
+    EACR_st_vietnamese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+            is_powerful = yes
+        }
+    }
+}
+EACR_st_vietnamese_court_04 = {
+    EACR_st_vietnamese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+            is_powerful = no
+            ig_counts_as_marginal = no
+        }
+    }
+}
+EACR_st_vietnamese_court_05 = {
+    EACR_st_vietnamese_court_base = yes
+    armed_forces_clothes_trigger = no
+    scope:character ?= {
+        interest_group ?= {
+            is_in_government = no
+            ig_counts_as_marginal = yes
+        }
+    }
+}
+
+# Vietnamese commanders
+EACR_st_vietnamese_general_base = {
+    EACR_st_owner_is_DAI_vietnam = yes
+    scope:character ?= {
+        owner ?= {
+            coa_monarchy_trigger = yes
+        }
+        OR = {
+            military_clothes_trigger = yes
+            AND = {
+                armed_forces_clothes_trigger = yes
+                politician_clothes_trigger = yes
+            }
+        }
+        EACR_st_is_unwesternized = yes
+        EACR_st_char_is_monarch = no
+        EACR_st_char_is_heir = no
+    }
+}
+
+EACR_st_vietnamese_general_01 = {
+    EACR_st_vietnamese_general_base = yes
+    trigger_if = {
+        limit = {
+            military_clothes_trigger = yes
+        }
+        scope:character ?= {
+            commander_rank >= 4
+        }
+    }
+    trigger_else = {
+        scope:character ?= {
+            interest_group ?= {
+                is_in_government = yes
+            }
+        }
+    }
+}
+EACR_st_vietnamese_general_02 = {
+    EACR_st_vietnamese_general_base = yes
+    trigger_if = {
+        limit = {
+            military_clothes_trigger = yes
+        }
+        scope:character ?= {
+            commander_rank <= 3
+        }
+    }
+    trigger_else = {
+        scope:character ?= {
+            interest_group ?= {
+                is_in_government = no
+            }
+        }
+    }
+}

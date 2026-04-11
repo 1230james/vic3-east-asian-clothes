@@ -1,0 +1,66 @@
+﻿@EACR_PORTRAIT_MODIFIER_WEIGHT_LOW  = 10000000
+@EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH = 20000000
+
+# Community Outfit Mod
+TRY_INJECT:COM_asia_clothes = {
+    
+    # Do not westernize traditionalist Korean emperors
+    EACR_COM_korean_imperial_override = {
+        dna_modifiers = {
+            # Intentionally empty
+        }
+
+        # Copy from EACR_korean_imperial_clothes
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_KOR_imperial_korea = yes
+                EACR_st_char_is_monarch  = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+
+                # If WCR is active: only use for unwesternized Korea
+                # If vanilla: only use if monarch is traditionalist
+                trigger_if = {
+                    limit = {
+                        WCR_is_active_trigger = yes
+                    }
+                    EACR_st_is_unwesternized = yes
+                }
+                trigger_else = {
+                    scope:character ?= {
+                        OR = {
+                            has_ideology = ideology:ideology_traditionalist
+                            has_ideology = ideology:ideology_traditionalist_minoritarian
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    # Don't westernized traditionalist Korean princes
+    EACR_COM_korean_king_override = {
+        dna_modifiers = {}
+
+        # Copy from EACR_korean_king_clothes
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_KOR_joseon = yes
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_monarch  = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_KOR_imperial_korea = yes
+                EACR_st_is_unwesternized = yes
+                EACR_st_char_is_heir     = yes
+                military_clothes_trigger = no # Prevent use when monarch is commanding an army
+            }
+        }
+    }
+    
+}

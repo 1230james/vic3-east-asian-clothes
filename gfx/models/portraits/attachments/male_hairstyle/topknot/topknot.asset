@@ -1,0 +1,57 @@
+pdxmesh = {
+	name = "topknot_mesh"
+	file = "topknot.mesh"
+
+	meshsettings = {
+		name = "topknot"
+		index = 0
+		texture_diffuse = "topknot.dds"
+		texture_normal = "topknot_n.dds"
+		texture_specular = "topknot_p.dds"
+		texture = { file = "black_ssao_color.dds" index = 3 }
+		shader = "portrait_hair"
+		shader_file = "gfx/FX/jomini/portrait.shader"
+	}
+}
+
+entity = {
+	name = "topknot_entity"
+	pdxmesh = "topknot_mesh"
+
+	game_data = {
+		portrait_entity_user_data = {
+			color_mask_remap_interval = {
+				interval = {0.0 1.0}
+			}
+		}
+	}
+}
+
+pdxmesh = {
+	name = "topknot_headgear_mesh"
+	file = "topknot_headgear.mesh"
+
+	meshsettings = {
+		name = "topknot_headgear"
+		index = 0
+		texture_diffuse = "topknot.dds"
+		texture_normal = "topknot_n.dds"
+		texture_specular = "topknot_p.dds"
+		texture = { file = "black_ssao_color.dds" index = 3 }
+		shader = "portrait_hair"
+		shader_file = "gfx/FX/jomini/portrait.shader"
+	}
+}
+
+entity = {
+	name = "topknot_headgear_entity"
+	pdxmesh = "topknot_headgear_mesh"
+
+	game_data = {
+		portrait_entity_user_data = {
+			color_mask_remap_interval = {
+				interval = {0.0 1.0}
+			}
+		}
+	}
+}
