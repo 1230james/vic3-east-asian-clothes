@@ -1,0 +1,19 @@
+﻿# Mod compatibility triggers
+# [1.12] These ones need to load AFTER the parent mod since the parent mod doesn't use REPLACE_OR_CREATE for these
+
+# This file is for triggers from *other* mods for EACR to use.
+# For triggers from EACR, see 00_EACR_mod_compat_trigger.txt
+
+# Morgenrote
+mr_special_characters_clothes_trigger = {
+    always = no
+}
+
+mr_is_special_character_no_tooltip_trigger = {
+    always = no
+}
+
+# Japanese Uniform Pack
+md_japanese_modern_ruler_tech_trigger = {
+    always = no
+}

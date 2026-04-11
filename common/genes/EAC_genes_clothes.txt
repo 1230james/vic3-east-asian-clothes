@@ -126,7 +126,9 @@
                 male = {
                     1 = EAC_male_outfit_chinese_imperial_01
                 }
-                female = male
+                female = {
+                    1 = female_outfit_chinese_01_high
+                }
                 boy = male
                 girl = female
 
@@ -138,7 +140,9 @@
                     1 = male_outfit_chinese_court_official_01
 
                 }
-                female = male
+                female = {
+                    1 = female_outfit_chinese_01_high
+                }
                 boy = male
                 girl = female
 
@@ -150,7 +154,9 @@
                     1 = male_outfit_chinese_court_official_02
 
                 }
-                female = male
+                female = {
+                    1 = female_outfit_chinese_01_high
+                }
                 boy = male
                 girl = female
 
@@ -162,7 +168,9 @@
                     1 = male_outfit_chinese_court_official_03
 
                 }
-                female = male
+                female = {
+                    1 = female_outfit_chinese_01_high
+                }
                 boy = male
                 girl = female
 
@@ -176,7 +184,9 @@
                     1 = male_outfit_chinese_court_official_04
 
                 }
-                female = male
+                female = {
+                    1 = female_outfit_chinese_01_high
+                }
                 boy = male
                 girl = female
 
@@ -188,7 +198,9 @@
                     1 = male_outfit_chinese_court_official_05
 
                 }
-                female = male
+                female = {
+                    1 = female_outfit_chinese_01_high
+                }
                 boy = male
                 girl = female
 
@@ -203,7 +215,9 @@
                     1 = male_outfit_chinese_court_general_01
 
                 }
-                female = male
+                female = {
+                    1 = female_outfit_chinese_01_high
+                }
                 boy = male
                 girl = female
 
@@ -215,7 +229,9 @@
                     1 = male_outfit_chinese_court_general_02
 
                 }
-                female = male
+                female = {
+                    1 = female_outfit_chinese_01_high
+                }
                 boy = male
                 girl = female
 
@@ -229,7 +245,9 @@
                     1 = male_outfit_chinese_court_general_03
 
                 }
-                female = male
+                female = {
+                    1 = female_outfit_chinese_01_high
+                }
                 boy = male
                 girl = female
 
@@ -269,7 +287,9 @@
                     1 = male_outfit_mandarin
 
                 }
-                female = male
+                female = {
+                    1 = female_outfit_chinese_01_high
+                }
                 boy = male
                 girl = female
 
@@ -281,7 +301,9 @@
                     1 = male_outfit_mandarin
 
                 }
-                female = male
+                female = {
+                    1 = female_outfit_chinese_01_high
+                }
                 boy = male
                 girl = female
 
@@ -538,22 +560,8 @@
 
             }
 
-            buddhist_outfits = {
-                index = 33
-                male = {
-                    1 = male_outfit_buddhist_01
-
-                }
-                female = {
-                    1 = female_outfit_chinese_01_mid
-                }
-                boy = male
-                girl = female
-
-            }
-
             japanese_shogun_outfits = {
-                index = 34
+                index = 33
                 male = {
                     1 = male_outfit_japanese_shogun_01
 
@@ -566,7 +574,7 @@
             }
 
             japanese_taishi_outfits = {
-                index = 35
+                index = 34
                 male = {
                     1 = male_outfit_japanese_taishi_01
 
@@ -579,7 +587,7 @@
             }
 
             chinese_ming_officer_outfits = {
-                index = 36
+                index = 35
                 male = {
                     1 = male_outfit_chinese_common_ming_officer_blue
                     1 = male_outfit_chinese_common_ming_officer_red
@@ -594,7 +602,7 @@
             }
 
             korean_king_outfits = {
-                index = 37
+                index = 36
                 male = {
                     1 = male_outfit_korean_king_01
 
