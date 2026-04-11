@@ -560,22 +560,8 @@
 
             }
 
-            buddhist_outfits = {
-                index = 33
-                male = {
-                    1 = male_outfit_buddhist_01
-
-                }
-                female = {
-                    1 = female_outfit_chinese_01_mid
-                }
-                boy = male
-                girl = female
-
-            }
-
             japanese_shogun_outfits = {
-                index = 34
+                index = 33
                 male = {
                     1 = male_outfit_japanese_shogun_01
 
@@ -588,7 +574,7 @@
             }
 
             japanese_taishi_outfits = {
-                index = 35
+                index = 34
                 male = {
                     1 = male_outfit_japanese_taishi_01
 
@@ -601,7 +587,7 @@
             }
 
             chinese_ming_officer_outfits = {
-                index = 36
+                index = 35
                 male = {
                     1 = male_outfit_chinese_common_ming_officer_blue
                     1 = male_outfit_chinese_common_ming_officer_red
@@ -616,7 +602,7 @@
             }
 
             korean_king_outfits = {
-                index = 37
+                index = 36
                 male = {
                     1 = male_outfit_korean_king_01
 
