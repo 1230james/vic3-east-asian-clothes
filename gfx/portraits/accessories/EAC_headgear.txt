@@ -13,16 +13,6 @@
 
 ## Common Headgear ##
 
-male_headgear_chinese_common_01 = {
-	set_tags ="cap1" 
-	entity = { required_tags = ""					shared_pose_entity = head		entity = "male_headgear_chinese_common_01_entity" }	
-}
-
-male_headgear_chinese_common_02 = {
-	set_tags ="cap1" 
-	entity = { required_tags = ""					shared_pose_entity = head		entity = "male_headgear_chinese_common_02_entity" }	
-}
-
 male_headgear_chinese_common_03 = {
 	set_tags ="cap1" 
 	entity = { required_tags = ""					shared_pose_entity = head		entity = "male_headgear_chinese_common_03_entity" }	
@@ -40,10 +30,6 @@ male_headgear_vietnamese_common_01 = {
 
 
 ## Imperial Headgear ##
-
-male_headgear_chinese_imperial_01 = {
-	entity = { required_tags = ""					shared_pose_entity = head		entity = "male_headgear_chinese_imperial_01_entity" }	
-}
 
 male_headgear_chinese_imperial_02 = {
 	entity = { required_tags = ""					shared_pose_entity = head		entity = "male_headgear_chinese_imperial_02_entity" }	
@@ -119,11 +105,6 @@ male_headgear_korean_imperial_01 = {
 wushamao = {
 	set_tags ="cap1" 
 	entity = { required_tags = ""					shared_pose_entity = head		entity = "wushamao_entity" }	
-}
-
-male_headgear_japanese_imperial_01 = {
-	set_tags ="no_hair"
-	entity = { required_tags = ""					shared_pose_entity = head		entity = "male_headgear_japanese_imperial_01_entity" }	
 }
 
 male_headgear_japanese_imperial_02 = {

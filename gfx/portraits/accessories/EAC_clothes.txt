@@ -110,10 +110,6 @@ male_outfit_chinese_imperial_ming_02 = {
 	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_imperial_ming_02_entity" }	
 }
 
-male_outfit_chinese_common_01 = {								   
-	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_common_01_entity" }	
-}
-
 male_outfit_chinese_common_ming_01 = {	
 	set_tags = "shrink_arms,shrink_chest,shrink_belly"									   
 	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_common_ming_01_entity" }	
@@ -139,10 +135,6 @@ male_outfit_chinese_common_ming_officer_red = {
 
 male_outfit_chinese_common_ming_officer_brown = {										   
 	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_common_ming_officer_brown_entity" }	
-}
-
-male_outfit_chinese_01_low = {							   
-	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_chinese_01_low_entity" }	
 }
 
 male_outfit_korean_court_01 = {
@@ -209,24 +201,6 @@ male_outfit_vietnamese_common_01 = {
 
 ## JAPANESE ##
 
-male_outfit_japanese_01_low = {
-	
-	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_japanese_01_low_entity" }	
-}
-
-
-male_outfit_japanese_common_01 = {
-	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
-	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_japanese_common_01_entity" }	
-}
-
-
-male_outfit_japanese_imperial_01 = {
-	set_tags = "shrink_arms,shrink_chest,shrink_belly"
-	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_japanese_imperial_01_entity" }	
-}
-
-
 male_outfit_japanese_shogun_01 = {
 	set_tags = "shrink_arms,shrink_chest,shrink_belly"
 	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_japanese_shogun_01_entity" }	
@@ -254,15 +228,4 @@ male_outfit_korean_imperial_02 = {
 male_outfit_korean_imperial_03 = {
 	set_tags = "shrink_arms,shrink_legs,shrink_chest,shrink_belly"
 	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_korean_imperial_01_entity" }	
-}
-
-
-male_outfit_korean_common_01 = {
-	set_tags = "shrink_arms,shrink_chest,shrink_belly"
-	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_korean_common_01_entity" }	
-}
-
-male_outfit_korean_01_low = {
-	set_tags = "shrink_arms,shrink_chest,shrink_belly"
-	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_korean_01_low_entity" }	
 }
