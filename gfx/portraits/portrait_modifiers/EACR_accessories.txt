@@ -65,6 +65,8 @@ INJECT:accessories = {
             base = 0
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_CHI_han = yes
+
                 scope:character ?= { # Match with `qing_emperor_necklace`
                     is_ruler_of_own_country = yes
                     owner ?= {
