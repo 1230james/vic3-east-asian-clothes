@@ -1291,14 +1291,17 @@ INJECT:headgear = {
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
                 md_japanese_uniform_pack_active_trigger = no # JUP compatibility
+                EACR_st_owner_is_JAP_japanese = yes
+                EACR_st_is_unwesternized = yes
                 scope:character ?= {
-                    owner ?= {
-                        has_variable = meiji_var
-                        EACR_st_owner_is_JAP_japanese = yes
+                    OR = {
+                        has_trait = special_character_japanese_emperor
+                        AND = {
+                            owner ?= { NOT = { has_law = law_type:law_bakufu } }
+                            EACR_st_char_is_monarch  = yes
+                        }
                     }
                 }
-                EACR_st_char_is_monarch  = yes
-                EACR_st_is_unwesternized = yes
             }
         }
     }
@@ -1320,7 +1323,7 @@ INJECT:headgear = {
                 md_japanese_uniform_pack_active_trigger = no # JUP compatibility
                 scope:character ?= {
                     owner ?= {
-                        has_variable = meiji_var
+                        NOT = { has_law = law_type:law_bakufu }
                         EACR_st_owner_is_JAP_japanese = yes
                     }
                 }
