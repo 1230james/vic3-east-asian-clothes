@@ -824,6 +824,31 @@ INJECT:clothes = {
                     clergy_clothes_pop_trigger = yes
                 }
             }
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_is_unwesternized = yes
+                EACR_st_owner_is_CHI_han = yes
+                generic_military_uniform_clothes_trigger = no
+                scope:character ?= {
+                    culture = {
+                        EACR_st_culture_is_chinese = yes
+                    }
+                    OR = {
+                        AND = {
+                            EACR_st_owner_is_chinese_republic = yes # Only use on politicians in republics
+                            OR = {
+                                republic_clothes_trigger   = yes
+                                politician_clothes_trigger = yes
+                            }
+                        }
+                        AND = {
+                            ruler_clothes_trigger      = no
+                            politician_clothes_trigger = no
+                            agitator_character_trigger = no # Base game has its own Chinese agitator outfit
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -855,7 +880,7 @@ INJECT:clothes = {
 
     ### MISC. CHINESE ###
 
-    # Republican Chinese characters
+    # Non-politician + republican politician Chinese characters
     EACR_chinese_republican_clothes = {
         dna_modifiers = {
             accessory = {
@@ -869,11 +894,28 @@ INJECT:clothes = {
             base = 0
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                EACR_st_owner_is_chinese_republic = yes
                 EACR_st_is_unwesternized = yes
-                exists = scope:character
-                military_clothes_trigger = no
-                armed_forces_clothes_trigger = no
+                EACR_st_owner_is_CHI_han = no # Will use Ming China clothes if it is Ming China
+                generic_military_uniform_clothes_trigger = no
+                scope:character ?= {
+                    culture = {
+                        EACR_st_culture_is_chinese = yes
+                    }
+                    OR = {
+                        AND = {
+                            EACR_st_owner_is_chinese_republic = yes  # Only use on politicians in republics
+                            OR = {
+                                republic_clothes_trigger   = yes
+                                politician_clothes_trigger = yes
+                            }
+                        }
+                        AND = {
+                            ruler_clothes_trigger      = no
+                            politician_clothes_trigger = no
+                            agitator_character_trigger = no # Base game has its own Chinese agitator outfit
+                        }
+                    }
+                }
             }
         }
     }
@@ -894,10 +936,7 @@ INJECT:clothes = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
                 EACR_st_owner_is_chinese_republic = yes
                 EACR_st_is_unwesternized = yes
-                OR = {
-                    military_clothes_trigger = yes
-                    armed_forces_clothes_trigger = yes
-                }
+                generic_military_uniform_clothes_trigger = yes
             }
         }
     }
@@ -1190,65 +1229,6 @@ INJECT:clothes = {
 
     ### JAPAN ###
 
-    # Japanese shogun
-    EACR_japanese_shogun_clothes = {
-        dna_modifiers = {
-            accessory = {
-                mode = add
-                gene = EAC_outfits
-                template  = japanese_shogun_outfits
-                accessory = male_outfit_japanese_shogun_01
-            }
-        }
-
-        weight = {
-            base = 0
-            modifier = {
-                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                OR = { # JUP compatibility
-                    md_japanese_uniform_pack_active_trigger = no
-                    md_japanese_modern_ruler_tech_trigger   = no
-                }
-                scope:character ?= {
-                    owner ?= {
-                        NOT = { has_variable = meiji_var }
-                        EACR_st_owner_is_JAP_japanese = yes
-                    }
-                }
-                EACR_st_char_is_monarch  = yes
-                EACR_st_is_unwesternized = yes
-            }
-        }
-    }
-
-    # Japanese emperor
-    EACR_japanese_imperial_clothes = {
-        dna_modifiers = {
-            accessory = {
-                mode = add
-                gene = outfits
-                template  = japanese_imperial_outfits
-                accessory = male_outfit_japanese_imperial_01
-            }
-        }
-
-        weight = {
-            base = 0
-            modifier = {
-                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                md_japanese_uniform_pack_active_trigger = no # JUP compatibility
-                scope:character ?= {
-                    owner ?= {
-                        has_variable = meiji_var
-                        EACR_st_owner_is_JAP_japanese = yes
-                    }
-                }
-                EACR_st_char_is_monarch  = yes
-                EACR_st_is_unwesternized = yes
-            }
-        }
-    }
-
     # Japanese imperial prince
     EACR_japanese_prince_clothes = {
         dna_modifiers = {
@@ -1259,7 +1239,7 @@ INJECT:clothes = {
                 accessory = male_outfit_japanese_taishi_01
             }
         }
-
+    
         weight = {
             base = 0
             modifier = {
@@ -1267,7 +1247,7 @@ INJECT:clothes = {
                 md_japanese_uniform_pack_active_trigger = no # JUP compatibility
                 scope:character ?= {
                     owner ?= {
-                        has_variable = meiji_var
+                        NOT = { has_law = law_type:law_bakufu }
                         EACR_st_owner_is_JAP_japanese = yes
                     }
                 }

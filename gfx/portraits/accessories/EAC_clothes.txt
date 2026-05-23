@@ -201,10 +201,10 @@ male_outfit_vietnamese_common_01 = {
 
 ## JAPANESE ##
 
-male_outfit_japanese_shogun_01 = {
-	set_tags = "shrink_arms,shrink_chest,shrink_belly"
-	entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_japanese_shogun_01_entity" }	
-}
+# male_outfit_japanese_shogun_01 = {
+	# set_tags = "shrink_arms,shrink_chest,shrink_belly"
+	# entity = { required_tags = ""					shared_pose_entity = torso		entity = "male_outfit_japanese_shogun_01_entity" }	
+# }
 
 
 male_outfit_japanese_taishi_01 = {
