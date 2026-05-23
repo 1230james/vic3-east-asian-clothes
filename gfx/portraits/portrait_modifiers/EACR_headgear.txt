@@ -735,6 +735,10 @@ INJECT:headgear = {
                 }
                 EACR_st_is_unwesternized = yes
                 generic_military_uniform_clothes_trigger = yes
+                OR = { # Stop emperors from wearing it unless they're leading troops
+                    monarchy_clothes_trigger = no
+                    military_clothes_trigger = yes
+                }
 
                 # Court politicians should only use this when mobilized
                 trigger_if = {
