@@ -186,17 +186,15 @@ INJECT:headgear = {
             modifier = { # Non-politician characters
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
                 EACR_st_is_unwesternized = yes
-                military_clothes_trigger = no
+                generic_military_uniform_clothes_trigger = no
                 scope:character ?= {
                     culture = {
                         has_discrimination_trait = heritage_korean
                     }
                 }
-                OR = {
-                    executive_clothes_trigger = yes
-                    magnate_clothes_trigger = yes
-                    # Agitators excluded here because the base game has its own hat for Korean agitators
-                }
+                ruler_clothes_trigger      = no
+                politician_clothes_trigger = no
+                agitator_character_trigger = no # Agitators excluded here because the base game has its own hat for Korean agitators
             }
         }
     }
@@ -736,10 +734,7 @@ INJECT:headgear = {
                     EACR_st_owner_is_chinese_republic = yes
                 }
                 EACR_st_is_unwesternized = yes
-                OR = {
-                    military_clothes_trigger     = yes
-                    armed_forces_clothes_trigger = yes
-                }
+                generic_military_uniform_clothes_trigger = yes
 
                 # Court politicians should only use this when mobilized
                 trigger_if = {
@@ -753,7 +748,7 @@ INJECT:headgear = {
     }
 
     # Chinese soldier pops
-    EACR_ming_chinese_military_headgear = {
+    EACR_ming_chinese_soldier_headgear = {
         dna_modifiers = {
             accessory = {
                 mode = add
@@ -800,11 +795,13 @@ INJECT:headgear = {
                 }
             }
             modifier = { # Morgenrote interop
-                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH
                 morgenrote_is_active = yes
                 EACR_st_owner_is_CHI_han = yes
                 EACR_st_is_unwesternized = yes
-                mr_special_characters_clothes_trigger = yes
+                scope:character ?= {
+                    mr_special_characters_clothes_trigger = yes
+                }
             }
         }
     }
@@ -955,18 +952,19 @@ INJECT:headgear = {
                     }
                 }
                 OR = {
-                    AND = { # Only use on politicians in republics
-                        EACR_st_owner_is_chinese_republic = yes
+                    AND = {
+                        EACR_st_owner_is_chinese_republic = yes  # Only use on politicians in republics
                         OR = {
                             republic_clothes_trigger   = yes
                             politician_clothes_trigger = yes
                         }
                     }
-                    executive_clothes_trigger  = yes
-                    magnate_clothes_trigger    = yes
-                    agitator_character_trigger = yes
+                    AND = {
+                        ruler_clothes_trigger      = no
+                        politician_clothes_trigger = no
+                    }
                 }
-                military_clothes_trigger = no
+                generic_military_uniform_clothes_trigger = no
             }
         }
     }
@@ -1001,18 +999,19 @@ INJECT:headgear = {
                     }
                 }
                 OR = {
-                    AND = { # Only use on politicians in republics
-                        EACR_st_owner_is_chinese_republic = yes
+                    AND = {
+                        EACR_st_owner_is_chinese_republic = yes  # Only use on politicians in republics
                         OR = {
                             republic_clothes_trigger   = yes
                             politician_clothes_trigger = yes
                         }
                     }
-                    executive_clothes_trigger  = yes
-                    magnate_clothes_trigger    = yes
-                    agitator_character_trigger = yes
+                    AND = {
+                        ruler_clothes_trigger      = no
+                        politician_clothes_trigger = no
+                    }
                 }
-                military_clothes_trigger = no
+                generic_military_uniform_clothes_trigger = no
             }
         }
     }
@@ -1286,17 +1285,11 @@ INJECT:headgear = {
                             military_clothes_trigger   = yes
                         }
                     }
-                    executive_clothes_trigger  = yes
-                    magnate_clothes_trigger    = yes
-                    agitator_character_trigger = yes
+                    AND = {
+                        ruler_clothes_trigger      = no
+                        politician_clothes_trigger = no
+                    }
                 }
-            }
-            modifier = { # Morgenrote interop
-                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                morgenrote_is_active = yes
-                EACR_st_owner_is_DAI_vietnam = yes
-                EACR_st_is_unwesternized = yes
-                mr_special_characters_clothes_trigger = yes
             }
         }
     }

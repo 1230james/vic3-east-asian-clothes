@@ -824,6 +824,31 @@ INJECT:clothes = {
                     clergy_clothes_pop_trigger = yes
                 }
             }
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_is_unwesternized = yes
+                EACR_st_owner_is_CHI_han = yes
+                generic_military_uniform_clothes_trigger = no
+                scope:character ?= {
+                    culture = {
+                        EACR_st_culture_is_chinese = yes
+                    }
+                    OR = {
+                        AND = {
+                            EACR_st_owner_is_chinese_republic = yes # Only use on politicians in republics
+                            OR = {
+                                republic_clothes_trigger   = yes
+                                politician_clothes_trigger = yes
+                            }
+                        }
+                        AND = {
+                            ruler_clothes_trigger      = no
+                            politician_clothes_trigger = no
+                            agitator_character_trigger = no # Base game has its own Chinese agitator outfit
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -855,7 +880,7 @@ INJECT:clothes = {
 
     ### MISC. CHINESE ###
 
-    # Republican Chinese characters
+    # Non-politician + republican politician Chinese characters
     EACR_chinese_republican_clothes = {
         dna_modifiers = {
             accessory = {
@@ -869,11 +894,28 @@ INJECT:clothes = {
             base = 0
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                EACR_st_owner_is_chinese_republic = yes
                 EACR_st_is_unwesternized = yes
-                exists = scope:character
-                military_clothes_trigger = no
-                armed_forces_clothes_trigger = no
+                EACR_st_owner_is_CHI_han = no # Will use Ming China clothes if it is Ming China
+                generic_military_uniform_clothes_trigger = no
+                scope:character ?= {
+                    culture = {
+                        EACR_st_culture_is_chinese = yes
+                    }
+                    OR = {
+                        AND = {
+                            EACR_st_owner_is_chinese_republic = yes  # Only use on politicians in republics
+                            OR = {
+                                republic_clothes_trigger   = yes
+                                politician_clothes_trigger = yes
+                            }
+                        }
+                        AND = {
+                            ruler_clothes_trigger      = no
+                            politician_clothes_trigger = no
+                            agitator_character_trigger = no # Base game has its own Chinese agitator outfit
+                        }
+                    }
+                }
             }
         }
     }
@@ -894,10 +936,7 @@ INJECT:clothes = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
                 EACR_st_owner_is_chinese_republic = yes
                 EACR_st_is_unwesternized = yes
-                OR = {
-                    military_clothes_trigger = yes
-                    armed_forces_clothes_trigger = yes
-                }
+                generic_military_uniform_clothes_trigger = yes
             }
         }
     }
