@@ -7,11 +7,15 @@ EACR_st_is_navy = {
     OR = {
         scope:pop ?= {
             workplace ?= {
-                is_building_type = building_naval_base
+                OR = {
+                    is_building_type = building_naval_administration
+                    is_building_type = building_naval_fortification
+                    is_building_type = building_naval_logistics_center
+                }
             }
         }
         scope:character ?= {
-            has_role = admiral
+            has_role_of_type = admiral
         }
     }
 }
@@ -31,7 +35,7 @@ EACR_st_is_army = {
         scope:character ?= {
             OR = {
                 # Generals
-                has_role = general
+                has_role_of_type = general
                 
                 # Armed Forces IG leader who isn't a general or admiral
                 AND = {
@@ -75,7 +79,7 @@ EACR_st_is_unwesternized = {
             }
             scope:character ?= {
                 owner ?= {
-                    NOT = { has_variable = meiji_restoration_complete }
+                    NOT = { has_variable = japan_restoration_complete }
                 }
             }
         }
@@ -138,8 +142,8 @@ EACR_st_is_morgenrote_special_char = {
         mr_special_characters_clothes_trigger = yes
         military_clothes_trigger   = no
         agitator_character_trigger = no
-        is_ruler = no
-        is_heir  = no
+        is_ruler_of_own_country = no
+        is_heir_of_own_country  = no
         NOT = {
             interest_group.leader ?= THIS
         }
@@ -195,10 +199,10 @@ EACR_st_char_is_monarch = {
             limit = {
                 owner ?= { has_gov_regency = no }
             }
-            is_ruler = yes
+            is_ruler_of_own_country = yes
         }
         trigger_else = {
-            is_heir = yes
+            is_heir_of_own_country = yes
         }
     }
 }
@@ -212,7 +216,7 @@ EACR_st_char_is_heir = {
             limit = {
                 owner ?= { has_gov_regency = no }
             }
-            is_heir = yes
+            is_heir_of_own_country = yes
         }
         trigger_else = {
             always = no
@@ -225,7 +229,7 @@ EACR_st_char_is_mobilized_commander = {
         exists = commander_military_formation
         trigger_if = {
             limit = {
-                has_role = general
+                has_role_of_type = general
             }
             commander_military_formation ?= {
                 is_mobilized = yes
@@ -233,7 +237,7 @@ EACR_st_char_is_mobilized_commander = {
         }
         trigger_else_if = {
             limit = {
-                has_role = admiral
+                has_role_of_type = admiral
             }
             commander_military_formation ?= {
                 NOT = { current_hq ?= home_hq }
@@ -555,7 +559,7 @@ EACR_st_korean_court_base = {
         EACR_st_is_unwesternized = yes
         EACR_st_char_is_monarch = no
         EACR_st_char_is_heir = no
-        has_role = politician
+        has_role_of_type = politician
     }
 }
 
@@ -610,7 +614,7 @@ EACR_st_qing_chinese_court_base = {
         EACR_st_is_unwesternized = yes
         EACR_st_char_is_monarch = no
         EACR_st_char_is_heir = no
-        has_role = politician
+        has_role_of_type = politician
     }
 }
 
@@ -759,7 +763,7 @@ EACR_st_ming_chinese_court_base = {
         EACR_st_is_unwesternized = yes
         EACR_st_char_is_monarch = no
         EACR_st_char_is_heir = no
-        has_role = politician
+        has_role_of_type = politician
     }
 }
 
@@ -909,7 +913,7 @@ EACR_st_vietnamese_court_base = {
         EACR_st_is_unwesternized = yes
         EACR_st_char_is_monarch = no
         EACR_st_char_is_heir = no
-        has_role = politician
+        has_role_of_type = politician
     }
 }
 

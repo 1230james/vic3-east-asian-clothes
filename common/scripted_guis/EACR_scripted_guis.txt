@@ -1,0 +1,13 @@
+﻿EACR_sg_set_debug_flag = {
+    scope = country
+    effect = {
+        set_global_variable = EACR_debug_mode
+    }
+}
+
+EACR_sg_unset_debug_flag = {
+    scope = country
+    effect = {
+        remove_global_variable = EACR_debug_mode
+    }
+}

@@ -154,7 +154,11 @@ INJECT:headgear = {
             base = 0
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                EACR_st_owner_is_country_tag = { TAG = KOR }
+                scope:pop ?= { # Any Korean pops anywhere
+                    culture = {
+                        has_discrimination_trait = heritage_korean
+                    }
+                }
                 EACR_st_is_unwesternized = yes
                 OR = {
                     upper_clothes_pop_trigger  = yes
@@ -162,9 +166,8 @@ INJECT:headgear = {
                     clergy_clothes_pop_trigger = yes
                 }
             }
-            modifier = {
+            modifier = { # Republican politicians
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                EACR_st_owner_is_country_tag = { TAG = KOR }
                 EACR_st_is_unwesternized = yes
                 military_clothes_trigger = no
                 OR = {
@@ -172,10 +175,26 @@ INJECT:headgear = {
                     politician_clothes_trigger = yes
                 }
                 scope:character ?= {
+                    culture = {
+                        has_discrimination_trait = heritage_korean
+                    }
                     owner ?= {
                         coa_monarchy_trigger = no
                     }
                 }
+            }
+            modifier = { # Non-politician characters
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_is_unwesternized = yes
+                generic_military_uniform_clothes_trigger = no
+                scope:character ?= {
+                    culture = {
+                        has_discrimination_trait = heritage_korean
+                    }
+                }
+                ruler_clothes_trigger      = no
+                politician_clothes_trigger = no
+                agitator_character_trigger = no # Agitators excluded here because the base game has its own hat for Korean agitators
             }
         }
     }
@@ -715,9 +734,10 @@ INJECT:headgear = {
                     EACR_st_owner_is_chinese_republic = yes
                 }
                 EACR_st_is_unwesternized = yes
-                OR = {
-                    military_clothes_trigger     = yes
-                    armed_forces_clothes_trigger = yes
+                generic_military_uniform_clothes_trigger = yes
+                OR = { # Stop emperors from wearing it unless they're leading troops
+                    monarchy_clothes_trigger = no
+                    military_clothes_trigger = yes
                 }
 
                 # Court politicians should only use this when mobilized
@@ -732,7 +752,7 @@ INJECT:headgear = {
     }
 
     # Chinese soldier pops
-    EACR_ming_chinese_military_headgear = {
+    EACR_ming_chinese_soldier_headgear = {
         dna_modifiers = {
             accessory = {
                 mode = add
@@ -779,11 +799,13 @@ INJECT:headgear = {
                 }
             }
             modifier = { # Morgenrote interop
-                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH
                 morgenrote_is_active = yes
                 EACR_st_owner_is_CHI_han = yes
                 EACR_st_is_unwesternized = yes
-                mr_special_characters_clothes_trigger = yes
+                scope:character ?= {
+                    mr_special_characters_clothes_trigger = yes
+                }
             }
         }
     }
@@ -888,10 +910,26 @@ INJECT:headgear = {
                     EACR_st_owner_is_chinese_republic = yes
                 }
             }
+            modifier = { # Chinese diaspora pops
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_is_unwesternized    = yes
+                EACR_st_owner_is_CHI_manchu = no
+                EACR_st_owner_is_CHI_han    = no
+                EACR_st_owner_is_chinese_republic = no
+                OR = {
+                    middle_clothes_pop_trigger = yes
+                    upper_clothes_pop_trigger  = yes
+                }
+                scope:pop ?= {
+                    culture = {
+                        EACR_st_culture_is_chinese = yes
+                    }
+                }
+            }
         }
     }
 
-    # Republican Chinese politicians guapimao
+    # Non-politicians & republican Chinese politicians guapimao
     EACR_chinese_republican_guapimao_headgear = {
         dna_modifiers = {
             accessory = {
@@ -910,16 +948,27 @@ INJECT:headgear = {
                 # Unwesternized & unrecognized
                 EACR_st_is_unwesternized = yes
                 scope:character ?= {
+                    culture = {
+                        EACR_st_culture_is_chinese = yes
+                    }
                     owner ?= {
                         is_country_type = unrecognized
                     }
                 }
-                EACR_st_owner_is_chinese_republic = yes
                 OR = {
-                    republic_clothes_trigger   = yes
-                    politician_clothes_trigger = yes
+                    AND = {
+                        EACR_st_owner_is_chinese_republic = yes  # Only use on politicians in republics
+                        OR = {
+                            republic_clothes_trigger   = yes
+                            politician_clothes_trigger = yes
+                        }
+                    }
+                    AND = {
+                        ruler_clothes_trigger      = no
+                        politician_clothes_trigger = no
+                    }
                 }
-                military_clothes_trigger = no
+                generic_military_uniform_clothes_trigger = no
             }
         }
     }
@@ -944,18 +993,29 @@ INJECT:headgear = {
                 # westernizing with WCR
                 EACR_st_is_unwesternized = yes
                 scope:character ?= {
+                    culture = {
+                        EACR_st_culture_is_chinese = yes
+                    }
                     owner ?= {
                         NOT = {
                             is_country_type = unrecognized
                         }
                     }
                 }
-                EACR_st_owner_is_chinese_republic = yes
                 OR = {
-                    republic_clothes_trigger   = yes
-                    politician_clothes_trigger = yes
+                    AND = {
+                        EACR_st_owner_is_chinese_republic = yes  # Only use on politicians in republics
+                        OR = {
+                            republic_clothes_trigger   = yes
+                            politician_clothes_trigger = yes
+                        }
+                    }
+                    AND = {
+                        ruler_clothes_trigger      = no
+                        politician_clothes_trigger = no
+                    }
                 }
-                military_clothes_trigger = no
+                generic_military_uniform_clothes_trigger = no
             }
         }
     }
@@ -1208,27 +1268,32 @@ INJECT:headgear = {
                     }
                 }
             }
-            modifier = { # Non-monarchy characters
+            modifier = { # Vietnamese characters - for politicians & generals: only in republics
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                EACR_st_owner_is_DAI_vietnam = yes
                 EACR_st_is_unwesternized = yes
-                OR = {
-                    ruler_clothes_trigger = yes
-                    military_clothes_trigger = yes
-                    politician_clothes_trigger = yes
-                }
                 scope:character ?= {
-                    owner ?= {
-                        coa_monarchy_trigger = no
+                    culture = {
+                        has_discrimination_trait = heritage_vietnamese
                     }
                 }
-            }
-            modifier = { # Morgenrote interop
-                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                morgenrote_is_active = yes
-                EACR_st_owner_is_DAI_vietnam = yes
-                EACR_st_is_unwesternized = yes
-                mr_special_characters_clothes_trigger = yes
+                OR = {
+                    AND = { # Only use on politicians & generals in republics
+                        scope:character ?= {
+                            owner ?= {
+                                coa_monarchy_trigger = no
+                            }
+                        }
+                        OR = {
+                            republic_clothes_trigger   = yes
+                            politician_clothes_trigger = yes
+                            military_clothes_trigger   = yes
+                        }
+                    }
+                    AND = {
+                        ruler_clothes_trigger      = no
+                        politician_clothes_trigger = no
+                    }
+                }
             }
         }
     }
@@ -1291,14 +1356,17 @@ INJECT:headgear = {
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
                 md_japanese_uniform_pack_active_trigger = no # JUP compatibility
+                EACR_st_owner_is_JAP_japanese = yes
+                EACR_st_is_unwesternized = yes
                 scope:character ?= {
-                    owner ?= {
-                        has_variable = meiji_var
-                        EACR_st_owner_is_JAP_japanese = yes
+                    OR = {
+                        has_trait = special_character_japanese_emperor
+                        AND = {
+                            owner ?= { NOT = { has_law = law_type:law_bakufu } }
+                            EACR_st_char_is_monarch  = yes
+                        }
                     }
                 }
-                EACR_st_char_is_monarch  = yes
-                EACR_st_is_unwesternized = yes
             }
         }
     }
@@ -1320,7 +1388,7 @@ INJECT:headgear = {
                 md_japanese_uniform_pack_active_trigger = no # JUP compatibility
                 scope:character ?= {
                     owner ?= {
-                        has_variable = meiji_var
+                        NOT = { has_law = law_type:law_bakufu }
                         EACR_st_owner_is_JAP_japanese = yes
                     }
                 }
