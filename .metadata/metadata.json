@@ -1,12 +1,12 @@
 {
     "name" : "East Asian Clothes: Redux",
     "id" : "xyz.1230james.east_asian_clothes_redux",
-    "version" : "1.0.0",
+    "version" : "1.0.1",
     "game_id" : "victoria3",
     "supported_game_version" : "1.*",
     "short_description" : "",
     "tags" : [
-        "1.12",
+        "1.13",
         "Graphics",
         "Historical",
         "Pops"
