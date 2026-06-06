@@ -14,6 +14,6 @@ mr_is_special_character_no_tooltip_trigger = {
 }
 
 # Japanese Uniform Pack
-md_japanese_modern_ruler_tech_trigger = {
+md_japanese_modern_emperor_tech_trigger = {
     always = no
 }
