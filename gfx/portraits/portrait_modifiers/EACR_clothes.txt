@@ -1244,7 +1244,6 @@ INJECT:clothes = {
             base = 0
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                md_japanese_uniform_pack_active_trigger = no # JUP compatibility
                 scope:character ?= {
                     owner ?= {
                         NOT = { has_law = law_type:law_bakufu }
@@ -1253,6 +1252,14 @@ INJECT:clothes = {
                 }
                 EACR_st_char_is_heir     = yes
                 EACR_st_is_unwesternized = yes
+                
+                # JUP compatibility
+                trigger_if = {
+                    limit = {
+                        md_japanese_uniform_pack_active_trigger = yes
+                    }
+                    md_japanese_modern_emperor_tech_trigger = no
+                }
             }
         }
     }
