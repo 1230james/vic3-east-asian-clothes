@@ -68,4 +68,65 @@ INJECT:hairstyles = {
         }
     }
 
+    EACR_topknot_hairstyles_chinese = {
+        dna_modifiers = {
+            accessory = {
+                mode = replace
+                gene = EAC_hairstyles
+                template = topknot_hairstyles
+                value = 1
+            }
+
+            # Override vanilla
+            accessory = {
+                mode = replace
+                gene = hairstyles
+                template = no_hairstyles
+                value = 0
+            }
+        }
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_HIGH
+
+                # Unwesternized Chinese people
+                EACR_st_is_unwesternized = yes
+                OR = {
+                    scope:pop ?= {
+                        save_temporary_scope_as = person
+                    }
+                    scope:character ?= {
+                        save_temporary_scope_as = person
+                    }
+                }
+                scope:person ?= {
+                    culture = {
+                        EACR_st_culture_is_chinese = yes
+                    }
+                }
+
+                # Do not override Manchu queue
+                chinese_manchu_queue_hairstyle_character_trigger = no
+                chinese_manchu_queue_hairstyle_pops_trigger = no
+
+                # Buddhist monks are bald
+                NOT = {
+                    scope:person ?= {
+                        religion = {
+                            has_discrimination_trait = heritage_dharmic
+                        }
+                        OR = {
+                            clergy_clothes_pop_trigger = yes
+                            AND = {
+                                politician_clothes_trigger = yes
+                                devout_clothes_trigger = yes
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }

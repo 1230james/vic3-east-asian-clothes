@@ -1,0 +1,16 @@
+﻿# Stop topknots from clipping through EP2 (TGW) Japanese poor pop hats
+INJECT:male_headgear_japanese_common_01 = {
+	set_tags = "headgear"
+}
+
+INJECT:male_headgear_japanese_common_02 = {
+	set_tags = "headgear"
+}
+
+INJECT:male_headgear_japanese_common_03 = {
+	set_tags = "headgear"
+}
+
+INJECT:male_headgear_japanese_common_04 = {
+	set_tags = "headgear"
+}
