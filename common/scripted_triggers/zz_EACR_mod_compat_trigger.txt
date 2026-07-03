@@ -21,3 +21,7 @@ REPLACE_OR_CREATE:EACR_st_TPM_qing_chinese_court_base = {
 REPLACE_OR_CREATE:EACR_st_TPM_ming_chinese_court_base = {
     EACR_st_ming_chinese_court_base = yes
 }
+
+REPLACE_OR_CREATE:EACR_st_TPM_ryukyuan_court_base = {
+    EACR_st_ryukyuan_court_base = yes
+}

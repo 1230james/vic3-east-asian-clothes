@@ -560,11 +560,11 @@
 
             }
 
-            japanese_shogun_outfits = {
+            japanese_shogun_outfits = { # Can be deleted because it is now redundant as of 1.13; copied in 1.13 base game definitions for now
                 index = 33
                 male = {
-                    1 = male_outfit_japanese_shogun_01
-
+                    3 = male_outfit_japanese_imperial_01_black
+                    1 = male_outfit_japanese_imperial_01_white_gold
                 }
                 female = {
                     1 = female_outfit_japanese_01_high
