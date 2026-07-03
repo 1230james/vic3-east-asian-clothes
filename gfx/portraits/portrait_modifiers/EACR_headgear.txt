@@ -161,8 +161,8 @@ INJECT:headgear = {
                 }
                 EACR_st_is_unwesternized = yes
                 OR = {
-                    upper_clothes_pop_trigger  = yes
-                    middle_clothes_pop_trigger = yes
+                    EACR_st_upper_clothes_pop  = yes
+                    EACR_st_middle_clothes_pop = yes
                     clergy_clothes_pop_trigger = yes
                 }
             }
@@ -856,8 +856,8 @@ INJECT:headgear = {
                 academics_clothes_pop_trigger = no
                 bureaucrats_clothes_pop_trigger = no
                 OR = {
-                    upper_clothes_pop_trigger = yes
-                    middle_clothes_pop_trigger = yes
+                    EACR_st_upper_clothes_pop = yes
+                    EACR_st_middle_clothes_pop = yes
                 }
             }
         }
@@ -888,8 +888,8 @@ INJECT:headgear = {
                 bureaucrats_clothes_pop_trigger = no
                 chinese_manchu_queue_hairstyle_pops_trigger = yes
                 OR = {
-                    middle_clothes_pop_trigger = yes
-                    upper_clothes_pop_trigger = yes
+                    EACR_st_middle_clothes_pop = yes
+                    EACR_st_upper_clothes_pop = yes
                 }
             }
             modifier = { # Unwesternized republican Chinese middle & upper strata pops
@@ -897,8 +897,8 @@ INJECT:headgear = {
                 EACR_st_is_unwesternized = yes
                 EACR_st_owner_is_chinese_republic = yes
                 OR = {
-                    middle_clothes_pop_trigger = yes
-                    upper_clothes_pop_trigger = yes
+                    EACR_st_middle_clothes_pop = yes
+                    EACR_st_upper_clothes_pop = yes
                 }
             }
             modifier = { # Qing or republican Chinese clergymen
@@ -917,8 +917,8 @@ INJECT:headgear = {
                 EACR_st_owner_is_CHI_han    = no
                 EACR_st_owner_is_chinese_republic = no
                 OR = {
-                    middle_clothes_pop_trigger = yes
-                    upper_clothes_pop_trigger  = yes
+                    EACR_st_middle_clothes_pop = yes
+                    EACR_st_upper_clothes_pop  = yes
                 }
                 scope:pop ?= {
                     culture = {
@@ -1035,7 +1035,7 @@ INJECT:headgear = {
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
                 EACR_st_pop_or_char_is_chinese = yes
-                poor_clothes_pop_trigger = yes
+                EACR_st_poor_clothes_pop = yes
             }
         }
     }
@@ -1418,6 +1418,60 @@ INJECT:headgear = {
 
 
 
+    ### RYUKYU ###
+
+    # Ryukyuan king
+    # https://commons.wikimedia.org/wiki/File:Replica_of_the_crown_of_the_Kings_of_Ryukyu.jpg
+    EACR_kyukyuan_royal_headgear = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_han_common_headgear_02 # Sorta kinda vaguely remotely close???
+                accessory = male_headgear_chinese_han_common_02
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_owner_is_RYU_ryukyu = yes
+                EACR_st_is_unwesternized    = yes
+                military_clothes_trigger    = no # Prevent use when monarch is commanding an army
+                OR = {
+                    EACR_st_char_is_monarch = yes
+                    EACR_st_char_is_heir    = yes # Not sure what the prince wore so we'll just re-use this
+                }
+            }
+        }
+    }
+
+    # Ryukyuan court
+    EACR_kyukyuan_court_clothes = {
+        dna_modifiers = {
+            accessory = {
+                mode = add
+                gene = EAC_headgear
+                template  = chinese_han_common_headgear_02_baraeti
+                accessory = male_headgear_chinese_han_common_05
+            }
+        }
+
+        weight = {
+            base = 0
+            modifier = {
+                add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
+                EACR_st_ryukyuan_court_base = yes
+            }
+        }
+    }
+
+
+
+
+
+
     ### MISC. NORTH ASIAN ###
 
     # North Asian court nuanmao
@@ -1521,7 +1575,7 @@ INJECT:headgear = {
             base = 0
             modifier = {
                 add = @EACR_PORTRAIT_MODIFIER_WEIGHT_LOW
-                poor_clothes_pop_trigger = yes
+                EACR_st_poor_clothes_pop = yes
                 scope:pop ?= {
                     culture = {
                         has_discrimination_trait_group = heritage_group_north_asian

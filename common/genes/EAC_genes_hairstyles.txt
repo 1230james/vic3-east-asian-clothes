@@ -18,7 +18,8 @@
                 1 = topknot
             }
             female = {
-                1 = female_hair_chinese_01
+                1 = topknot_female
+                1 = topknot_female_chinese
             }
             boy = male
             girl = female

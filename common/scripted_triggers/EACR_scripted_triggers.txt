@@ -158,6 +158,7 @@ EACR_st_culture_is_chinese = {
     NOR = {
         has_discrimination_trait = heritage_korean
         has_discrimination_trait = heritage_vietnamese
+        has_discrimination_trait = heritage_japanese # Ryukyuan
     }
 }
 
@@ -245,6 +246,69 @@ EACR_st_char_is_mobilized_commander = {
         }
         trigger_else = {
             always = no # how did we get here
+        }
+    }
+}
+
+EACR_st_pop_is_vanilla_pop_type = {
+    scope:pop ?= {
+        OR = {
+            is_pop_type = academics
+            is_pop_type = aristocrats
+            is_pop_type = bureaucrats
+            is_pop_type = capitalists
+            is_pop_type = clergymen
+            is_pop_type = clerks
+            is_pop_type = engineers
+            is_pop_type = farmers
+            is_pop_type = laborers
+            is_pop_type = machinists
+            is_pop_type = officers
+            is_pop_type = peasants
+            is_pop_type = shopkeepers
+            is_pop_type = slaves
+            is_pop_type = soldiers
+        }
+    }
+}
+
+# Wrappers for base game's poor/middle/upper_clothes_pop_triggers but will fall back to a strata check if using a modded job type
+EACR_st_poor_clothes_pop = {
+    trigger_if = {
+        limit = {
+            EACR_st_pop_is_vanilla_pop_type = yes
+        }
+        poor_clothes_pop_trigger = yes
+    }
+    trigger_else = {
+        scope:pop ?= {
+            strata = lower
+        }
+    }
+}
+EACR_st_middle_clothes_pop = {
+    trigger_if = {
+        limit = {
+            EACR_st_pop_is_vanilla_pop_type = yes
+        }
+        middle_clothes_pop_trigger = yes
+    }
+    trigger_else = {
+        scope:pop ?= {
+            strata = middle
+        }
+    }
+}
+EACR_st_upper_clothes_pop = {
+    trigger_if = {
+        limit = {
+            EACR_st_pop_is_vanilla_pop_type = yes
+        }
+        upper_clothes_pop_trigger = yes
+    }
+    trigger_else = {
+        scope:pop ?= {
+            strata = upper
         }
     }
 }
@@ -396,8 +460,27 @@ EACR_st_owner_is_JAP_japanese = { # Checks for JAP tag or Japanese culture (help
                 EACR_st_is_country_tag = { TAG = JAP }
                 any_primary_culture = {
                     has_discrimination_trait = heritage_japanese
+                    NOT = {
+                        has_discrimination_trait = language_ryukyuan
+                    }
                 }
             }
+        }
+    }
+}
+
+EACR_st_owner_is_RYU_ryukyu = {
+    OR = {
+        scope:pop ?= {
+            save_temporary_scope_as = person
+        }
+        scope:character ?= {
+            save_temporary_scope_as = person
+        }
+    }
+    scope:person ?= {
+        owner ?= {
+            EACR_st_is_country_tag = { TAG = RYU }
         }
     }
 }
@@ -1023,5 +1106,21 @@ EACR_st_vietnamese_general_02 = {
                 is_in_government = no
             }
         }
+    }
+}
+
+# Ryukyuan court politicians
+EACR_st_ryukyuan_court_base = {
+    EACR_st_owner_is_country_tag = { TAG = RYU }
+    scope:character ?= {
+        owner ?= { coa_monarchy_trigger = yes }
+        OR = {
+            military_clothes_trigger = no
+            EACR_st_char_is_mobilized_commander = no
+        }
+        EACR_st_is_unwesternized = yes
+        EACR_st_char_is_monarch = no
+        EACR_st_char_is_heir = no
+        has_role_of_type = politician
     }
 }
